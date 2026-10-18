@@ -1,9 +1,10 @@
 # Verification record
 
 Verified locally on 2026-10-18. This record covers the finite-dimensional
-milestone and the all-order walk expansion and vertex bound, not the full
-Marchenko-Pastur theorem. The initial stage is retained at Git tag
-`stage-1-finite-moments` (`0523463`).
+milestone, all-order walk expansion, partition-coefficient formula, and
+coefficient support bound, not the full Marchenko-Pastur theorem. Earlier
+stages are retained at `stage-1-finite-moments` (`0523463`) and
+`stage-2-walk-counting` (`b23f33c`).
 
 ## Lean
 
@@ -13,12 +14,13 @@ Marchenko-Pastur theorem. The initial stage is retained at Git tag
 - `scripts/check.sh`: passed.
 - `lake build`: passed, with dependency build products largely obtained from
   the official mathlib cache.
-- Eight mathematical source modules, 42 exported named theorems and one private
+- Thirteen mathematical source modules, 65 exported named theorems and one private
   helper, plus the aggregate import and audit module. No new mathematical
   result is claimed from the theorem count.
 - Source scan: no unfinished-proof tokens, custom axiom declarations, or
   `native_decide` calls in the project Lean sources.
-- Thirty-two theorem dependency audits passed. Audited dependencies are confined
+- Fifty-seven proof dependency audits passed, including the two central
+  labeling/walk equivalences. Audited dependencies are confined
   to `propext`, `Classical.choice`, and `Quot.sound`. No `sorryAx`, custom
   domain axiom, `Lean.ofReduceBool`, or `Lean.trustCompiler` was reported.
 - Negative control passed: the claim that the 1-by-1 finite second moment equals
@@ -35,9 +37,9 @@ We did not run a second independently implemented proof checker.
 The final build ran in a temporary local directory after iCloud offloading
 caused reads of generated artifacts in the original workspace to fail. Lean
 and all dependency sources were restored at the pinned versions. Hashes of all
-16 Lean source, check-script, and dependency-pin files matched the deliverable
-before that clean build. The logs below the validation directory are from
-this successful validation run.
+21 Lean source, check-script, and dependency-pin files matched the deliverable
+for the final validation. The logs in the validation directory are from this
+successful run. The pinned Lean and mathlib versions were retained throughout.
 
 ## Exact computational checks
 
@@ -50,12 +52,21 @@ this successful validation run.
 - 40 comparisons of rooted labeled walk enumeration with partition counts at
   orders 0 through 4 across the same eight dimension pairs. Normalized counts
   also agree with direct sign-matrix moments, with zeroth moments checked as 1.
+- 120 equality-pattern labeling fibers checked by exhaustively enumerating
+  499 assignments across 25 domain/label-size combinations. Empty domains and
+  cases with too few labels are included.
+- Coefficient tables from the position-partition encoding, with k+1 row
+  positions and k column positions, agree with the earlier cyclic encoding
+  at orders 0 through 7. The order-zero coefficient table has one entry,
+  A_(0,1,0)=1, in the exact computation.
 - The first, second and proposed third moment formulas agree with enumeration.
   Only the first and second moment formulas are currently proved in Lean.
 - For every order 1 through 7, computed surviving patterns satisfy r+c <= k+1,
   and the coefficients at equality agree with the Narayana formula.
-  The vertex bound is now proved for every order in Lean. The canonical pattern
-  grouping and arbitrary-order Narayana enumeration are not yet Lean proofs.
+  The vertex bound, partition grouping, and falling-factorial coefficient
+  formula are now proved for every order in Lean. The arbitrary-order Narayana
+  enumeration is not yet a Lean proof. The Python enumerator itself has not
+  been formally verified against the Lean pattern type.
 
 Data: [exact-moments.json](../experiments/results/exact-moments.json).
 
@@ -73,10 +84,10 @@ Plot: [PNG](../experiments/results/spectral-experiment.png),
 
 ## Remaining proof obligations
 
-The arbitrary-order labeled trace expansion, exact parity-filtered expectation
-formula, vertex bound, and double occurrence at maximal vertex count are proved.
-The project does not yet prove canonical partition grouping, the tree
-classification and Narayana formula, all expected-moment limits, variance
+The arbitrary-order labeled trace expansion, exact partition-coefficient
+formula, coefficient support bound, and double occurrence at maximal vertex
+count are proved. The project does not yet prove the tree classification and
+Narayana formula, all expected-moment limits, variance
 bounds, the spectral-measure moment bridge, normalization and moments of the MP
 measure, or weak convergence in probability. The expected-second-moment limit
 is not a substitute for these steps. See [BLUEPRINT.md](BLUEPRINT.md).

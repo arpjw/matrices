@@ -1,6 +1,200 @@
 {
-  "status": "exact finite computations; all-order labeled walk formula and vertex bound proved in Lean; partition grouping and Narayana formula remain unproved in Lean",
+  "status": "exact finite computations; all-order partition grouping, falling-factorial multiplicities, coefficient formula and support bound proved in Lean; Narayana formula remains unproved in Lean",
   "normalization": "p^-1 trace((X X^T / n)^k)",
+  "labeling_fiber_checks": [
+    {
+      "positions": 0,
+      "labels": 0,
+      "assignments": 1,
+      "patterns_checked": 1
+    },
+    {
+      "positions": 0,
+      "labels": 1,
+      "assignments": 1,
+      "patterns_checked": 1
+    },
+    {
+      "positions": 0,
+      "labels": 2,
+      "assignments": 1,
+      "patterns_checked": 1
+    },
+    {
+      "positions": 0,
+      "labels": 3,
+      "assignments": 1,
+      "patterns_checked": 1
+    },
+    {
+      "positions": 0,
+      "labels": 4,
+      "assignments": 1,
+      "patterns_checked": 1
+    },
+    {
+      "positions": 1,
+      "labels": 0,
+      "assignments": 0,
+      "patterns_checked": 1
+    },
+    {
+      "positions": 1,
+      "labels": 1,
+      "assignments": 1,
+      "patterns_checked": 1
+    },
+    {
+      "positions": 1,
+      "labels": 2,
+      "assignments": 2,
+      "patterns_checked": 1
+    },
+    {
+      "positions": 1,
+      "labels": 3,
+      "assignments": 3,
+      "patterns_checked": 1
+    },
+    {
+      "positions": 1,
+      "labels": 4,
+      "assignments": 4,
+      "patterns_checked": 1
+    },
+    {
+      "positions": 2,
+      "labels": 0,
+      "assignments": 0,
+      "patterns_checked": 2
+    },
+    {
+      "positions": 2,
+      "labels": 1,
+      "assignments": 1,
+      "patterns_checked": 2
+    },
+    {
+      "positions": 2,
+      "labels": 2,
+      "assignments": 4,
+      "patterns_checked": 2
+    },
+    {
+      "positions": 2,
+      "labels": 3,
+      "assignments": 9,
+      "patterns_checked": 2
+    },
+    {
+      "positions": 2,
+      "labels": 4,
+      "assignments": 16,
+      "patterns_checked": 2
+    },
+    {
+      "positions": 3,
+      "labels": 0,
+      "assignments": 0,
+      "patterns_checked": 5
+    },
+    {
+      "positions": 3,
+      "labels": 1,
+      "assignments": 1,
+      "patterns_checked": 5
+    },
+    {
+      "positions": 3,
+      "labels": 2,
+      "assignments": 8,
+      "patterns_checked": 5
+    },
+    {
+      "positions": 3,
+      "labels": 3,
+      "assignments": 27,
+      "patterns_checked": 5
+    },
+    {
+      "positions": 3,
+      "labels": 4,
+      "assignments": 64,
+      "patterns_checked": 5
+    },
+    {
+      "positions": 4,
+      "labels": 0,
+      "assignments": 0,
+      "patterns_checked": 15
+    },
+    {
+      "positions": 4,
+      "labels": 1,
+      "assignments": 1,
+      "patterns_checked": 15
+    },
+    {
+      "positions": 4,
+      "labels": 2,
+      "assignments": 16,
+      "patterns_checked": 15
+    },
+    {
+      "positions": 4,
+      "labels": 3,
+      "assignments": 81,
+      "patterns_checked": 15
+    },
+    {
+      "positions": 4,
+      "labels": 4,
+      "assignments": 256,
+      "patterns_checked": 15
+    }
+  ],
+  "position_partition_checks": [
+    {
+      "order": 0,
+      "surviving_patterns": 1,
+      "nonzero_coefficients": 1
+    },
+    {
+      "order": 1,
+      "surviving_patterns": 1,
+      "nonzero_coefficients": 1
+    },
+    {
+      "order": 2,
+      "surviving_patterns": 3,
+      "nonzero_coefficients": 3
+    },
+    {
+      "order": 3,
+      "surviving_patterns": 12,
+      "nonzero_coefficients": 6
+    },
+    {
+      "order": 4,
+      "surviving_patterns": 62,
+      "nonzero_coefficients": 10
+    },
+    {
+      "order": 5,
+      "surviving_patterns": 398,
+      "nonzero_coefficients": 15
+    },
+    {
+      "order": 6,
+      "surviving_patterns": 3062,
+      "nonzero_coefficients": 21
+    },
+    {
+      "order": 7,
+      "surviving_patterns": 27429,
+      "nonzero_coefficients": 28
+    }
+  ],
   "exhaustive_checks": [
     {
       "p": 1,

@@ -74,18 +74,18 @@ Finally, `maximal_even_walk_edges_twice` proves that r+c=k+1 forces each used
 entry to occur exactly twice. The proof forces e=k, then uses equality in
 the sum of the multiplicity lower bounds.
 
-## What is still needed
+## Partition grouping and remaining work
 
-The next coefficient formula is planned:
+The coefficient formula is now proved, including order zero:
 
-    C_k(p,n) = sum_(r,c) A_(k,r,c) (p)_r (n)_c,       k>=1,
+    C_k(p,n) = sum_(r,c) A_(k,r,c) (p)_r (n)_c,       k>=0,
 
 where (p)_r is a falling factorial and A counts canonical row and column
-partition patterns. The Python code checks this grouping on small examples;
-the bijection and label multiplicities are not yet proved in Lean.
+partition patterns. The bijection, label multiplicities, and grouping by block
+counts are proved in Lean. [PATTERNS.md](PATTERNS.md) describes the new proof chain.
 
-The vertex bound rules out surviving patterns with r+c>k+1, once that grouping
-is connected to the formal walks. Double occurrence at equality is proved,
+The vertex bound now formally rules out surviving patterns with r+c>k+1, and
+the corresponding coefficients are proved to vanish. Double occurrence at equality is proved,
 but the formal tree classification and the Narayana enumeration remain open.
 The project therefore does not yet prove all expected-moment limits,
 concentration, or the Marchenko-Pastur spectral-distribution theorem.

@@ -3,14 +3,16 @@
 A research project toward a complete Lean proof of the Marchenko-Pastur law for
 sample covariance matrices with independent fair-sign entries.
 
-The current milestone proves an exact walk-counting formula for every trace
-moment, the all-order vertex bound r+c <= k+1, and double occurrence of every
-used entry when that bound is saturated. It also proves exact first and second
-moments and convergence of the expected second moment. The full
-spectral-distribution theorem is still open in this project.
+The current milestone proves an exact partition-coefficient formula for every
+trace moment: each surviving pattern contributes its falling-factorial number
+of row and column labelings. Coefficients vanish when r+c > k+1. The earlier
+walk expansion, vertex bound, exact first and second moments, and expected
+second-moment limit are also proved. The full spectral-distribution theorem
+is still open in this project.
 
 The initial finite-moment stage is preserved at the Git tag
 `stage-1-finite-moments` (commit `0523463`).
+The all-order walk stage is preserved at `stage-2-walk-counting` (`b23f33c`).
 
 ## Model and conventions
 
@@ -35,6 +37,11 @@ max(1 - 1/gamma, 0) when gamma > 1.
 | SecondMomentLimit | Exact second-moment bias and convergence of its expectation |
 | Walks | Deterministic expansion at every order; exact expected moments as counts of even closed walks |
 | WalkBounds | r+c <= k+1 for even walks; every used entry occurs twice at equality |
+| Labelings | Equality-pattern fibers are injective block labelings; exact falling-factorial multiplicities |
+| WalkPositions | Bijection between rooted walks and position-indexed row/column assignments |
+| WalkPatterns | Closure and parity depend only on partitions; exact partition-weighted count |
+| PatternCoefficients | Dimension-independent coefficients and the exact finite moment expansion |
+| PatternBounds | Abstract pattern vertex bound and coefficient vanishing above r+c=k+1 |
 
 The general finite identity, for every k >= 0 and p,n > 0, is
 
@@ -44,6 +51,15 @@ where C_k counts labeled rooted closed alternating walks with 2k entry visits,
 each entry appearing an even number of times. This is a Lean theorem about the
 actual finite sign ensemble. In particular, C_0=p and E[M_0]=1.
 See [the walk proof guide](docs/WALKS.md) for the encoding and proof chain.
+
+The new partition grouping proves, for every k >= 0,
+
+    C_k(p,n) = sum_(r,c) A_(k,r,c) (p)_r (n)_c,
+    A_(k,r,c) = 0 whenever r+c > k+1.
+
+Here A counts surviving equality patterns and (p)_r is the falling factorial.
+The coefficients depend on k,r,c only, independently of p and n. See
+[the partition proof guide](docs/PATTERNS.md) for the formal bijections.
 
 The previously proved second-moment specialization is
 
@@ -74,7 +90,9 @@ scripts/lake.sh exe cache get \
   Mathlib.Data.Real.StarOrdered Mathlib.LinearAlgebra.Matrix.Trace \
   Mathlib.Analysis.SpecificLimits.Basic Mathlib.Tactic.Ring \
   Mathlib.Tactic.NormNum Mathlib.Tactic.FieldSimp Mathlib.Tactic.Linarith \
-  Mathlib.Algebra.BigOperators.Group.List.Basic
+  Mathlib.Algebra.BigOperators.Group.List.Basic \
+  Mathlib.Data.Fintype.CardEmbedding Mathlib.Data.Setoid.Basic \
+  Mathlib.Data.Fintype.Powerset Mathlib.Data.Finite.Card Mathlib.Data.Fin.Tuple.Basic
 scripts/check.sh
 ```
 
@@ -102,8 +120,10 @@ pairs, independently comparing direct matrix multiplication with partition
 counts for the first four moments. Another 40 checks compare the rooted walk
 encoding with partition counts, including the empty-walk case. It also checks
 leading Narayana coefficients through order seven using exact integers.
-The general labeled walk formula and vertex bound are proved in Lean;
-partition grouping and the all-order Narayana coefficient formula remain open.
+The position-partition encoding is independently checked at orders 0 through 7,
+and exhaustive assignments check 120 labeling fibers, including empty domains
+and insufficient label counts. The general partition grouping and coefficient
+support bound are now proved in Lean. The all-order Narayana formula remains open.
 
 The spectral figure uses 105 reproducible simulated matrices. It preserves
 structural zero eigenvalues for p > n and shows the finite -1/n bias in the
@@ -115,9 +135,9 @@ proofs or evidence of a new mathematical result.
 ## The substantial work ahead
 
 [BLUEPRINT.md](docs/BLUEPRINT.md) gives the exact theorem and dependency graph.
-The next major step is to group labeled walks by row and column partitions,
-identify the maximal patterns with bipartite trees, and count them by Narayana
-numbers. Subsequent bottlenecks are expected-moment limits, variance estimates,
+The next major step is to identify the maximal partition patterns with
+bipartite trees and count them by Narayana numbers. Subsequent bottlenecks are
+expected-moment limits, variance estimates,
 formal spectral measures, identification of the MP density plus atom, and
 moment-to-measure convergence.
 

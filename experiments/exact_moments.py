@@ -41,6 +41,47 @@ def pattern_counts(k: int) -> Counter[tuple[int, int]]:
     return result
 
 
+def position_pattern_counts(k: int) -> Counter[tuple[int, int]]:
+    """Use k+1 row positions and k column positions, as in the Lean definition.
+
+    Partitions are encoded by first-occurrence labels. Closure identifies the
+    final row with the initial row. An integer mask tracks multiplicity parity.
+    """
+    result: Counter[tuple[int, int]] = Counter()
+    column_patterns = list(partitions(k))
+    for rows in partitions(k + 1):
+        if rows[-1] != rows[0]:
+            continue
+        for cols in column_patterns:
+            width = max(cols, default=-1) + 1
+            parity = 0
+            for t, col in enumerate(cols):
+                parity ^= 1 << (rows[t] * width + col)
+                parity ^= 1 << (rows[t + 1] * width + col)
+            if parity == 0:
+                result[len(set(rows)), width] += 1
+    return result
+
+
+def labeling_fiber_checks() -> list[dict[str, int]]:
+    """Compare exhaustive assignments with each partition's falling-factorial count."""
+    checks: list[dict[str, int]] = []
+    for positions in range(5):
+        for labels in range(5):
+            fibers: Counter[tuple[int, ...]] = Counter()
+            for assignment in itertools.product(range(labels), repeat=positions):
+                names: dict[int, int] = {}
+                pattern = tuple(names.setdefault(value, len(names)) for value in assignment)
+                fibers[pattern] += 1
+            expected = {pattern: falling(labels, len(set(pattern)))
+                        for pattern in partitions(positions)}
+            assert all(fibers[pattern] == count for pattern, count in expected.items())
+            assert sum(fibers.values()) == labels**positions
+            checks.append({"positions": positions, "labels": labels,
+                           "assignments": labels**positions, "patterns_checked": len(expected)})
+    return checks
+
+
 def falling(n: int, k: int) -> int:
     return math.prod(n - j for j in range(k)) if k <= n else 0
 
@@ -98,6 +139,14 @@ def enumerate_moments(p: int, n: int, max_k: int) -> list[Fraction]:
 
 def main() -> None:
     counts = {k: pattern_counts(k) for k in range(1, 8)}
+    fiber_checks = labeling_fiber_checks()
+    position_checks = []
+    for k in range(8):
+        table = position_pattern_counts(k)
+        expected = Counter({(1, 0): 1}) if k == 0 else counts[k]
+        assert table == expected, (k, table, expected)
+        position_checks.append({"order": k, "surviving_patterns": sum(table.values()),
+                                "nonzero_coefficients": len(table)})
     checks = []
     walk_checks = []
     for p, n in [(1, 1), (1, 4), (2, 1), (2, 2), (2, 3), (3, 2), (3, 3), (3, 4)]:
@@ -129,8 +178,10 @@ def main() -> None:
         assert leading == narayana, (k, leading, narayana)
         leading_checks.append({"order": k, "leading_coefficients": leading})
     result = {
-        "status": "exact finite computations; all-order labeled walk formula and vertex bound proved in Lean; partition grouping and Narayana formula remain unproved in Lean",
+        "status": "exact finite computations; all-order partition grouping, falling-factorial multiplicities, coefficient formula and support bound proved in Lean; Narayana formula remains unproved in Lean",
         "normalization": "p^-1 trace((X X^T / n)^k)",
+        "labeling_fiber_checks": fiber_checks,
+        "position_partition_checks": position_checks,
         "exhaustive_checks": checks,
         "labeled_walk_checks": walk_checks,
         "leading_term_checks": leading_checks,
@@ -143,6 +194,8 @@ def main() -> None:
     out.write_text(json.dumps(result, indent=2) + "\n")
     print(f"PASS: {sum(c['worlds'] for c in checks)} matrices; 32 moment comparisons; "
           f"{len(walk_checks)} labeled walk comparisons (including order zero); "
+          f"{sum(c['patterns_checked'] for c in fiber_checks)} labeling fibers; "
+          "position partition coefficients at orders 0..7; "
           "orders 1..7 leading coefficients")
 
 

@@ -6,3 +6,8 @@ import RandomMatrix.Geometry
 import RandomMatrix.SecondMomentLimit
 import RandomMatrix.Walks
 import RandomMatrix.WalkBounds
+import RandomMatrix.Labelings
+import RandomMatrix.WalkPositions
+import RandomMatrix.WalkPatterns
+import RandomMatrix.PatternCoefficients
+import RandomMatrix.PatternBounds

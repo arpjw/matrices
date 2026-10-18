@@ -37,13 +37,15 @@ for all independent-entry distributions.
    positivity and trace formulas, and evaluate the first two moments exactly.
 3. All-order alternating-walk formula. Expand tr((XX^T)^k), group by partitions
    of row and column positions, and prove that precisely the even-edge patterns
-   survive. The labeled expansion and exact parity-filtered counting formula
-   are now proved for every k, including zero. Grouping by partitions is still
-   pending. The Python enumerator is a test oracle, not that grouping proof.
+   survive. This stage is complete for every k, including zero: the labeled
+   expansion, partition grouping, falling-factorial label multiplicities, and
+   dimension-independent coefficient formula are proved in Lean. The Python
+   enumerator supplies independent finite checks.
 4. Leading patterns. Prove r+c <= k+1 for surviving connected patterns. Identify
    equality with doubled bipartite trees and count them by Narayana numbers.
-   The bound is now proved for all even walks, and equality is proved to force
-   every used entry to occur exactly twice. Tree identification and the
+   The bound is now proved for all even walks and all surviving abstract
+   patterns. Coefficients with r+c>k+1 vanish. Equality for concrete walks is
+   proved to force every used entry to occur exactly twice. Tree identification and the
    Narayana bijection remain a major combinatorial bottleneck. Finite checks
    at k <= 7 do not establish that bijection for arbitrary k.
 5. Expected moments. Prove convergence for every fixed k to
@@ -83,15 +85,17 @@ trace normalization and 1/n for the covariance normalization.
 
 ## Working order
 
-Stages 1 and 2, the labeled alternating-walk formula, and the graph bound
-r+c <= k+1 are complete. Next, construct a canonical partition encoding and
-prove the falling-factorial multiplicities for row and column labels. Then
-establish the tree classification and Narayana counting theorem.
+Stages 1 through 3, the graph bound r+c <= k+1, and its transfer to the
+dimension-independent coefficients are complete. Next, prove that maximal
+partition patterns correspond to rooted ordered bipartite trees, then
+establish the Narayana counting theorem. The formal pattern type uses
+equivalence relations, so this bijection must handle blocks directly rather
+than assume a particular numerical block-labeling algorithm.
 The complete flagship chain is substantial; no completion date is inferred from
 the first finite proofs.
 
-See [WALKS.md](WALKS.md) for the precise completed statements and their boundary
-with the remaining combinatorics.
+See [WALKS.md](WALKS.md) and [PATTERNS.md](PATTERNS.md) for the completed
+statements and their boundary with the remaining combinatorics.
 
 ## References
 
