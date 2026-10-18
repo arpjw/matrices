@@ -1,5 +1,14 @@
 Source scan passed
-Build completed successfully (2045 jobs).
+✔ [2038/2047] Built RandomMatrix.FiniteAverage (7.5s)
+✔ [2039/2047] Built RandomMatrix.Rademacher (1.5s)
+✔ [2040/2047] Built RandomMatrix.WordMoments (1.3s)
+✔ [2041/2047] Built RandomMatrix.Covariance (2.2s)
+✔ [2042/2047] Built RandomMatrix.Walks (1.6s)
+✔ [2043/2047] Built RandomMatrix.SecondMomentLimit (2.9s)
+✔ [2044/2047] Built RandomMatrix.WalkBounds (1.4s)
+✔ [2045/2047] Built RandomMatrix.Geometry (3.5s)
+✔ [2046/2047] Built RandomMatrix (1.3s)
+Build completed successfully (2047 jobs).
 'RandomMatrix.average_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -17,4 +26,19 @@ Build completed successfully (2045 jobs).
 'RandomMatrix.word_product_by_count' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_word' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_word_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
-PASS: 17 theorem dependency audits; incorrect finite second moment rejected
+'RandomMatrix.walkWord_length' depends on axioms: [propext]
+'RandomMatrix.gram_pow_walks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.trace_covariance_pow_walks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.evenClosedWalkCount_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.average_trace_pow_walks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.expected_moment_eq_walk_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.evenClosedWalkCount_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.start_mem_walkRows' depends on axioms: [propext, Quot.sound]
+'RandomMatrix.walkWord_mem_vertices' depends on axioms: [propext, Quot.sound]
+'RandomMatrix.walk_vertices_le_edges_add_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.even_word_support_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.even_walk_edges_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.even_walk_vertices_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.even_word_maximal_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.maximal_even_walk_edges_twice' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: 32 theorem dependency audits; incorrect finite second moment rejected

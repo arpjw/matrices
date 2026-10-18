@@ -3,9 +3,14 @@
 A research project toward a complete Lean proof of the Marchenko-Pastur law for
 sample covariance matrices with independent fair-sign entries.
 
-The first milestone is finite-dimensional: exact sign moments, covariance
-identities, and convergence of the expected second trace moment. The full
+The current milestone proves an exact walk-counting formula for every trace
+moment, the all-order vertex bound r+c <= k+1, and double occurrence of every
+used entry when that bound is saturated. It also proves exact first and second
+moments and convergence of the expected second moment. The full
 spectral-distribution theorem is still open in this project.
+
+The initial finite-moment stage is preserved at the Git tag
+`stage-1-finite-moments` (commit `0523463`).
 
 ## Model and conventions
 
@@ -28,8 +33,19 @@ max(1 - 1/gamma, 0) when gamma > 1.
 | Covariance | Trace expansion, exact first moment, exact expected second moment |
 | Geometry | Positive semidefiniteness, rank at most n, nullity at least p-n |
 | SecondMomentLimit | Exact second-moment bias and convergence of its expectation |
+| Walks | Deterministic expansion at every order; exact expected moments as counts of even closed walks |
+| WalkBounds | r+c <= k+1 for even walks; every used entry occurs twice at equality |
 
-The central finite identity is
+The general finite identity, for every k >= 0 and p,n > 0, is
+
+    E[M_k] = C_k(p,n) / (p n^k),
+
+where C_k counts labeled rooted closed alternating walks with 2k entry visits,
+each entry appearing an even number of times. This is a Lean theorem about the
+actual finite sign ensemble. In particular, C_0=p and E[M_0]=1.
+See [the walk proof guide](docs/WALKS.md) for the encoding and proof chain.
+
+The previously proved second-moment specialization is
 
     E[M_2] = 1 + (p-1)/n = 1 + p/n - 1/n.
 
@@ -82,10 +98,12 @@ from source archives. No paid compute is required for this milestone.
 ## Experiments and their evidential status
 
 The exact checker enumerates 4,774 sign matrices over eight small dimension
-pairs, independently comparing direct matrix multiplication with alternating
-walk counts for the first four moments. It also checks leading Narayana
-coefficients through order seven using exact integers. These finite checks do
-not prove the all-order counting theorem.
+pairs, independently comparing direct matrix multiplication with partition
+counts for the first four moments. Another 40 checks compare the rooted walk
+encoding with partition counts, including the empty-walk case. It also checks
+leading Narayana coefficients through order seven using exact integers.
+The general labeled walk formula and vertex bound are proved in Lean;
+partition grouping and the all-order Narayana coefficient formula remain open.
 
 The spectral figure uses 105 reproducible simulated matrices. It preserves
 structural zero eigenvalues for p > n and shows the finite -1/n bias in the
@@ -97,10 +115,11 @@ proofs or evidence of a new mathematical result.
 ## The substantial work ahead
 
 [BLUEPRINT.md](docs/BLUEPRINT.md) gives the exact theorem and dependency graph.
-The next major step is the all-order alternating-walk expansion and the bound
-r+c <= k+1 on surviving row/column patterns. Subsequent bottlenecks are the
-Narayana counting theorem, variance estimates, formal spectral measures,
-identification of the MP density plus atom, and moment-to-measure convergence.
+The next major step is to group labeled walks by row and column partitions,
+identify the maximal patterns with bipartite trees, and count them by Narayana
+numbers. Subsequent bottlenecks are expected-moment limits, variance estimates,
+formal spectral measures, identification of the MP density plus atom, and
+moment-to-measure convergence.
 
 [PRIOR_ART.md](docs/PRIOR_ART.md) records the inspected existing projects and their
 limitations. This is a formalization of a classical result. No claim of novelty

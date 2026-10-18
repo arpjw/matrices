@@ -4,3 +4,5 @@ import RandomMatrix.WordMoments
 import RandomMatrix.Covariance
 import RandomMatrix.Geometry
 import RandomMatrix.SecondMomentLimit
+import RandomMatrix.Walks
+import RandomMatrix.WalkBounds

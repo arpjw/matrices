@@ -1,5 +1,5 @@
 {
-  "status": "exact finite computations; general counting theorem remains unproved in Lean",
+  "status": "exact finite computations; all-order labeled walk formula and vertex bound proved in Lean; partition grouping and Narayana formula remain unproved in Lean",
   "normalization": "p^-1 trace((X X^T / n)^k)",
   "exhaustive_checks": [
     {
@@ -89,6 +89,328 @@
         "21/8",
         "81/16"
       ]
+    }
+  ],
+  "labeled_walk_checks": [
+    {
+      "p": 1,
+      "n": 1,
+      "order": 0,
+      "candidate_walks": 1,
+      "even_closed_walks": 1,
+      "moment": "1"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 1,
+      "candidate_walks": 1,
+      "even_closed_walks": 1,
+      "moment": "1"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 2,
+      "candidate_walks": 1,
+      "even_closed_walks": 1,
+      "moment": "1"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 3,
+      "candidate_walks": 1,
+      "even_closed_walks": 1,
+      "moment": "1"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 4,
+      "candidate_walks": 1,
+      "even_closed_walks": 1,
+      "moment": "1"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 0,
+      "candidate_walks": 1,
+      "even_closed_walks": 1,
+      "moment": "1"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 1,
+      "candidate_walks": 4,
+      "even_closed_walks": 4,
+      "moment": "1"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 2,
+      "candidate_walks": 16,
+      "even_closed_walks": 16,
+      "moment": "1"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 3,
+      "candidate_walks": 64,
+      "even_closed_walks": 64,
+      "moment": "1"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 4,
+      "candidate_walks": 256,
+      "even_closed_walks": 256,
+      "moment": "1"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 0,
+      "candidate_walks": 2,
+      "even_closed_walks": 2,
+      "moment": "1"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 1,
+      "candidate_walks": 4,
+      "even_closed_walks": 2,
+      "moment": "1"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 2,
+      "candidate_walks": 8,
+      "even_closed_walks": 4,
+      "moment": "2"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 3,
+      "candidate_walks": 16,
+      "even_closed_walks": 8,
+      "moment": "4"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 4,
+      "candidate_walks": 32,
+      "even_closed_walks": 16,
+      "moment": "8"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 0,
+      "candidate_walks": 2,
+      "even_closed_walks": 2,
+      "moment": "1"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 1,
+      "candidate_walks": 8,
+      "even_closed_walks": 4,
+      "moment": "1"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 2,
+      "candidate_walks": 32,
+      "even_closed_walks": 12,
+      "moment": "3/2"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 3,
+      "candidate_walks": 128,
+      "even_closed_walks": 40,
+      "moment": "5/2"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 4,
+      "candidate_walks": 512,
+      "even_closed_walks": 144,
+      "moment": "9/2"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 0,
+      "candidate_walks": 2,
+      "even_closed_walks": 2,
+      "moment": "1"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 1,
+      "candidate_walks": 12,
+      "even_closed_walks": 6,
+      "moment": "1"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 2,
+      "candidate_walks": 72,
+      "even_closed_walks": 24,
+      "moment": "4/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 3,
+      "candidate_walks": 432,
+      "even_closed_walks": 108,
+      "moment": "2"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 4,
+      "candidate_walks": 2592,
+      "even_closed_walks": 528,
+      "moment": "88/27"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 0,
+      "candidate_walks": 3,
+      "even_closed_walks": 3,
+      "moment": "1"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 1,
+      "candidate_walks": 18,
+      "even_closed_walks": 6,
+      "moment": "1"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 2,
+      "candidate_walks": 108,
+      "even_closed_walks": 24,
+      "moment": "2"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 3,
+      "candidate_walks": 648,
+      "even_closed_walks": 108,
+      "moment": "9/2"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 4,
+      "candidate_walks": 3888,
+      "even_closed_walks": 528,
+      "moment": "11"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 0,
+      "candidate_walks": 3,
+      "even_closed_walks": 3,
+      "moment": "1"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 1,
+      "candidate_walks": 27,
+      "even_closed_walks": 9,
+      "moment": "1"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 2,
+      "candidate_walks": 243,
+      "even_closed_walks": 45,
+      "moment": "5/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 3,
+      "candidate_walks": 2187,
+      "even_closed_walks": 261,
+      "moment": "29/9"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 4,
+      "candidate_walks": 19683,
+      "even_closed_walks": 1665,
+      "moment": "185/27"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 0,
+      "candidate_walks": 3,
+      "even_closed_walks": 3,
+      "moment": "1"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 1,
+      "candidate_walks": 36,
+      "even_closed_walks": 12,
+      "moment": "1"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 2,
+      "candidate_walks": 432,
+      "even_closed_walks": 72,
+      "moment": "3/2"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 3,
+      "candidate_walks": 5184,
+      "even_closed_walks": 504,
+      "moment": "21/8"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 4,
+      "candidate_walks": 62208,
+      "even_closed_walks": 3888,
+      "moment": "81/16"
     }
   ],
   "leading_term_checks": [
