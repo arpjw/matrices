@@ -1,0 +1,11 @@
+import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: the finite 1-by-1 second moment is 1, not 2.
+example : average (fun ω : Fin 1 × Fin 1 → Bool =>
+    normalizedMoment (signMatrix ω) 2) = 2 := by
+  rw [expected_second_moment (by decide) (by decide)]
+  norm_num
+
+EXPECTED REJECTION:
+/Users/aryasomu/Documents/Codex/2026-10-18/i-wa/outputs/random-matrix-lean/.lake/NegativeControl.lean:5:46: error: unsolved goals
+⊢ False

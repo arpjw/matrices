@@ -1,0 +1,595 @@
+{
+  "status": "exact finite computations; general counting theorem remains unproved in Lean",
+  "normalization": "p^-1 trace((X X^T / n)^k)",
+  "exhaustive_checks": [
+    {
+      "p": 1,
+      "n": 1,
+      "worlds": 2,
+      "moments": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ]
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "worlds": 16,
+      "moments": [
+        "1",
+        "1",
+        "1",
+        "1"
+      ]
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "worlds": 4,
+      "moments": [
+        "1",
+        "2",
+        "4",
+        "8"
+      ]
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "worlds": 16,
+      "moments": [
+        "1",
+        "3/2",
+        "5/2",
+        "9/2"
+      ]
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "worlds": 64,
+      "moments": [
+        "1",
+        "4/3",
+        "2",
+        "88/27"
+      ]
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "worlds": 64,
+      "moments": [
+        "1",
+        "2",
+        "9/2",
+        "11"
+      ]
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "worlds": 512,
+      "moments": [
+        "1",
+        "5/3",
+        "29/9",
+        "185/27"
+      ]
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "worlds": 4096,
+      "moments": [
+        "1",
+        "3/2",
+        "21/8",
+        "81/16"
+      ]
+    }
+  ],
+  "leading_term_checks": [
+    {
+      "order": 1,
+      "leading_coefficients": {
+        "1": 1
+      }
+    },
+    {
+      "order": 2,
+      "leading_coefficients": {
+        "1": 1,
+        "2": 1
+      }
+    },
+    {
+      "order": 3,
+      "leading_coefficients": {
+        "1": 1,
+        "2": 3,
+        "3": 1
+      }
+    },
+    {
+      "order": 4,
+      "leading_coefficients": {
+        "1": 1,
+        "2": 6,
+        "3": 6,
+        "4": 1
+      }
+    },
+    {
+      "order": 5,
+      "leading_coefficients": {
+        "1": 1,
+        "2": 10,
+        "3": 20,
+        "4": 10,
+        "5": 1
+      }
+    },
+    {
+      "order": 6,
+      "leading_coefficients": {
+        "1": 1,
+        "2": 15,
+        "3": 50,
+        "4": 50,
+        "5": 15,
+        "6": 1
+      }
+    },
+    {
+      "order": 7,
+      "leading_coefficients": {
+        "1": 1,
+        "2": 21,
+        "3": 105,
+        "4": 175,
+        "5": 105,
+        "6": 21,
+        "7": 1
+      }
+    }
+  ],
+  "pattern_counts": {
+    "1": [
+      {
+        "row_blocks": 1,
+        "column_blocks": 1,
+        "count": 1
+      }
+    ],
+    "2": [
+      {
+        "row_blocks": 1,
+        "column_blocks": 1,
+        "count": 1
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 2,
+        "count": 1
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 1,
+        "count": 1
+      }
+    ],
+    "3": [
+      {
+        "row_blocks": 1,
+        "column_blocks": 1,
+        "count": 1
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 2,
+        "count": 3
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 3,
+        "count": 1
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 1,
+        "count": 3
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 2,
+        "count": 3
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 1,
+        "count": 1
+      }
+    ],
+    "4": [
+      {
+        "row_blocks": 1,
+        "column_blocks": 1,
+        "count": 1
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 2,
+        "count": 7
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 3,
+        "count": 6
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 4,
+        "count": 1
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 1,
+        "count": 7
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 2,
+        "count": 21
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 3,
+        "count": 6
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 1,
+        "count": 6
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 2,
+        "count": 6
+      },
+      {
+        "row_blocks": 4,
+        "column_blocks": 1,
+        "count": 1
+      }
+    ],
+    "5": [
+      {
+        "row_blocks": 1,
+        "column_blocks": 1,
+        "count": 1
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 2,
+        "count": 15
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 3,
+        "count": 25
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 4,
+        "count": 10
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 5,
+        "count": 1
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 1,
+        "count": 15
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 2,
+        "count": 105
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 3,
+        "count": 75
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 4,
+        "count": 10
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 1,
+        "count": 25
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 2,
+        "count": 75
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 3,
+        "count": 20
+      },
+      {
+        "row_blocks": 4,
+        "column_blocks": 1,
+        "count": 10
+      },
+      {
+        "row_blocks": 4,
+        "column_blocks": 2,
+        "count": 10
+      },
+      {
+        "row_blocks": 5,
+        "column_blocks": 1,
+        "count": 1
+      }
+    ],
+    "6": [
+      {
+        "row_blocks": 1,
+        "column_blocks": 1,
+        "count": 1
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 2,
+        "count": 31
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 3,
+        "count": 90
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 4,
+        "count": 65
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 5,
+        "count": 15
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 6,
+        "count": 1
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 1,
+        "count": 31
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 2,
+        "count": 465
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 3,
+        "count": 630
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 4,
+        "count": 195
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 5,
+        "count": 15
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 1,
+        "count": 90
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 2,
+        "count": 630
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 3,
+        "count": 412
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 4,
+        "count": 50
+      },
+      {
+        "row_blocks": 4,
+        "column_blocks": 1,
+        "count": 65
+      },
+      {
+        "row_blocks": 4,
+        "column_blocks": 2,
+        "count": 195
+      },
+      {
+        "row_blocks": 4,
+        "column_blocks": 3,
+        "count": 50
+      },
+      {
+        "row_blocks": 5,
+        "column_blocks": 1,
+        "count": 15
+      },
+      {
+        "row_blocks": 5,
+        "column_blocks": 2,
+        "count": 15
+      },
+      {
+        "row_blocks": 6,
+        "column_blocks": 1,
+        "count": 1
+      }
+    ],
+    "7": [
+      {
+        "row_blocks": 1,
+        "column_blocks": 1,
+        "count": 1
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 2,
+        "count": 63
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 3,
+        "count": 301
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 4,
+        "count": 350
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 5,
+        "count": 140
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 6,
+        "count": 21
+      },
+      {
+        "row_blocks": 1,
+        "column_blocks": 7,
+        "count": 1
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 1,
+        "count": 63
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 2,
+        "count": 1953
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 3,
+        "count": 4515
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 4,
+        "count": 2450
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 5,
+        "count": 420
+      },
+      {
+        "row_blocks": 2,
+        "column_blocks": 6,
+        "count": 21
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 1,
+        "count": 301
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 2,
+        "count": 4515
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 3,
+        "count": 5488
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 4,
+        "count": 1519
+      },
+      {
+        "row_blocks": 3,
+        "column_blocks": 5,
+        "count": 105
+      },
+      {
+        "row_blocks": 4,
+        "column_blocks": 1,
+        "count": 350
+      },
+      {
+        "row_blocks": 4,
+        "column_blocks": 2,
+        "count": 2450
+      },
+      {
+        "row_blocks": 4,
+        "column_blocks": 3,
+        "count": 1519
+      },
+      {
+        "row_blocks": 4,
+        "column_blocks": 4,
+        "count": 175
+      },
+      {
+        "row_blocks": 5,
+        "column_blocks": 1,
+        "count": 140
+      },
+      {
+        "row_blocks": 5,
+        "column_blocks": 2,
+        "count": 420
+      },
+      {
+        "row_blocks": 5,
+        "column_blocks": 3,
+        "count": 105
+      },
+      {
+        "row_blocks": 6,
+        "column_blocks": 1,
+        "count": 21
+      },
+      {
+        "row_blocks": 6,
+        "column_blocks": 2,
+        "count": 21
+      },
+      {
+        "row_blocks": 7,
+        "column_blocks": 1,
+        "count": 1
+      }
+    ]
+  }
+}
