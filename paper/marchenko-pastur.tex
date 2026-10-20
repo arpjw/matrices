@@ -1,0 +1,412 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,array,enumitem,fancyhdr,xcolor}
+\definecolor{ink}{HTML}{16324F}
+\usepackage[colorlinks=true,linkcolor=ink,citecolor=ink,urlcolor=ink]{hyperref}
+\hypersetup{pdftitle={A Lean Formalization of the Marchenko--Pastur Law for Independent Signs},pdfauthor={Arya Somu}}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\scshape Marchenko--Pastur in Lean}
+\fancyhead[R]{\small Arya Somu}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\setlength{\parskip}{0.3em}
+\setlist{nosep}
+\allowdisplaybreaks[2]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\fall}[2]{(#1)_{#2}}
+\newcommand{\lean}[1]{\texttt{\small\detokenize{#1}}}
+\newcommand{\repo}{\url{https://github.com/arpjw/matrices}}
+\title{\textbf{A Lean Formalization of the\protect\\ Marchenko--Pastur Law\protect\\ for Independent Signs}}
+\author{Arya Somu}
+\date{October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We present a Lean 4 formalization of the Marchenko--Pastur law for sample covariance matrices with independent fair-sign entries. For positive dimensions $p,n$, the empirical spectral measure of $XX^{\mathsf T}/n$ assigns mass $1/p$ to each of its $p$ eigenvalues, including zero eigenvalues. When $n\to\infty$ and $p/n\to\gamma>0$, we prove convergence in probability against every bounded continuous real test function to the explicit Marchenko--Pastur density together with its atom at zero. The development includes an exact finite trace-moment formula, a general correspondence between leading walk patterns and ordered rooted trees, Narayana coefficients, quantitative bias and variance bounds, and analytic proofs of normalization and every moment of the limiting measure. A global polynomial sandwich completes the passage from moments to weak convergence. This paper explains the mathematical structure and verification boundaries of the checked development; it makes no claim of a new random-matrix limit law.
+\end{abstract}
+\vspace{0.3em}
+\noindent\textbf{Formal artifact.} \repo. Lean 4.28.0; pinned mathlib revision recorded in the repository. The checked mathematical baseline is commit \texttt{7020123}. This document is an exposition of that development, not an independent proof-checker transcript.
+
+\section{The theorem and its scope}
+The Marchenko--Pastur law describes a limiting spectral distribution for large sample covariance matrices \cite{mp}. Its classical proofs connect combinatorics, probability, and analysis; surveys such as \cite{fk} explain the moment and transform approaches in a broader setting. Our objective is a complete formal proof for a concrete ensemble whose probability spaces are finite.
+
+For $p,n\geq1$, let $X=(X_{ij})$ be a $p\times n$ matrix whose entries are independent and uniform on $\{-1,1\}$. Set
+\[
+ S_{p,n}=\frac1nXX^{\mathsf T},\qquad
+ \mu_{p,n}=\frac1p\sum_{i=1}^{p}\delta_{\lambda_i(S_{p,n})},\qquad
+ M_k=\int x^k\,d\mu_{p,n}(x)=\frac1p\tr(S_{p,n}^k).
+\]
+Eigenvalues are counted with multiplicity. In particular, the normalization is by the number of rows, not by the number of nonzero eigenvalues. Positive semidefiniteness gives $\supp\mu_{p,n}\subseteq[0,\infty)$. Since every entry has square one, $M_0=M_1=1$ for every realization.
+
+For $\gamma>0$, define
+\begin{align*}
+ a_\gamma&=(1-\sqrt\gamma)^2,& b_\gamma&=(1+\sqrt\gamma)^2,\\
+ w_\gamma&=\max\{1-\gamma^{-1},0\},&
+ \rho_\gamma(x)&=\frac{\sqrt{(b_\gamma-x)(x-a_\gamma)}}{2\pi\gamma x}
+ \quad(a_\gamma<x<b_\gamma),
+\end{align*}
+and put $\rho_\gamma=0$ outside this open interval. Endpoint values do not affect the associated measure. The candidate limit is
+\begin{equation}\label{eq:mp}
+ \mu_\gamma=w_\gamma\delta_0+\rho_\gamma(x)\,dx.
+\end{equation}
+
+\begin{theorem}[Formalized Marchenko--Pastur law]\label{thm:main}
+Let $p_m,n_m$ be positive integers, $n_m\to\infty$, and $p_m/n_m\to\gamma>0$. For every bounded continuous $f:\R\to\R$ and every $\varepsilon>0$,
+\[
+ \Prob\left(\left|\int f\,d\mu_{p_m,n_m}-\int f\,d\mu_\gamma\right|>\varepsilon\right)\longrightarrow0.
+\]
+Moreover, \eqref{eq:mp} is a probability measure, supported on $[0,b_\gamma]$, and all its moments are integrable, with
+\begin{equation}\label{eq:moments}
+ P_0(\gamma)=1,\qquad
+ P_k(\gamma)=\int x^k\,d\mu_\gamma(x)
+ =\sum_{r=1}^{k}\frac1k\binom{k}{r}\binom{k}{r-1}\gamma^{r-1}
+ \quad(k\geq1).
+\end{equation}
+\end{theorem}
+
+The exported entry point is \lean{marchenkoPastur_theorem} in \lean{RandomMatrix/MarchenkoPastur.lean}; a bundled statement is \lean{empirical_weak_converges_to_mp}. Probability is computed separately on each finite sign-assignment space. No coupling between matrices of different sizes is required. The statement is convergence in probability for each bounded continuous test, not almost-sure convergence, a local law, or convergence of extreme eigenvalues. The ensemble is the independent fair-sign ensemble; extension to general independent entries is not part of this artifact.
+
+The proof has five main transitions: traces become alternating walks; leading walks become ordered trees; trees give Narayana polynomials; explicit integration identifies those polynomials with \eqref{eq:mp}; polynomial approximation converts moment concentration into the stated convergence. Each transition is represented by general Lean theorems rather than by verification at finitely many dimensions or moment orders.
+
+\section{Finite probability and the trace expansion}
+For a finite nonempty set $\Omega$, expectation is the normalized sum over $\Omega$. Our sample space is the set of functions $\{1,\ldots,p\}\times\{1,\ldots,n\}\to\{0,1\}$, with Boolean values interpreted as signs. All assignments receive equal weight. Thus the probabilistic input can be reduced to a finite parity identity:
+\begin{equation}\label{eq:parity}
+ \E\prod_{e}X_e^{m_e}=
+ \begin{cases}1,&\text{every }m_e\text{ is even},\\0,&\text{otherwise}.
+ \end{cases}
+\end{equation}
+One proves the vanishing case by flipping a coordinate whose multiplicity is odd; the map is an involution pairing opposite contributions.
+
+For $k\geq1$, matrix multiplication and the trace give
+\begin{equation}\label{eq:walk}
+ M_k=\frac1{pn^k}
+ \sum_{i_0,\ldots,i_{k-1}=1}^{p}
+ \sum_{j_0,\ldots,j_{k-1}=1}^{n}
+ \prod_{t=0}^{k-1}X_{i_tj_t}X_{i_{t+1}j_t},\qquad i_k=i_0.
+\end{equation}
+Each summand is a closed alternating walk of length $2k$ on a bipartite graph: row vertices occupy the even positions and column vertices the odd positions. The formal expansion is available at arbitrary order, including a separate treatment of order zero.
+
+To count walks without fixing the labels, record the equality partition of the row positions and the equality partition of the column positions. A pattern with $r$ row classes and $c$ column classes has precisely
+\[
+ \fall{p}{r}\fall{n}{c}
+ \quad\text{labelings},\qquad
+ \fall{q}{s}=q(q-1)\cdots(q-s+1),\quad\fall{q}{0}=1.
+\]
+The falling factorial is zero if there are not enough distinct labels. This convention makes the formula valid without dimension lower bounds depending on $k$.
+
+\begin{proposition}[Exact finite moment formula]\label{prop:finite}
+Let $A_{k,r,c}$ count closed equality patterns with $r$ row classes, $c$ column classes, and even multiplicity at every row--column pair. For positive $p,n$,
+\begin{equation}\label{eq:finite}
+ \E M_k=\frac1{pn^k}
+ \sum_{r=0}^{k+1}\sum_{c=0}^{k}
+ A_{k,r,c}\fall{p}{r}\fall{n}{c}.
+\end{equation}
+For $k>0$, $A_{k,r,c}=0$ when $r+c>k+1$.
+\end{proposition}
+\begin{proof}
+Group \eqref{eq:walk} by its two equality partitions, use the injective-label count, and apply \eqref{eq:parity}. A surviving pattern has a connected underlying graph. Its $2k$ edge traversals visit each distinct edge an even positive number of times, so it has at most $k$ edges. A connected graph with $e$ edges has at most $e+1$ vertices, proving the bound on $r+c$. The order-zero normalization is proved directly and is included in the formal finite formula.
+\end{proof}
+
+As immediate checks, $\E M_1=1$ and
+\[
+ \E M_2=1+\frac{p-1}{n}.
+\]
+The term $-1/n$ in the second moment matters: the limiting moment polynomial is not, in general, the exact finite expectation.
+
+\section{Leading patterns, ordered trees, and Narayana numbers}
+In \eqref{eq:finite}, the factor $\fall{p}{r}\fall{n}{c}/(pn^k)$ has order $n^{r+c-k-1}$ when $p/n$ stays in a positive compact interval. Consequently the leading terms are exactly those with $r+c=k+1$.
+
+\begin{lemma}[Tree characterization]
+A surviving pattern of positive order has $k+1$ vertices if and only if its underlying graph is a tree with $k$ edges and its closed walk traverses every edge exactly twice.
+\end{lemma}
+\begin{proof}
+The inequalities $r+c\leq e+1\leq k+1$ must both be equalities. The connected graph therefore has one more vertex than edge and is a tree. There are $k$ distinct edges and $2k$ traversals, with positive even multiplicities, forcing multiplicity two. The converse is immediate.
+\end{proof}
+
+A rooted ordered tree, also called a plane rooted tree, has a fixed linear order on the children of each vertex. Root the tree at the starting row vertex and color vertices by distance parity from the root. The walk determines the order of children by their first visits. Conversely, the contour traversal of an ordered rooted tree visits every edge twice and recovers a closed even pattern. Equality patterns identify only positions with the same vertex, so arbitrary vertex labels disappear from the correspondence.
+
+The formal bijection is constructed recursively. At a nontrivial root, split off the excursion through the first child; the remaining excursions form the residual rooted tree. A tree admits the same decomposition into its first child subtree and its remaining children. The inverse constructions preserve edge count and both color counts. This establishes the correspondence at every size, rather than through a finite list of examples.
+
+\begin{theorem}[Leading coefficients]\label{thm:narayana}
+For $k\geq1$, $r,c\geq1$, and $r+c=k+1$,
+\[
+ A_{k,r,c}=N(k,r),\qquad N(k,r)=\frac1k\binom{k}{r}\binom{k}{r-1}.
+\]
+Consequently the leading part of the expected moment is the polynomial $P_k$ in \eqref{eq:moments}.
+\end{theorem}
+
+Here is the generating-series mechanism used to identify the count. Let $z$ mark edges and $t$ mark row-colored vertices. Let $R(z,t)$ enumerate row-rooted ordered trees and $C(z,t)$ enumerate column-rooted ordered trees. Decomposition at the first child gives formal identities
+\[
+ R=t+zCR,\qquad C=1+zRC,\qquad R-C=t-1,
+\]
+and hence
+\begin{equation}\label{eq:quadratic}
+ C=1+zC(C+t-1).
+\end{equation}
+Writing $C=\sum_{k\geq0}C_k(t)z^k$, the coefficients at positive orders agree with those of $R$. The initial values are
+\[
+ C_0(t)=1,\quad C_1(t)=t,\quad C_2(t)=t+t^2.
+\]
+The formal development derives a differential identity from \eqref{eq:quadratic}, then the coefficient recurrence
+\begin{equation}\label{eq:tree-recurrence}
+ (k+3)C_{k+2}(t)=(2k+3)(t+1)C_{k+1}(t)-k(t-1)^2C_k(t).
+\end{equation}
+The binomial formula $C_k(t)=\sum_{r=1}^kN(k,r)t^r$ for $k>0$ satisfies this recurrence and the initial conditions. Pascal identities and induction complete the coefficient identification. Thus the formal proof does not require a general Lagrange inversion theorem.
+
+The first limiting moment polynomials are
+\begin{align*}
+ P_1(t)&=1,&P_2(t)&=1+t,\\
+ P_3(t)&=1+3t+t^2,&P_4(t)&=1+6t+6t^2+t^3.
+\end{align*}
+Their nonnegative coefficients are useful for bounds, but the formal limit argument uses the full all-order identity.
+
+\section{Quantitative bias and variance}
+Fix numbers $a,B$ such that
+\[
+ 0<a\leq p/n\leq B,\qquad B\geq1.
+\]
+The constants below are deliberately coarse. Their role is to make every estimate explicit and uniform over such a range, not to optimize finite-size rates.
+
+Define
+\begin{align*}
+ D_k&=(k+2)(k+1)(k+1)^{k+1}k^k,\\
+ C_k(a,B)&=D_kB^k\bigl((k+1)^2(a^{-1}+1)+1\bigr),\\
+ Q_k&=\bigl(2(k+1)\bigr)^{2(k+1)}(2k)^{2k},\\
+ V_k(a,B)&=Q_kB^{2k}/a.
+\end{align*}
+Natural zeroth powers have value one. The letter $C_k(a,B)$ here denotes a bound, distinct from the tree polynomial $C_k(t)$ in the preceding section.
+
+\begin{proposition}[Bias and variance bounds]\label{prop:bounds}
+For every fixed moment order $k$ and positive dimensions in the stated ratio range,
+\begin{align}
+ \left|\E M_k-P_k(p/n)\right|&\leq \frac{C_k(a,B)}n,\label{eq:bias}\\
+ \Var(M_k)&\leq\frac{Q_kB^{2k}}p\leq\frac{V_k(a,B)}n.\label{eq:variance}
+\end{align}
+\end{proposition}
+
+For the bias, replace falling factorials in leading terms by powers and bound the replacement error. Every lower-order pattern has at most $k$ vertices and therefore contributes at most order $n^{-1}$. A crude count of the row and column partitions, including the sums over their possible class counts, gives $D_k$. Combining the replacement error and the lower-order contribution yields \eqref{eq:bias}.
+
+The variance proof expands a pair of trace walks. For two sign words $U,V$, the parity rule shows
+\[
+ \operatorname{Cov}(U,V)=\E(UV)-\E U\E V\in\{0,1\}.
+\]
+If both words are individually even, both terms equal one. If their product has an odd coordinate, both terms vanish. In the remaining case the joint word is even while the individual words are not, giving covariance one. Words using disjoint coordinates have covariance zero.
+
+A contributing pair must therefore share an entry. The union of their two connected walk graphs is connected. Its $4k$ traversals have even joint multiplicity, so there are at most $2k$ distinct edges and at most $2k+1$ vertices. Counting the relevant equality patterns and their labels gives the $1/p$ bound in \eqref{eq:variance}. The upper count may enlarge the class of patterns, retaining the constraints needed for the vertex estimate while discarding unnecessary closure information. Finally $p\geq an$ gives the $1/n$ bound.
+
+The bias--variance identity and Markov's inequality applied to a square yield
+\begin{equation}\label{eq:concentration}
+ \Prob\bigl(|M_k-P_k(p/n)|>\varepsilon\bigr)
+ \leq\frac{V_k(a,B)/n+(C_k(a,B)/n)^2}{\varepsilon^2}.
+\end{equation}
+Along a sequence with $p_m/n_m\to\gamma>0$, the ratios eventually lie in such an interval. Polynomial continuity gives $P_k(p_m/n_m)\to P_k(\gamma)$, and therefore
+\begin{equation}\label{eq:moment-convergence}
+ \E\bigl(M_k-P_k(\gamma)\bigr)^2\longrightarrow0.
+\end{equation}
+In particular every fixed moment converges in probability. No quantitative rate for $p_m/n_m\to\gamma$ is assumed; the estimate about the current ratio in \eqref{eq:concentration} should not be confused with a rate about an arbitrary limiting ratio.
+
+\section{The spectral measure and its atom}
+The connection between trace algebra and measures requires a finite-dimensional spectral bridge. A real symmetric matrix admits real eigenvalues with multiplicity, and the sum of their $k$th powers equals the trace of its $k$th power. Applying this to $XX^{\mathsf T}/n$ proves the identity defining $M_k$ and shows that the empirical measure is a probability measure supported on the nonnegative real axis.
+
+The mass at zero is exactly
+\begin{equation}\label{eq:nullity}
+ \mu_{p,n}(\{0\})=\frac{\dim\ker X^{\mathsf T}}p
+ =\frac{p-\operatorname{rank}X}{p}.
+\end{equation}
+When $p>n$, this is at least $1-n/p$. Formula \eqref{eq:nullity} explains why the zero eigenvalues must be retained in the normalization. It does not by itself prove convergence of the finite atom: weak convergence does not generally imply convergence of mass at a point carrying an atom. Our limit theorem identifies the complete limiting measure without asserting such an additional point-mass convergence theorem.
+
+There is also an elementary deterministic tail bound. Since $M_1=1$,
+\begin{equation}\label{eq:tightness}
+ \mu_{p,n}\bigl(\R\setminus[0,R]\bigr)\leq\frac1R\qquad(R>0).
+\end{equation}
+Thus the entire family of empirical measures, for every positive pair of dimensions and every sign realization, is uniformly tight. The formalization includes this fact independently of the final polynomial-sandwich argument.
+
+\section{Normalization and all moments of the density}
+Identifying the density by its name would leave a substantial analytic gap. We instead construct \eqref{eq:mp}, prove its normalization, and compute every moment, including the critical aspect ratio $\gamma=1$.
+
+\subsection{Angular substitution and total mass}
+Put
+\[
+ x(\theta)=1+\gamma-2\sqrt\gamma\cos\theta,\qquad 0\leq\theta\leq\pi.
+\]
+This maps the angular interval onto $[a_\gamma,b_\gamma]$, and on its interior
+\[
+ \sqrt{(b_\gamma-x(\theta))(x(\theta)-a_\gamma)}
+ =2\sqrt\gamma\sin\theta.
+\]
+The density and Jacobian therefore combine as
+\begin{equation}\label{eq:angular}
+ \rho_\gamma(x)\,dx=\frac2\pi\frac{\sin^2\theta}{x(\theta)}\,d\theta.
+\end{equation}
+
+For $\gamma\ne1$, the denominator is strictly positive throughout the closed interval. An arctangent substitution establishes the reciprocal-cosine integral
+\[
+ \int_0^\pi\frac{d\theta}{c-r\cos\theta}
+ =\frac{\pi}{\sqrt{c-r}\sqrt{c+r}}
+ \quad(c-r>0,\ c+r>0).
+\]
+Together with elementary algebra and trigonometric integrals, this evaluates \eqref{eq:angular} as
+\begin{equation}\label{eq:continuous-mass}
+ \int_\R\rho_\gamma(x)\,dx
+ =\frac{1+\gamma-|\gamma-1|}{2\gamma}
+ =\min\{1,\gamma^{-1}\}.
+\end{equation}
+At $\gamma=1$, the reciprocal denominator vanishes at $\theta=0$, so a proof requiring a strictly positive endpoint denominator is unavailable. Instead, almost everywhere,
+\[
+ \frac2\pi\frac{\sin^2\theta}{2-2\cos\theta}
+ =\frac{1+\cos\theta}{\pi}.
+\]
+This expression is integrable and has integral one. The separate argument covers the critical endpoint and proves the same mass formula. Adding $w_\gamma$ gives total mass one for every $\gamma>0$. In particular, the continuous density alone has mass $1/\gamma$ when $\gamma>1$; omitting the atom would invalidate even the constant test function in Theorem~\ref{thm:main}.
+
+\subsection{A recurrence for positive moments}
+Define angular integrals
+\[
+ H_k(\gamma)=\frac2\pi\int_0^\pi x(\theta)^k\sin^2\theta\,d\theta.
+\]
+For each integer $j\geq1$, \eqref{eq:angular} gives
+\begin{equation}\label{eq:positive-moment}
+ \int_\R x^j\rho_\gamma(x)\,dx=H_{j-1}(\gamma).
+\end{equation}
+The power cancels the potentially singular denominator, so this formula also covers $\gamma=1$. Compact support and the established finite mass yield integrability of all powers.
+
+The initial values are $H_0=1$ and $H_1=1+\gamma$. Integrating the derivative of
+\[
+ 2\sqrt\gamma\,x(\theta)^{k+1}\sin^3\theta
+\]
+over $[0,\pi]$ gives zero, because both endpoint values vanish. Rewriting the resulting trigonometric expression in powers of $x(\theta)$ gives
+\begin{equation}\label{eq:angular-recurrence}
+ (k+4)H_{k+2}=(2k+5)(1+\gamma)H_{k+1}
+ -(k+1)(\gamma-1)^2H_k.
+\end{equation}
+By \eqref{eq:tree-recurrence}, the sequence $P_{k+1}(\gamma)$ satisfies exactly this recurrence and these initial conditions. Induction proves $H_k=P_{k+1}(\gamma)$ for all $k\geq0$.
+
+The atom at zero contributes nothing to positive moments. For the zeroth moment, it supplies precisely the missing continuous mass in \eqref{eq:continuous-mass}. This proves \eqref{eq:moments} in every order. Normalization is thus a proved analytic identity, not an assumption imposed on the target measure.
+
+\section{From moments to weak convergence}
+Convergence of moments alone needs a justified approximation step. We use global polynomial bounds on the nonnegative real axis, with a small gap only where the limiting measure is supported. This avoids requiring a common probability space or invoking an unproved general moment-method theorem.
+
+\begin{lemma}[Global polynomial sandwich]\label{lem:sandwich}
+Let $f:\R\to\R$ be bounded and continuous, $B\geq0$, and $\eta>0$. There are real polynomials $\ell,u$ such that
+\[
+ \ell(x)\leq f(x)\leq u(x)\quad(x\geq0),\qquad
+ 0\leq u(x)-\ell(x)\leq\eta\quad(0\leq x\leq B).
+\]
+\end{lemma}
+\begin{proof}
+Set $R=B+1$. By polynomial approximation on $[0,1]$, choose a polynomial $q(t)=\sum_i a_it^i$ such that
+\[
+ |f(Rt)-q(t)|\leq\eta/4\qquad(0\leq t\leq1).
+\]
+Take a nonnegative bound $M$ for $|f|$ and set $A=M+\sum_i|a_i|$. Choose an integer $N\geq\deg q$ large enough that $A(B/R)^N\leq\eta/4$. Define
+\[
+ e(x)=\eta/4+A(x/R)^N,\quad
+ \ell(x)=q(x/R)-e(x),\quad u(x)=q(x/R)+e(x).
+\]
+For $0\leq x\leq R$, the approximation error is at most $\eta/4$, hence at most $e(x)$. For $x\geq R$, write $t=x/R\geq1$. Then
+\[
+ |f(x)-q(t)|\leq M+\sum_i|a_i|t^i\leq A t^N\leq e(x).
+\]
+This proves the global bounds. On $[0,B]$, $e(x)\leq\eta/2$, so $u-\ell=2e\leq\eta$.
+\end{proof}
+
+For any fixed polynomial $q$, \eqref{eq:moment-convergence} implies
+\begin{equation}\label{eq:polynomial-probability}
+ \int q\,d\mu_{p_m,n_m}\longrightarrow\int q\,d\mu_\gamma
+ \quad\text{in probability}.
+\end{equation}
+Indeed, integration reduces the assertion to a finite linear combination of moments. If the combination differs by more than a fixed threshold, at least one of its finitely many terms differs by a suitable threshold. A finite union bound then proves the claim. No independence among those moments is needed.
+
+To prove Theorem~\ref{thm:main}, apply Lemma~\ref{lem:sandwich} with $B=b_\gamma$ and gap $\eta=\varepsilon/2$. Both the empirical and target measures are nonnegative-supported probabilities, so
+\[
+ \int\ell\,d\mu_{p_m,n_m}\leq\int f\,d\mu_{p_m,n_m}
+ \leq\int u\,d\mu_{p_m,n_m}.
+\]
+Since $\mu_\gamma$ is supported on $[0,b_\gamma]$, the target integrals of either bounding polynomial differ from that of $f$ by at most $\varepsilon/2$. Thus
+\begin{align*}
+ &\left\{\left|\int f\,d\mu_{p_m,n_m}-\int f\,d\mu_\gamma\right|>\varepsilon\right\}\\
+ &\quad\subseteq
+ \left\{\left|\int\ell\,d\mu_{p_m,n_m}-\int\ell\,d\mu_\gamma\right|>\varepsilon/2\right\}
+ \cup
+ \left\{\left|\int u\,d\mu_{p_m,n_m}-\int u\,d\mu_\gamma\right|>\varepsilon/2\right\}.
+\end{align*}
+The probabilities on the right tend to zero by \eqref{eq:polynomial-probability}. This completes the proof.
+
+The same sandwich proves a useful deterministic uniqueness statement. Any probability measure supported on the nonnegative axis whose powers are all integrable and whose moments agree with those of $\mu_\gamma$ must equal $\mu_\gamma$. The competing measure need not be assumed compactly supported: global bounds control its integrals, while the small gap is integrated only against the compactly supported target.
+
+\section{Formal artifact and verification boundaries}
+The development uses Lean 4 and mathlib \cite{mathlib}. Its mathematical modules separate finite combinatorics, spectral algebra, density integration, and the general moment method. A reader can begin at the exported theorem and follow its imports, or follow the proof map in the repository in the order of this paper.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.35\linewidth}p{0.59\linewidth}@{}}
+\toprule
+Mathematical boundary & Repository entry point\\
+\midrule
+Final sign-ensemble theorem & \lean{RandomMatrix/MarchenkoPastur.lean}\\
+General moment method & \lean{RandomMatrix/CompactMomentMethod.lean}\\
+Global approximation & \lean{RandomMatrix/PolynomialSandwich.lean}\\
+Polynomial integration & \lean{RandomMatrix/PolynomialIntegrals.lean}\\
+Finite-space convergence & \lean{RandomMatrix/FiniteConvergence.lean}\\
+Uniform spectral tightness & \lean{RandomMatrix/SpectralTightness.lean}\\
+All intermediate modules & \lean{docs/PROOF_MAP.md}\\
+Build and audit evidence & \lean{docs/validation/}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+At the checked mathematical baseline, the development contains 62 mathematical modules, 358 exported named theorems, and 20 private helpers. The recorded full build completed 2,954 jobs without warnings. Dependency reports audit 372 declarations; their reported axioms are restricted to Lean's standard \lean{propext}, \lean{Classical.choice}, and \lean{Quot.sound}. No proof placeholders or project-specific axioms are used. This is a Lean-kernel verification claim with the pinned library and toolchain, not a claim that an independent kernel implementation was run.
+
+Eleven negative controls are deliberately false assertions expected to fail. They cover, among other errors, an incorrect finite second moment, omission of finite-size bias, zero variance, incorrect empirical total mass, omission of the rectangular atom, incorrect density normalization, and the claim that a first moment alone determines a measure. Each is checked for failure at its intended goal. Such controls help detect vacuous interfaces and mistaken conventions; they supplement, rather than replace, the kernel-checked proofs.
+
+The repository also contains exact finite enumerations and numerical spectral and quadrature experiments. Those computations provide examples and debugging checks. They are not used to discharge general theorem obligations. In particular, numerical integration is not the evidence for normalization or the all-order moment formula: those are proved analytically in Lean.
+
+The mathematical baseline pins Lean to \texttt{4.28.0} and mathlib to
+\begin{center}\small\texttt{8f9d9cff6bd728b17a24e163c9402775d9e6a365}.\end{center}
+The repository's \lean{lean-toolchain} and \lean{lake-manifest.json} record the exact dependency configuration. From a checkout with Lean installed, run:
+\begin{quote}\ttfamily\small
+lake exe cache get\\
+lake build\\
+bash scripts/check.sh
+\end{quote}
+Detailed prerequisites, experimental commands, and audit conventions are in \lean{docs/REPRODUCING.md}. The editable paper source is \lean{paper/marchenko-pastur.tex}. Run \lean{scripts/build-paper.sh} to rebuild the PDF included alongside it.
+
+\paragraph{Status and limitations.}
+This is a formalization of a classical theorem for a specified ensemble. It does not assert priority over other formalizations. It does not establish universality for arbitrary independent entries, almost-sure convergence, optimal finite-size rates, edge fluctuations, or asymptotic freeness. The displayed constants are explicit but loose. The exposition and software were developed with assistance from OpenAI Codex; mathematical claims about the artifact refer to the checked Lean statements and the recorded validation, not to the reliability of generated prose. No external peer review is claimed.
+
+\begin{thebibliography}{9}
+\raggedright
+\bibitem{mp}
+V. A. Marchenko and L. A. Pastur.
+\emph{Distribution of eigenvalues for some sets of random matrices}.
+Mathematics of the USSR-Sbornik, 1(4):457--483, 1967.
+\href{https://doi.org/10.1070/SM1967v001n04ABEH001994}{doi:10.1070/SM1967v001n04ABEH001994}.
+
+\bibitem{fk}
+Michael Fleermann and Werner Kirsch.
+\emph{Proof Methods in Random Matrix Theory}.
+arXiv:2203.02551, 2022.
+\url{https://arxiv.org/abs/2203.02551}.
+
+\bibitem{mathlib}
+The mathlib Community.
+\emph{The Lean mathematical library}.
+arXiv:1910.09336, 2019.
+\url{https://arxiv.org/abs/1910.09336}.
+\end{thebibliography}
+\end{document}

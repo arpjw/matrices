@@ -1,5 +1,27 @@
 # Verification record
 
+## Paper and documentation package
+
+Prepared on 2026-10-20. The 10-page paper is included as editable LaTeX and a
+compiled PDF, with a portable Tectonic build script. The final build used
+Tectonic 0.17.0 and completed without TeX warnings. All ten pages were rendered
+and visually reviewed; text extraction found no unresolved references or
+replacement characters. The author metadata is Arya Somu.
+
+All relative links in the revised README and added reader guides resolve.
+The module map covers all 62 mathematical modules. The existing tracked text
+files were checked for local user paths, email addresses, and common credential
+patterns, with no matches. No repository visibility change was made.
+
+All 70 Lean source, proof-check script, and dependency-pin files are unchanged
+from the validated mathematical baseline and match the verified build tree
+byte for byte. The Lean build and supplementary mathematical experiments were
+not rerun for this documentation-only package. Their recorded validation is
+below. The new paper build script passed a shell syntax check and was executed
+successfully. `SOURCE_SHA256.json` covers the new documentation and PDF as well.
+
+## Mathematical baseline
+
 Verified locally on 2026-10-20. This record covers the finite-dimensional
 milestone, all-order walk expansion, partition-coefficient formula,
 coefficient boundary cases, doubled-tree graph classification, the general
