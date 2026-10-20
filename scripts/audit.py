@@ -1,4 +1,4 @@
-"""Audit proof dependencies and reject false normalization, Narayana, bias and variance claims."""
+"""Audit proof dependencies and reject false moment, variance and spectral-measure claims."""
 from __future__ import annotations
 
 import re
@@ -14,6 +14,17 @@ def main() -> None:
                             cwd=ROOT, capture_output=True, text=True, check=True)
     output = result.stdout + result.stderr
     expected = re.findall(r"^#print axioms (\S+)", (ROOT / "RandomMatrix/Audit.lean").read_text(), re.M)
+    # All mathematical modules use the RandomMatrix namespace, with qualified
+    # names for nested declarations. Keep exported helper lemmas in scope too.
+    exported = {
+        "RandomMatrix." + name
+        for path in (ROOT / "RandomMatrix").glob("*.lean") if path.stem != "Audit"
+        for name in re.findall(r"^(?:@\[[^\]]+\]\s+)?(?:theorem|lemma) ([\w.']+)",
+                               path.read_text(), re.M)
+    }
+    missing = exported - set(expected)
+    if missing:
+        raise RuntimeError(f"Exported declarations missing from the audit: {sorted(missing)}")
     found = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output)
     # Lean reports definitional equalities with a distinct zero-dependency message.
     found += [(name, "") for name in re.findall(
@@ -59,11 +70,29 @@ example : finiteVariance sign = 0 := by
   rw [finiteVariance_sign]
   norm_num
 '''
+    spectral_mass_source = '''import RandomMatrix
+open RandomMatrix MeasureTheory
+-- Deliberately wrong: the empirical zeroth moment is one, even with repeated eigenvalues.
+example (X : Matrix (Fin 2) (Fin 1) ℝ) :
+    ∫ x, x ^ 0 ∂empiricalMeasure X = 0 := by
+  rw [empiricalMeasure_moment_zero (by decide)]
+  norm_num
+'''
+    spectral_atom_source = '''import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: a two-by-one covariance matrix cannot have zero mass at zero.
+example (X : Matrix (Fin 2) (Fin 1) ℝ) :
+    (empiricalMeasure X {0}).toReal = 0 := by
+  have h := empiricalMeasure_zero_atom_lower (by decide : 0 < 2) X
+  norm_num at h
+'''
     controls = [
         ("NegativeControl", "negative-control.log", moment_source),
         ("NarayanaNegativeControl", "narayana-negative-control.log", narayana_source),
         ("FiniteBiasNegativeControl", "finite-bias-negative-control.log", bias_source),
         ("VarianceNegativeControl", "variance-negative-control.log", variance_source),
+        ("SpectralMassNegativeControl", "spectral-mass-negative-control.log", spectral_mass_source),
+        ("SpectralAtomNegativeControl", "spectral-atom-negative-control.log", spectral_atom_source),
     ]
     for name, log_name, source in controls:
         negative = ROOT / ".lake" / f"{name}.lean"
@@ -80,7 +109,7 @@ example : finiteVariance sign = 0 := by
             raise RuntimeError(f"{name} failed because of infrastructure, not mathematics")
         (dest / log_name).write_text(source + "\nEXPECTED REJECTION:\n" + diagnosis)
     print(f"PASS: {len(found)} declaration dependency audits; "
-          "incorrect finite second moment, Narayana coefficient, zero finite bias and zero sign variance rejected")
+          "six incorrect moment, variance and spectral-measure claims rejected")
 
 
 

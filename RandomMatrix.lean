@@ -43,3 +43,6 @@ import RandomMatrix.PairCountBounds
 import RandomMatrix.WalkCovariance
 import RandomMatrix.VarianceBounds
 import RandomMatrix.MomentConcentration
+import RandomMatrix.SpectralGeometry
+import RandomMatrix.EmpiricalMeasure
+import RandomMatrix.SpectralConcentration

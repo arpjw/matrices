@@ -3,18 +3,22 @@
 A research project toward a complete Lean proof of the Marchenko-Pastur law for
 sample covariance matrices with independent fair-sign entries.
 
-The current milestone proves convergence in probability of every fixed random
-trace moment for the actual independent-sign ensemble:
+The current milestone constructs the empirical eigenvalue probability measure
+and proves that all its moments equal normalized matrix traces:
 
-    E[(M_k(p_m,n_m) - P_k(gamma))^2] -> 0,
-    Pr(|M_k(p_m,n_m) - P_k(gamma)| > epsilon) -> 0,
+    mu_X = (1/p) sum_i delta_(lambda_i(XX^T/n)),
+    integral x^k d mu_X = trace((XX^T/n)^k)/p, including k=0.
+
+It retains repeated and zero eigenvalues, proves nonnegative support, and
+identifies the zero atom as nullity/p, at least max(1-1/(p/n),0). The established
+fixed-moment concentration theorem now applies to these actual spectral measures:
+
+    Pr(|integral x^k d mu_(X_m) - P_k(gamma)| > epsilon) -> 0,
     n_m -> infinity, p_m/n_m -> gamma > 0, epsilon > 0.
 
-It includes an explicit uniform variance bound V_k(a,B)/n when
-0<a<=p/n<=B and B>=1, plus a finite Chebyshev bound. The proof combines the
-exact covariance expansion, connected paired-walk counts, and the previously
-proved expected-moment limit. The full spectral-distribution theorem remains
-open.
+Mean-square convergence and the explicit finite deviation bound are transferred
+too. The MP density and atom still need normalization and moment identification;
+weak spectral convergence remains open. See [the spectral proof guide](docs/SPECTRAL_MEASURES.md).
 
 The initial finite-moment stage is preserved at the Git tag
 `stage-1-finite-moments` (commit `0523463`).
@@ -25,6 +29,7 @@ The general bijection is preserved at `stage-5-ordered-tree-bijection` (`1943198
 The Narayana formula is preserved at `stage-6-narayana` (`dce93b9`).
 The expected-moment stage is preserved at `stage-7-expected-moments` (`abaabe1`).
 The concentration stage is preserved at `stage-8-moment-concentration`.
+The spectral interface stage is preserved at `stage-9-spectral-interface`.
 
 ## Model and conventions
 
@@ -86,6 +91,9 @@ max(1 - 1/gamma, 0) when gamma > 1.
 | WalkCovariance | Exact trace-variance expansion and the overlapping-pair upper bound |
 | VarianceBounds | Uniform O(1/n) variance bounds at fixed order |
 | MomentConcentration | Quantitative tail bounds, vanishing mean-square error, and convergence in probability |
+| SpectralGeometry | Eigenvalues with multiplicities, trace powers, and zero multiplicity equal to nullity |
+| EmpiricalMeasure | Empirical probability measure, integral formula, nonnegative support, and forced zero atom |
+| SpectralConcentration | Expected moments, mean-square convergence, and concentration of empirical spectral moments |
 
 The general finite identity, for every k >= 0 and p,n > 0, is
 
@@ -138,7 +146,9 @@ and error to the limiting ratio are in [the expected-moment proof guide](docs/EX
 The additional covariance argument now proves vanishing mean-square error and
 convergence in probability of each fixed random moment. See
 [the concentration proof guide](docs/CONCENTRATION.md) for the pair graph,
-explicit constants, finite probability bound, and next-session handoff.
+explicit constants and the finite probability bound. The new
+[spectral proof guide](docs/SPECTRAL_MEASURES.md) connects these results to
+integrals against the empirical eigenvalue probability measure.
 Weak convergence of the random spectral measures remains open.
 
 See [the verification record](docs/VALIDATION.md) for actual build and audit
@@ -167,7 +177,9 @@ scripts/lake.sh exe cache get \
   Mathlib.Data.Fintype.Powerset Mathlib.Data.Finite.Card Mathlib.Data.Fin.Tuple.Basic \
   Mathlib.Combinatorics.SimpleGraph.Acyclic Mathlib.Data.Tree.Basic \
   Mathlib.Combinatorics.Enumerative.Catalan \
-  Mathlib.RingTheory.PowerSeries.Derivative Mathlib.Tactic.LinearCombination
+  Mathlib.RingTheory.PowerSeries.Derivative Mathlib.Tactic.LinearCombination \
+  Mathlib.Analysis.Matrix.PosDef Mathlib.MeasureTheory.Integral.Bochner.Basic \
+  Mathlib.MeasureTheory.Measure.ProbabilityMeasure Mathlib.MeasureTheory.Measure.Support
 scripts/check.sh
 ```
 
@@ -177,6 +189,7 @@ The exact experiment uses only the Python standard library:
 python3 experiments/exact_moments.py
 python3 experiments/tree_patterns.py
 python3 experiments/variance.py
+python3 experiments/spectral_interface.py
 ```
 
 The optional plots use the pinned requirements:
@@ -219,6 +232,13 @@ joint partition enumeration through order three. It checks 797,438 shared-row
 partition candidates and retains cases with positive variance. The general
 variance and convergence-in-probability theorems are proved in Lean.
 
+The exact spectral checker verifies 2,826 small sign matrices and four additional
+matrices. It compares 19,810 spectral moments to direct matrix powers, certifies
+characteristic polynomials by 12,215 exact determinant evaluations, and checks
+2,830 ranks and zero atoms. Controls reject dropping zeros, renormalizing only
+the positive spectrum, and discarding multiplicities. These finite computations
+supplement the general Lean spectral-measure theorems.
+
 The spectral figure uses 105 reproducible simulated matrices. It preserves
 structural zero eigenvalues for p > n and shows the finite -1/n bias in the
 second moment. Its histograms and error bars are illustrations, not formal
@@ -232,9 +252,11 @@ proofs or evidence of a new mathematical result.
 The leading-pattern classification, ordered-tree bijection, and Narayana
 count and all fixed-order expected-moment limits with explicit finite-size
 bounds are complete. Explicit variance bounds and convergence in probability
-of each fixed random moment are now complete too. The next stage is the
-spectral-measure and trace-moment interface. Identification of the MP density
-plus atom and moment-to-measure convergence remain after that.
+of each fixed random moment are complete. The empirical eigenvalue probability
+measure, trace-moment bridge, nonnegative support, forced zero atom, and transfer
+of concentration to spectral moments are now complete too. Next is normalization
+and moment identification of the MP density plus atom. Tightness, determinacy,
+and weak convergence in probability remain after that.
 
 [PRIOR_ART.md](docs/PRIOR_ART.md) records the inspected existing projects and their
 limitations. This is a formalization of a classical result. No claim of novelty

@@ -1,0 +1,12 @@
+import RandomMatrix
+open RandomMatrix MeasureTheory
+-- Deliberately wrong: the empirical zeroth moment is one, even with repeated eigenvalues.
+example (X : Matrix (Fin 2) (Fin 1) ℝ) :
+    ∫ x, x ^ 0 ∂empiricalMeasure X = 0 := by
+  rw [empiricalMeasure_moment_zero (by decide)]
+  norm_num
+
+EXPECTED REJECTION:
+/private/var/folders/5s/zz2md1nj18g251r6jw2dmfq00000gn/T/matrices-validation-2exd73wx/verified-project/.lake/SpectralMassNegativeControl.lean:5:42: error: unsolved goals
+X : Matrix (Fin 2) (Fin 1) ℝ
+⊢ False

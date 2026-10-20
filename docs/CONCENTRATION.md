@@ -101,12 +101,12 @@ These computations supplement the all-order proof. The Python enumerator is
 not itself formally verified. See [VALIDATION.md](VALIDATION.md) for the saved
 build, audit and experiment records.
 
-## Next session
+## Spectral handoff
 
-The next stage is the spectral interface: define the empirical probability
-measure from the Hermitian eigenvalues, prove its moments equal normalized
-traces, transfer positive semidefiniteness to nonnegative support, and translate
-the existing nullity bound into the forced zero-eigenvalue mass for p>n.
+The spectral interface is now complete: the empirical eigenvalue probability
+measure, trace-moment identity, nonnegative support, and forced zero atom are
+proved. The concentration theorem is now also stated for moments of that measure.
+See [SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md) for the proof chain and next stage.
 
 The MP density and atom still need normalization and moment proofs. Tightness,
 moment determinacy, and weak convergence in probability of the empirical

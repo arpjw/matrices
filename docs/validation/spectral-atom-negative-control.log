@@ -1,0 +1,13 @@
+import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: a two-by-one covariance matrix cannot have zero mass at zero.
+example (X : Matrix (Fin 2) (Fin 1) ℝ) :
+    (empiricalMeasure X {0}).toReal = 0 := by
+  have h := empiricalMeasure_zero_atom_lower (by decide : 0 < 2) X
+  norm_num at h
+
+EXPECTED REJECTION:
+/private/var/folders/5s/zz2md1nj18g251r6jw2dmfq00000gn/T/matrices-validation-2exd73wx/verified-project/.lake/SpectralAtomNegativeControl.lean:5:43: error: unsolved goals
+X : Matrix (Fin 2) (Fin 1) ℝ
+h : 1 / 2 ≤ ((empiricalMeasure X) {0}).toReal
+⊢ ((empiricalMeasure X) {0}).toReal = 0

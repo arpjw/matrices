@@ -1,13 +1,5 @@
 Source scan passed
-✔ [2198/2206] Built RandomMatrix.PairPatterns (9.8s)
-✔ [2199/2206] Built RandomMatrix.FiniteVariance (9.9s)
-✔ [2200/2206] Built RandomMatrix.PairCounting (1.2s)
-✔ [2201/2206] Built RandomMatrix.WalkCovariance (1.6s)
-✔ [2202/2206] Built RandomMatrix.PairCountBounds (1.0s)
-✔ [2203/2206] Built RandomMatrix.VarianceBounds (1.4s)
-✔ [2204/2206] Built RandomMatrix.MomentConcentration (1.4s)
-✔ [2205/2206] Built RandomMatrix (1.8s)
-Build completed successfully (2206 jobs).
+Build completed successfully (2829 jobs).
 'RandomMatrix.average_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -269,4 +261,39 @@ Build completed successfully (2206 jobs).
 'RandomMatrix.moment_mean_square_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.moment_converges_in_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.pairWalkLabelsEquiv' depends on axioms: [propext, Quot.sound]
-PASS: 261 declaration dependency audits; incorrect finite second moment, Narayana coefficient, zero finite bias and zero sign variance rejected
+'RandomMatrix.covariance_eigenvalues_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.covariance_trace_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.covariance_rank_eq_nonzero_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.covariance_zero_count_eq_nullity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.covariance_zero_count_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_isProbabilityMeasure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalProbabilityMeasure_coe' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_moment_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_ae_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_zero_atom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_zero_atom_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_zero_atom_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_support_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_zero_atom_lower_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_zero_atom_aspect_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empiricalMeasure_sign_first_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empirical_moment_expected_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empirical_moment_deviation_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empirical_moment_mean_square_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empirical_moment_converges_in_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.covariance_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.covariance_symmetric' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.sign_covariance_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.average_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.average_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.average_mul_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.average_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.sign_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.average_sign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.average_sign_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: 296 declaration dependency audits; six incorrect moment, variance and spectral-measure claims rejected

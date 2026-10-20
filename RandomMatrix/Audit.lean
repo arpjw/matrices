@@ -262,3 +262,42 @@ import RandomMatrix
 #print axioms RandomMatrix.moment_mean_square_tendsto
 #print axioms RandomMatrix.moment_converges_in_probability
 #print axioms RandomMatrix.pairWalkLabelsEquiv
+
+/-! Empirical spectral measures and their moment concentration. -/
+#print axioms RandomMatrix.covariance_eigenvalues_nonneg
+#print axioms RandomMatrix.covariance_trace_pow
+#print axioms RandomMatrix.covariance_rank_eq_nonzero_count
+#print axioms RandomMatrix.covariance_zero_count_eq_nullity
+#print axioms RandomMatrix.covariance_zero_count_ge
+#print axioms RandomMatrix.empiricalMeasure_apply
+#print axioms RandomMatrix.empiricalMeasure_isProbabilityMeasure
+#print axioms RandomMatrix.empiricalProbabilityMeasure_coe
+#print axioms RandomMatrix.empiricalMeasure_integrable
+#print axioms RandomMatrix.empiricalMeasure_integral
+#print axioms RandomMatrix.empiricalMeasure_moment
+#print axioms RandomMatrix.empiricalMeasure_moment_zero
+#print axioms RandomMatrix.empiricalMeasure_negative
+#print axioms RandomMatrix.empiricalMeasure_ae_nonneg
+#print axioms RandomMatrix.empiricalMeasure_zero_atom
+#print axioms RandomMatrix.empiricalMeasure_zero_atom_real
+#print axioms RandomMatrix.empiricalMeasure_zero_atom_lower
+#print axioms RandomMatrix.empiricalMeasure_support_nonneg
+#print axioms RandomMatrix.empiricalMeasure_zero_atom_lower_real
+#print axioms RandomMatrix.empiricalMeasure_zero_atom_aspect_lower
+#print axioms RandomMatrix.empiricalMeasure_sign_first_moment
+#print axioms RandomMatrix.empirical_moment_expected_tendsto
+#print axioms RandomMatrix.empirical_moment_deviation_bound
+#print axioms RandomMatrix.empirical_moment_mean_square_tendsto
+#print axioms RandomMatrix.empirical_moment_converges_in_probability
+
+/-! Complete coverage of the initial finite-average and covariance helpers. -/
+#print axioms RandomMatrix.covariance_apply
+#print axioms RandomMatrix.covariance_symmetric
+#print axioms RandomMatrix.sign_covariance_diagonal
+#print axioms RandomMatrix.average_const
+#print axioms RandomMatrix.average_add
+#print axioms RandomMatrix.average_mul_const
+#print axioms RandomMatrix.average_sum
+#print axioms RandomMatrix.sign_sq
+#print axioms RandomMatrix.average_sign
+#print axioms RandomMatrix.average_sign_pow

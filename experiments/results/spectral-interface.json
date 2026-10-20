@@ -1,0 +1,204 @@
+{
+  "status": "exact finite checks, not a formal proof",
+  "sign_matrices": 2826,
+  "additional_matrices": 4,
+  "moment_checks": 19810,
+  "characteristic_polynomial_evaluations": 12215,
+  "rank_and_zero_atom_checks": 2830,
+  "moment_orders": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "ensembles": [
+    {
+      "p": 1,
+      "n": 1,
+      "matrices": 2,
+      "zero_counts": [
+        0
+      ]
+    },
+    {
+      "p": 1,
+      "n": 2,
+      "matrices": 4,
+      "zero_counts": [
+        0
+      ]
+    },
+    {
+      "p": 1,
+      "n": 3,
+      "matrices": 8,
+      "zero_counts": [
+        0
+      ]
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "matrices": 16,
+      "zero_counts": [
+        0
+      ]
+    },
+    {
+      "p": 1,
+      "n": 5,
+      "matrices": 32,
+      "zero_counts": [
+        0
+      ]
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "matrices": 4,
+      "zero_counts": [
+        1
+      ]
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "matrices": 16,
+      "zero_counts": [
+        0,
+        1
+      ]
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "matrices": 64,
+      "zero_counts": [
+        0,
+        1
+      ]
+    },
+    {
+      "p": 2,
+      "n": 4,
+      "matrices": 256,
+      "zero_counts": [
+        0,
+        1
+      ]
+    },
+    {
+      "p": 2,
+      "n": 5,
+      "matrices": 1024,
+      "zero_counts": [
+        0,
+        1
+      ]
+    },
+    {
+      "p": 3,
+      "n": 1,
+      "matrices": 8,
+      "zero_counts": [
+        2
+      ]
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "matrices": 64,
+      "zero_counts": [
+        1,
+        2
+      ]
+    },
+    {
+      "p": 4,
+      "n": 1,
+      "matrices": 16,
+      "zero_counts": [
+        3
+      ]
+    },
+    {
+      "p": 4,
+      "n": 2,
+      "matrices": 256,
+      "zero_counts": [
+        2,
+        3
+      ]
+    },
+    {
+      "p": 5,
+      "n": 1,
+      "matrices": 32,
+      "zero_counts": [
+        4
+      ]
+    },
+    {
+      "p": 5,
+      "n": 2,
+      "matrices": 1024,
+      "zero_counts": [
+        3,
+        4
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "name": "zero_matrix",
+      "p": 2,
+      "n": 3,
+      "zero_count": 2,
+      "rank": 0,
+      "eigenvalues": [
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "distinct_diagonal",
+      "p": 3,
+      "n": 3,
+      "zero_count": 0,
+      "rank": 3,
+      "eigenvalues": [
+        "1/3",
+        "4/3",
+        "3"
+      ]
+    },
+    {
+      "name": "rank_one",
+      "p": 4,
+      "n": 2,
+      "zero_count": 3,
+      "rank": 1,
+      "eigenvalues": [
+        "75",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "name": "repeated_positive",
+      "p": 2,
+      "n": 2,
+      "zero_count": 0,
+      "rank": 2,
+      "eigenvalues": [
+        "1",
+        "1"
+      ]
+    }
+  ],
+  "incorrect_measure_controls_rejected": 3
+}

@@ -5,14 +5,16 @@ milestone, all-order walk expansion, partition-coefficient formula,
 coefficient boundary cases, doubled-tree graph classification, the general
 rooted ordered tree bijection, the Narayana coefficient formula, all fixed-order
 expected-moment limits, explicit finite-size bounds, and fixed-order moment
-concentration, not the full Marchenko-Pastur theorem. Earlier
+concentration, empirical spectral measures, and their moment bridge, not the
+full Marchenko-Pastur theorem. Earlier
 stages are retained at `stage-1-finite-moments` (`0523463`) and
 `stage-2-walk-counting` (`b23f33c`), and `stage-3-pattern-coefficients` (`40eeb1d`).
 The doubled-tree checkpoint is `stage-4-doubled-trees` (`e2cb215`).
 The bijection checkpoint is `stage-5-ordered-tree-bijection` (`1943198`).
 The Narayana checkpoint is `stage-6-narayana` (`dce93b9`).
 The expected-moment checkpoint is `stage-7-expected-moments` (`abaabe1`).
-The current checkpoint is `stage-8-moment-concentration`.
+The concentration checkpoint is `stage-8-moment-concentration`.
+The current checkpoint is `stage-9-spectral-interface`.
 
 ## Lean
 
@@ -20,18 +22,22 @@ The current checkpoint is `stage-8-moment-concentration`.
   7e01a1bf5c70fc6167d49c345d3bf80596e9a79b.
 - Mathlib revision 8f9d9cff6bd728b17a24e163c9402775d9e6a365.
 - `scripts/check.sh`: passed.
-- `lake build`: passed, 2,206 jobs, with dependency build products largely
+- `lake build`: passed, 2,829 jobs, with dependency build products largely
   obtained from the official mathlib cache. No warnings were emitted.
-- Forty-five mathematical source modules, 258 exported named theorems and twelve
+- Forty-eight mathematical source modules, 283 exported named theorems and twelve
   private helpers, plus the aggregate import and audit module. No new mathematical
   result is claimed from the theorem count.
 - Source scan: no unfinished-proof tokens, custom axiom declarations, or
   `native_decide` calls in the project Lean sources.
-- 261 declaration dependency audits passed, including the central labeling,
+- 296 declaration dependency audits passed, including the central labeling,
   walk, ordered-tree, and refined coefficient equivalences, plus the formal
   series recurrence, general Narayana coefficient theorem, explicit finite-size
   bounds, all fixed-order expected-moment limits, the paired-labeling equivalence,
-  variance bounds, and convergence in probability. Audited dependencies are
+  variance bounds, convergence in probability, and the full spectral interface.
+  Every exported named theorem is now explicitly audited, with a source-coverage
+  check enforced by the audit script. This includes ten foundational helper
+  lemmas from the initial stage that were previously absent from the individual
+  audit list. Audited dependencies are
   confined to `propext`, `Classical.choice`, and `Quot.sound`. No `sorryAx`, custom
   domain axiom, `Lean.ofReduceBool`, or `Lean.trustCompiler` was reported.
   Two definitional selector lemmas report no axioms at all. The audit parser
@@ -48,13 +54,20 @@ The current checkpoint is `stage-8-moment-concentration`.
   is 1. This likewise failed for mathematics, not missing infrastructure.
 - A fourth negative control passed: the claim that a fair sign has zero
   variance was rejected with the goal False. The proved variance is one.
+- A fifth negative control passed: zero total empirical mass was rejected by
+  the proved zeroth-moment identity, with the goal False.
+- A sixth negative control passed: zero mass at zero for a two-by-one covariance
+  matrix was rejected with the proved lower bound 1/2 in the context. Both
+  spectral controls fail on their mathematical claims, not missing infrastructure.
 
 Logs: [build and audit](validation/lean-check.log),
 [axioms](validation/axioms.log),
 [normalization negative control](validation/negative-control.log),
 [Narayana negative control](validation/narayana-negative-control.log),
 [finite-bias negative control](validation/finite-bias-negative-control.log),
-[variance negative control](validation/variance-negative-control.log).
+[variance negative control](validation/variance-negative-control.log),
+[spectral mass negative control](validation/spectral-mass-negative-control.log),
+[spectral zero-atom negative control](validation/spectral-atom-negative-control.log).
 
 The standard Lean kernel and the pinned imported mathematics remain trusted.
 We did not run a second independently implemented proof checker.
@@ -62,14 +75,14 @@ We did not run a second independently implemented proof checker.
 The final build ran in a temporary local directory after iCloud offloading
 caused reads of generated artifacts in the original workspace to fail. Lean
 and all dependency sources were restored at the pinned versions. Hashes of all
-53 Lean source, check-script, and dependency-pin files matched the deliverable
+56 Lean source, check-script, and dependency-pin files matched the deliverable
 for the final validation. The logs in the validation directory are from this
 successful run. The pinned Lean and mathlib versions were retained throughout.
 
 ## Exact computational checks
 
 `python3 experiments/exact_moments.py`: passed at the expected-moment checkpoint
-on 2026-10-20. Its source and results are unchanged in the concentration checkpoint.
+on 2026-10-20. Its source and results are unchanged in the spectral-interface checkpoint.
 
 - 4,774 complete sign matrices across dimensions (1,1), (1,4), (2,1), (2,2),
   (2,3), (3,2), (3,3), and (3,4).
@@ -164,6 +177,29 @@ The Python code is not formally verified.
 
 Data: [tree-patterns.json](../experiments/results/tree-patterns.json).
 
+## Exact spectral-interface checks
+
+`python3 experiments/spectral_interface.py`: passed on 2026-10-20.
+
+- Exhaustively checked 2,826 sign matrices over all 16 dimension pairs with
+  1<=p,n<=5 and min(p,n)<=2. Four additional matrices cover a zero matrix,
+  distinct diagonal values, rank one with non-sign entries, and repeated
+  positive eigenvalues.
+- 19,810 exact rational moment comparisons at orders zero through six, using
+  direct matrix multiplication and separately obtained eigenvalue lists.
+- 12,215 exact determinant evaluations certify the characteristic polynomials
+  at p+1 distinct points for each matrix. Every eigenvalue multiplicity is retained.
+- 2,830 independent rank eliminations check that zero multiplicity equals
+  nullity and that the zero atom meets the rectangular lower bound.
+- Three incorrect-measure controls fail: dropping zeros loses total mass,
+  normalizing over only positive values changes the first moment, and
+  deduplicating repeated eigenvalues loses multiplicity.
+
+Data: [spectral-interface.json](../experiments/results/spectral-interface.json).
+Run: [spectral checker log](validation/spectral-check.log).
+The general spectral results are Lean theorems; the exact Python checker is
+independent finite evidence, not formally verified code.
+
 ## Numerical illustration
 
 `experiments/simulate.py`: passed positivity and first-trace checks on 105
@@ -187,7 +223,10 @@ The general Narayana closed formula and Catalan total are now proved, completing
 the leading-pattern counting stage. All fixed-order expected-moment limits
 and explicit finite-size bias bounds are proved. Explicit variance bounds,
 vanishing mean-square error, and convergence in probability of each fixed
-random moment are now proved as well. The project does not yet prove the
-spectral-measure moment bridge, normalization and moments of the MP measure,
-or weak convergence in probability of the empirical spectral measures.
-See [BLUEPRINT.md](BLUEPRINT.md) and [CONCENTRATION.md](CONCENTRATION.md).
+random moment are proved as well. The empirical spectral probability measure,
+all-order trace-moment bridge, nonnegative support, exact nullity atom, and
+transfer of concentration to empirical moments are now proved. The project
+does not yet prove normalization and moments of the explicit MP density plus
+atom, moment determinacy, or weak convergence in probability of the empirical
+spectral measures. See [BLUEPRINT.md](BLUEPRINT.md) and
+[SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md).

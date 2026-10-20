@@ -71,7 +71,10 @@ for all independent-entry distributions.
    See CONCENTRATION.md.
 7. Spectral interface. Use Hermitian eigenvalues to define the empirical
    probability measure and connect its moments to normalized matrix traces.
-   Prove support is nonnegative; address the forced nullspace for p > n.
+   This stage is complete, including every moment order and multiplicities.
+   Nonnegative topological support, exact zero mass equal to nullity/p, and
+   the lower bound max(1-1/(p/n),0) are proved. Concentration is transferred to
+   integrals against the actual empirical probability measure. See SPECTRAL_MEASURES.md.
 8. Identify the target measure. Prove positivity, total mass, and the moment
    formula for the displayed density plus atom. Do not assume normalization.
 9. Moment-to-measure convergence. Prove tightness, moment determinacy and the
@@ -97,17 +100,19 @@ trace normalization and 1/n for the covariance normalization.
 
 ## Working order
 
-Stages 1 through 6 are complete, including explicit variance bounds and
-convergence in probability of every fixed random moment. Next, define the
-empirical spectral probability measure from eigenvalues and connect its
-moments to the normalized traces. The existing positivity and nullity bounds
-must be transferred to spectral support and the forced atom at zero.
+Stages 1 through 7 are complete, including the empirical spectral probability
+measure, its trace-moment identity, nonnegative support, and forced zero atom.
+Every fixed empirical moment converges in probability to its Narayana polynomial.
+Next, construct the explicit MP density plus atom, prove its normalization and
+support, and identify all its moments. Moment-to-measure convergence follows
+as a separate stage; it is not a consequence already formalized here.
 The complete flagship chain is substantial; no completion date is inferred from
 the first finite proofs.
 
 See [WALKS.md](WALKS.md), [PATTERNS.md](PATTERNS.md), [TREES.md](TREES.md),
 [ORDERED_TREES.md](ORDERED_TREES.md), [NARAYANA.md](NARAYANA.md), and
-[EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md), and [CONCENTRATION.md](CONCENTRATION.md)
+[EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md), [CONCENTRATION.md](CONCENTRATION.md),
+and [SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md)
 for the completed statements and
 their boundary with the remaining probability and analysis.
 
