@@ -144,6 +144,7 @@ has b+(l+1-a) row vertices. Ordinary Dyck-path peak counts cannot simply be
 substituted for this statistic without a proved correspondence.
 
 All fixed-order expected-moment limits and explicit finite-size bounds are
-now proved in [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md). Fluctuations, the
-spectral-measure bridge, and the analytic Marchenko-Pastur identification
+now proved in [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md). Variance bounds and
+fixed-order moment concentration are now proved in [CONCENTRATION.md](CONCENTRATION.md).
+The spectral-measure bridge and the analytic Marchenko-Pastur identification
 remain open. See [BLUEPRINT.md](BLUEPRINT.md).

@@ -36,3 +36,10 @@ import RandomMatrix.PatternBudget
 import RandomMatrix.LabelWeightBounds
 import RandomMatrix.ExpectedMomentBounds
 import RandomMatrix.ExpectedMomentLimit
+import RandomMatrix.FiniteVariance
+import RandomMatrix.PairPatterns
+import RandomMatrix.PairCounting
+import RandomMatrix.PairCountBounds
+import RandomMatrix.WalkCovariance
+import RandomMatrix.VarianceBounds
+import RandomMatrix.MomentConcentration

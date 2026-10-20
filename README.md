@@ -3,17 +3,18 @@
 A research project toward a complete Lean proof of the Marchenko-Pastur law for
 sample covariance matrices with independent fair-sign entries.
 
-The current milestone proves convergence of every fixed expected trace moment
-for the actual independent-sign ensemble, together with an explicit finite-size
-bound:
+The current milestone proves convergence in probability of every fixed random
+trace moment for the actual independent-sign ensemble:
 
-    E[M_k(p_m,n_m)] -> P_k(gamma),   n_m -> infinity, p_m/n_m -> gamma > 0,
-    |E[M_k(p,n)] - P_k(p/n)| <= C_k(a,B)/n,   0 < a <= p/n <= B, B >= 1.
+    E[(M_k(p_m,n_m) - P_k(gamma))^2] -> 0,
+    Pr(|M_k(p_m,n_m) - P_k(gamma)| > epsilon) -> 0,
+    n_m -> infinity, p_m/n_m -> gamma > 0, epsilon > 0.
 
-Here P_0=1 and P_k is the Narayana polynomial. The proof combines the exact
-finite coefficient expansion, the proved Narayana formula, and explicit
-label-collision and lower-order bounds. The full spectral-distribution theorem
-remains open.
+It includes an explicit uniform variance bound V_k(a,B)/n when
+0<a<=p/n<=B and B>=1, plus a finite Chebyshev bound. The proof combines the
+exact covariance expansion, connected paired-walk counts, and the previously
+proved expected-moment limit. The full spectral-distribution theorem remains
+open.
 
 The initial finite-moment stage is preserved at the Git tag
 `stage-1-finite-moments` (commit `0523463`).
@@ -22,7 +23,8 @@ The exact coefficient stage is preserved at `stage-3-pattern-coefficients`
 (`40eeb1d`). The doubled-tree stage is preserved at `stage-4-doubled-trees`.
 The general bijection is preserved at `stage-5-ordered-tree-bijection` (`1943198`).
 The Narayana formula is preserved at `stage-6-narayana` (`dce93b9`).
-The expected-moment stage is preserved at `stage-7-expected-moments`.
+The expected-moment stage is preserved at `stage-7-expected-moments` (`abaabe1`).
+The concentration stage is preserved at `stage-8-moment-concentration`.
 
 ## Model and conventions
 
@@ -77,6 +79,13 @@ max(1 - 1/gamma, 0) when gamma > 1.
 | LabelWeightBounds | Leading collision errors and suppression of lower-order patterns |
 | ExpectedMomentBounds | Uniform C_k(a,B)/n bound relative to the polynomial at p/n |
 | ExpectedMomentLimit | Every fixed expected moment converges at a positive finite aspect-ratio limit |
+| FiniteVariance | Exact finite covariance, variance, event probabilities, Chebyshev, and disjoint-word cancellation |
+| PairPatterns | Joint partition graph, shared-row connectedness, and the 2k+1 vertex bound |
+| PairCounting | Paired walks are joint label assignments; exact falling-factorial pattern counts |
+| PairCountBounds | Explicit partition budget and uniformly bounded normalized pair count |
+| WalkCovariance | Exact trace-variance expansion and the overlapping-pair upper bound |
+| VarianceBounds | Uniform O(1/n) variance bounds at fixed order |
+| MomentConcentration | Quantitative tail bounds, vanishing mean-square error, and convergence in probability |
 
 The general finite identity, for every k >= 0 and p,n > 0, is
 
@@ -126,8 +135,11 @@ For every fixed k>0, the expectation now tends to
 at a positive limiting aspect ratio; P_0=1 is handled separately. The explicit
 finite-size constant and the distinction between bias at the current ratio
 and error to the limiting ratio are in [the expected-moment proof guide](docs/EXPECTED_MOMENTS.md).
-Expectation convergence does not establish concentration or weak convergence
-of the random spectral measures.
+The additional covariance argument now proves vanishing mean-square error and
+convergence in probability of each fixed random moment. See
+[the concentration proof guide](docs/CONCENTRATION.md) for the pair graph,
+explicit constants, finite probability bound, and next-session handoff.
+Weak convergence of the random spectral measures remains open.
 
 See [the verification record](docs/VALIDATION.md) for actual build and audit
 results. The proof sources are required to contain no unfinished proofs, custom
@@ -164,6 +176,7 @@ The exact experiment uses only the Python standard library:
 ```sh
 python3 experiments/exact_moments.py
 python3 experiments/tree_patterns.py
+python3 experiments/variance.py
 ```
 
 The optional plots use the pinned requirements:
@@ -200,6 +213,12 @@ contour, and color-count recurrence. The graph classification, general
 bijection, and Narayana enumeration are now proved in Lean. The Python implementation itself is not
 formally verified.
 
+The variance checker independently enumerates 4,774 sign matrices, checks 40
+exact variances and 160 tail bounds, and compares 32 paired-walk counts against
+joint partition enumeration through order three. It checks 797,438 shared-row
+partition candidates and retains cases with positive variance. The general
+variance and convergence-in-probability theorems are proved in Lean.
+
 The spectral figure uses 105 reproducible simulated matrices. It preserves
 structural zero eigenvalues for p > n and shows the finite -1/n bias in the
 second moment. Its histograms and error bars are illustrations, not formal
@@ -212,9 +231,10 @@ proofs or evidence of a new mathematical result.
 [BLUEPRINT.md](docs/BLUEPRINT.md) gives the exact theorem and dependency graph.
 The leading-pattern classification, ordered-tree bijection, and Narayana
 count and all fixed-order expected-moment limits with explicit finite-size
-bounds are complete. The next major step is variance estimates. Subsequent
-bottlenecks are formal spectral measures, identification of the MP density plus atom, and
-moment-to-measure convergence.
+bounds are complete. Explicit variance bounds and convergence in probability
+of each fixed random moment are now complete too. The next stage is the
+spectral-measure and trace-moment interface. Identification of the MP density
+plus atom and moment-to-measure convergence remain after that.
 
 [PRIOR_ART.md](docs/PRIOR_ART.md) records the inspected existing projects and their
 limitations. This is a formalization of a classical result. No claim of novelty

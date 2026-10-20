@@ -108,7 +108,8 @@ build and independent enumeration records.
 
 This completes the leading-pattern counting stage. Convergence of every fixed
 expected moment and explicit finite-size bounds have now also been proved; see
-[EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md). Variance estimates, the spectral-measure
+[EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md). Variance bounds and fixed-order moment
+concentration are now proved in [CONCENTRATION.md](CONCENTRATION.md). The spectral-measure
 interface, identification of the density plus zero atom, and weak convergence
-in probability are still unproved. The full target remains in
+of the empirical spectral measures are still unproved. The full target remains in
 [BLUEPRINT.md](BLUEPRINT.md).

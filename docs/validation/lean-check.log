@@ -1,12 +1,13 @@
 Source scan passed
-✔ [2192/2199] Built RandomMatrix.PatternBudget (6.7s)
-✔ [2193/2199] Built RandomMatrix.MomentPolynomials (6.7s)
-✔ [2194/2199] Built RandomMatrix.FallingFactorialBounds (7.1s)
-✔ [2195/2199] Built RandomMatrix.LabelWeightBounds (3.5s)
-✔ [2196/2199] Built RandomMatrix.ExpectedMomentBounds (1.6s)
-✔ [2197/2199] Built RandomMatrix.ExpectedMomentLimit (1.4s)
-✔ [2198/2199] Built RandomMatrix (1.8s)
-Build completed successfully (2199 jobs).
+✔ [2198/2206] Built RandomMatrix.PairPatterns (9.8s)
+✔ [2199/2206] Built RandomMatrix.FiniteVariance (9.9s)
+✔ [2200/2206] Built RandomMatrix.PairCounting (1.2s)
+✔ [2201/2206] Built RandomMatrix.WalkCovariance (1.6s)
+✔ [2202/2206] Built RandomMatrix.PairCountBounds (1.0s)
+✔ [2203/2206] Built RandomMatrix.VarianceBounds (1.4s)
+✔ [2204/2206] Built RandomMatrix.MomentConcentration (1.4s)
+✔ [2205/2206] Built RandomMatrix (1.8s)
+Build completed successfully (2206 jobs).
 'RandomMatrix.average_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -227,4 +228,45 @@ Build completed successfully (2199 jobs).
 'RandomMatrix.continuous_mpMoment' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.expected_moment_bias_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.expected_moment_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
-PASS: 220 declaration dependency audits; incorrect finite second moment, Narayana coefficient and zero finite bias rejected
+'RandomMatrix.average_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.average_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.average_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteVariance_sign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteVariance_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteVariance_eq_covariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteCovariance_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteCovariance_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteProbability_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteProbability_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteProbability_eq_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finite_chebyshev_center' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.mean_square_eq_variance_add_bias' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.disjoint_words_even' depends on axioms: [propext, Quot.sound]
+'RandomMatrix.word_covariance_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.word_covariance_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.word_covariance_le_overlap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.positionWord_length' depends on axioms: [propext, Quot.sound]
+'RandomMatrix.pairPositionWord_length' depends on axioms: [propext, Quot.sound]
+'RandomMatrix.pairPatternGraph_connected' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.pair_surviving_block_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.pair_row_blocks_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.pair_survives_kernel_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.pairPositionWord_map_labels' depends on axioms: [propext, Quot.sound]
+'RandomMatrix.pairWalkCount_by_patterns' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.card_setoid_le_fun' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.card_pair_patterns_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.normalizedLabelWeight_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.pairWalkCount_normalized_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.normalizedMoment_eq_walkSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.word_overlap_pair_survives' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.closedWalk_covariance_le_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.variance_eq_walk_covariance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.variance_le_pairWalkCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.moment_variance_le_rows' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.moment_variance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.moment_deviation_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.moment_variance_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.moment_mean_square_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.moment_converges_in_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.pairWalkLabelsEquiv' depends on axioms: [propext, Quot.sound]
+PASS: 261 declaration dependency audits; incorrect finite second moment, Narayana coefficient, zero finite bias and zero sign variance rejected

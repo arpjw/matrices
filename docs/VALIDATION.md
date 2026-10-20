@@ -4,14 +4,15 @@ Verified locally on 2026-10-20. This record covers the finite-dimensional
 milestone, all-order walk expansion, partition-coefficient formula,
 coefficient boundary cases, doubled-tree graph classification, the general
 rooted ordered tree bijection, the Narayana coefficient formula, all fixed-order
-expected-moment limits, and explicit finite-size bounds, not the full
-Marchenko-Pastur theorem. Earlier
+expected-moment limits, explicit finite-size bounds, and fixed-order moment
+concentration, not the full Marchenko-Pastur theorem. Earlier
 stages are retained at `stage-1-finite-moments` (`0523463`) and
 `stage-2-walk-counting` (`b23f33c`), and `stage-3-pattern-coefficients` (`40eeb1d`).
 The doubled-tree checkpoint is `stage-4-doubled-trees` (`e2cb215`).
 The bijection checkpoint is `stage-5-ordered-tree-bijection` (`1943198`).
 The Narayana checkpoint is `stage-6-narayana` (`dce93b9`).
-The current checkpoint is `stage-7-expected-moments`.
+The expected-moment checkpoint is `stage-7-expected-moments` (`abaabe1`).
+The current checkpoint is `stage-8-moment-concentration`.
 
 ## Lean
 
@@ -19,17 +20,18 @@ The current checkpoint is `stage-7-expected-moments`.
   7e01a1bf5c70fc6167d49c345d3bf80596e9a79b.
 - Mathlib revision 8f9d9cff6bd728b17a24e163c9402775d9e6a365.
 - `scripts/check.sh`: passed.
-- `lake build`: passed, 2,199 jobs, with dependency build products largely
+- `lake build`: passed, 2,206 jobs, with dependency build products largely
   obtained from the official mathlib cache. No warnings were emitted.
-- Thirty-eight mathematical source modules, 218 exported named theorems and nine
+- Forty-five mathematical source modules, 258 exported named theorems and twelve
   private helpers, plus the aggregate import and audit module. No new mathematical
   result is claimed from the theorem count.
 - Source scan: no unfinished-proof tokens, custom axiom declarations, or
   `native_decide` calls in the project Lean sources.
-- 220 declaration dependency audits passed, including the central labeling,
+- 261 declaration dependency audits passed, including the central labeling,
   walk, ordered-tree, and refined coefficient equivalences, plus the formal
   series recurrence, general Narayana coefficient theorem, explicit finite-size
-  bounds, and all fixed-order expected-moment limits. Audited dependencies are
+  bounds, all fixed-order expected-moment limits, the paired-labeling equivalence,
+  variance bounds, and convergence in probability. Audited dependencies are
   confined to `propext`, `Classical.choice`, and `Quot.sound`. No `sorryAx`, custom
   domain axiom, `Lean.ofReduceBool`, or `Lean.trustCompiler` was reported.
   Two definitional selector lemmas report no axioms at all. The audit parser
@@ -44,12 +46,15 @@ The current checkpoint is `stage-7-expected-moments`.
 - A third negative control passed: discarding the finite bias at p=n=1 for
   k=2 was rejected with the goal False. The actual absolute bias from P_2(1)
   is 1. This likewise failed for mathematics, not missing infrastructure.
+- A fourth negative control passed: the claim that a fair sign has zero
+  variance was rejected with the goal False. The proved variance is one.
 
 Logs: [build and audit](validation/lean-check.log),
 [axioms](validation/axioms.log),
 [normalization negative control](validation/negative-control.log),
 [Narayana negative control](validation/narayana-negative-control.log),
-[finite-bias negative control](validation/finite-bias-negative-control.log).
+[finite-bias negative control](validation/finite-bias-negative-control.log),
+[variance negative control](validation/variance-negative-control.log).
 
 The standard Lean kernel and the pinned imported mathematics remain trusted.
 We did not run a second independently implemented proof checker.
@@ -57,13 +62,14 @@ We did not run a second independently implemented proof checker.
 The final build ran in a temporary local directory after iCloud offloading
 caused reads of generated artifacts in the original workspace to fail. Lean
 and all dependency sources were restored at the pinned versions. Hashes of all
-46 Lean source, check-script, and dependency-pin files matched the deliverable
+53 Lean source, check-script, and dependency-pin files matched the deliverable
 for the final validation. The logs in the validation directory are from this
 successful run. The pinned Lean and mathlib versions were retained throughout.
 
 ## Exact computational checks
 
-`python3 experiments/exact_moments.py`: passed again on 2026-10-20.
+`python3 experiments/exact_moments.py`: passed at the expected-moment checkpoint
+on 2026-10-20. Its source and results are unchanged in the concentration checkpoint.
 
 - 4,774 complete sign matrices across dimensions (1,1), (1,4), (2,1), (2,2),
   (2,3), (3,2), (3,3), and (3,4).
@@ -102,6 +108,32 @@ successful run. The pinned Lean and mathlib versions were retained throughout.
 Data: [exact-moments.json](../experiments/results/exact-moments.json).
 Run: [exact checker log](validation/exact-check.log).
 
+## Variance and concentration checks
+
+`python3 experiments/variance.py`: passed on 2026-10-20.
+
+- Enumerated the same eight finite ensembles, totaling 4,774 sign matrices.
+  Computed 40 exact rational variances at orders 0 through 4 and checked the
+  explicit variance bound. Orders zero and one have zero variance.
+- The second-moment variances agree with 4(p-1)(n-1)/(p n^3); for p=n=2 the
+  variance is 1/4. This closed formula is independently checked in Python,
+  not separately proved as an exported Lean theorem.
+- 32 comparisons at orders 0 through 3 connect actual paired labeled walks,
+  independent joint-partition enumeration, and directly computed variances.
+  The paired-walk upper-bound count drops closure and includes all jointly
+  even pairs sharing a row; the covariance count retains closed walks and
+  matching nonzero parity profiles.
+- 797,438 shared-row partition candidates were examined. The surviving counts
+  at orders 0,1,2,3 are 1,4,113,6545. Independent traversal confirms connectedness
+  of each surviving quotient graph and the vertex bound r+c<=2k+1.
+- 160 exact event probabilities were checked against the actual mean-square
+  Chebyshev bound and the explicit formal bound. Positive-variance examples
+  and examples with strict Chebyshev inequality are retained.
+
+Data: [variance.json](../experiments/results/variance.json).
+Run: [variance checker log](validation/variance-check.log).
+The general all-order results are Lean theorems; this Python code is not formally verified.
+
 ## Graph and ordered-tree checks
 
 `python3 experiments/tree_patterns.py`: passed on 2026-10-20.
@@ -127,6 +159,7 @@ is now proved at every positive order, and the Catalan total count at every
 order. The graph and ordered-tree checker was last run at the Narayana stage
 on the same date; its code and proof modules are unchanged in this checkpoint.
 The exact-moment checker was extended and rerun for the expected-moment stage.
+The concentration checkpoint adds and runs a separate variance checker.
 The Python code is not formally verified.
 
 Data: [tree-patterns.json](../experiments/results/tree-patterns.json).
@@ -152,8 +185,9 @@ proved, preserving the visit order, root, and both color counts; it is linked
 to the original leading moment coefficients by a cardinality theorem.
 The general Narayana closed formula and Catalan total are now proved, completing
 the leading-pattern counting stage. All fixed-order expected-moment limits
-and explicit finite-size bounds are now proved as well. The project does not
-yet prove variance bounds, the spectral-measure moment bridge, normalization
-and moments of the MP measure, or weak convergence in probability.
-Expectation convergence is not a substitute for these steps. See
-[BLUEPRINT.md](BLUEPRINT.md) and [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md).
+and explicit finite-size bias bounds are proved. Explicit variance bounds,
+vanishing mean-square error, and convergence in probability of each fixed
+random moment are now proved as well. The project does not yet prove the
+spectral-measure moment bridge, normalization and moments of the MP measure,
+or weak convergence in probability of the empirical spectral measures.
+See [BLUEPRINT.md](BLUEPRINT.md) and [CONCENTRATION.md](CONCENTRATION.md).

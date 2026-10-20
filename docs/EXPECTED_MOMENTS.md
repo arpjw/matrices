@@ -86,7 +86,9 @@ labels, rectangular dimensions in both orientations, and square dimensions.
 These finite checks supplement the general Lean proof; the Python code is
 not formally verified. See [VALIDATION.md](VALIDATION.md) for the recorded run.
 
-This completes the expected-moment stage. It does not establish variance
-bounds, concentration, or convergence of the random empirical spectral
-measures. Nor has the displayed MP density plus zero atom yet been formally
-proved to have these moments. Those steps remain in [BLUEPRINT.md](BLUEPRINT.md).
+This completes the expected-moment stage. The subsequent stage now also proves
+explicit variance bounds, vanishing mean-square error, and convergence in
+probability of each fixed random moment; see [CONCENTRATION.md](CONCENTRATION.md).
+The spectral-measure interface, identification of the MP density plus atom,
+and weak convergence of the empirical spectral measures remain in
+[BLUEPRINT.md](BLUEPRINT.md).

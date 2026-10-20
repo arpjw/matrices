@@ -90,8 +90,9 @@ classification, rooted ordered tree bijection, and general Narayana enumeration
 are now proved as well. See [NARAYANA.md](NARAYANA.md) for the closed coefficient
 formula and its connection to this walk expansion.
 All fixed-order expected-moment limits and explicit finite-size bounds are
-now proved in [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md). Concentration and the
-Marchenko-Pastur spectral-distribution theorem remain open.
+now proved in [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md). Fixed-order moment
+concentration is now proved in [CONCENTRATION.md](CONCENTRATION.md). The
+Marchenko-Pastur spectral-distribution theorem remains open.
 
 ## Independent computational checks
 

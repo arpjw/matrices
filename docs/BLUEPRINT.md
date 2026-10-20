@@ -64,7 +64,11 @@ for all independent-entry distributions.
    assuming a rate. See EXPECTED_MOMENTS.md.
 6. Fluctuations. Expand the covariance of two trace moments. Disjoint-coordinate
    terms cancel, and the remaining overlap patterns yield a variance bound
-   tending to zero. Expectation convergence alone is insufficient.
+   tending to zero. This stage is now complete: an explicit O(1/n) variance
+   bound, finite Chebyshev bounds, vanishing mean-square error, and convergence
+   in probability of every fixed random moment are proved. The upper-bound
+   count includes jointly even pairs sharing a row, with closure dropped.
+   See CONCENTRATION.md.
 7. Spectral interface. Use Hermitian eigenvalues to define the empirical
    probability measure and connect its moments to normalized matrix traces.
    Prove support is nonnegative; address the forced nullspace for p > n.
@@ -93,17 +97,18 @@ trace normalization and 1/n for the covariance normalization.
 
 ## Working order
 
-Stages 1 through 5 are complete, including all fixed-order expected moments
-and an explicit uniform finite-size bias bound. Next, expand the covariance
-of two trace moments and bound the overlapping patterns to prove concentration.
-Expectation convergence alone does not imply convergence of the random moments
-or spectral measures.
+Stages 1 through 6 are complete, including explicit variance bounds and
+convergence in probability of every fixed random moment. Next, define the
+empirical spectral probability measure from eigenvalues and connect its
+moments to the normalized traces. The existing positivity and nullity bounds
+must be transferred to spectral support and the forced atom at zero.
 The complete flagship chain is substantial; no completion date is inferred from
 the first finite proofs.
 
 See [WALKS.md](WALKS.md), [PATTERNS.md](PATTERNS.md), [TREES.md](TREES.md),
 [ORDERED_TREES.md](ORDERED_TREES.md), [NARAYANA.md](NARAYANA.md), and
-[EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md) for the completed statements and
+[EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md), and [CONCENTRATION.md](CONCENTRATION.md)
+for the completed statements and
 their boundary with the remaining probability and analysis.
 
 ## References

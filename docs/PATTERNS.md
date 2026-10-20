@@ -100,6 +100,7 @@ coefficients on r+c=k+1 with the corresponding refined tree counts. See
 [ORDERED_TREES.md](ORDERED_TREES.md). The Narayana formula now evaluates those
 counts for every order; [NARAYANA.md](NARAYANA.md) gives the proof. The additional
 labeling estimates in [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md) now prove all
-fixed-order expected-moment limits and explicit finite-size bounds. Concentration
-remains open.
+fixed-order expected-moment limits and explicit finite-size bounds. Variance
+bounds and fixed-order moment concentration are now proved in
+[CONCENTRATION.md](CONCENTRATION.md).
 The full Marchenko-Pastur convergence theorem remains unfinished.

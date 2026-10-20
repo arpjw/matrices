@@ -1,0 +1,2200 @@
+{
+  "status": "exact finite checks; general variance bounds and fixed-order convergence in probability proved separately in Lean",
+  "normalization": "p^-1 trace((X X^T/n)^k)",
+  "worlds": 4774,
+  "variance_checks": [
+    {
+      "p": 1,
+      "n": 1,
+      "order": 0,
+      "mean": "1",
+      "variance": "0",
+      "bound": "16"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 1,
+      "mean": "1",
+      "variance": "0",
+      "bound": "65536"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 2,
+      "mean": "1",
+      "variance": "0",
+      "bound": "12230590464"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 3,
+      "mean": "1",
+      "variance": "0",
+      "bound": "12824703626379264"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 4,
+      "mean": "1",
+      "variance": "0",
+      "bound": "43980465111040000000000"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 0,
+      "mean": "1",
+      "variance": "0",
+      "bound": "4"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 1,
+      "mean": "1",
+      "variance": "0",
+      "bound": "16384"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 2,
+      "mean": "1",
+      "variance": "0",
+      "bound": "3057647616"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 3,
+      "mean": "1",
+      "variance": "0",
+      "bound": "3206175906594816"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 4,
+      "mean": "1",
+      "variance": "0",
+      "bound": "10995116277760000000000"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 0,
+      "mean": "1",
+      "variance": "0",
+      "bound": "16"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 1,
+      "mean": "1",
+      "variance": "0",
+      "bound": "65536"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 2,
+      "mean": "2",
+      "variance": "0",
+      "bound": "12230590464"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 3,
+      "mean": "4",
+      "variance": "0",
+      "bound": "12824703626379264"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 4,
+      "mean": "8",
+      "variance": "0",
+      "bound": "43980465111040000000000"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 0,
+      "mean": "1",
+      "variance": "0",
+      "bound": "8"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 1,
+      "mean": "1",
+      "variance": "0",
+      "bound": "32768"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 2,
+      "mean": "3/2",
+      "variance": "1/4",
+      "bound": "6115295232"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 3,
+      "mean": "5/2",
+      "variance": "9/4",
+      "bound": "6412351813189632"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 4,
+      "mean": "9/2",
+      "variance": "49/4",
+      "bound": "21990232555520000000000"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 0,
+      "mean": "1",
+      "variance": "0",
+      "bound": "16/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 1,
+      "mean": "1",
+      "variance": "0",
+      "bound": "65536/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 2,
+      "mean": "4/3",
+      "variance": "4/27",
+      "bound": "4076863488"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 3,
+      "mean": "2",
+      "variance": "4/3",
+      "bound": "4274901208793088"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 4,
+      "mean": "88/27",
+      "variance": "16384/2187",
+      "bound": "43980465111040000000000/3"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 0,
+      "mean": "1",
+      "variance": "0",
+      "bound": "8"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 1,
+      "mean": "1",
+      "variance": "0",
+      "bound": "32768"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 2,
+      "mean": "2",
+      "variance": "1/3",
+      "bound": "6115295232"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 3,
+      "mean": "9/2",
+      "variance": "27/4",
+      "bound": "6412351813189632"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 4,
+      "mean": "11",
+      "variance": "256/3",
+      "bound": "21990232555520000000000"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 0,
+      "mean": "1",
+      "variance": "0",
+      "bound": "16/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 1,
+      "mean": "1",
+      "variance": "0",
+      "bound": "65536/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 2,
+      "mean": "5/3",
+      "variance": "16/81",
+      "bound": "4076863488"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 3,
+      "mean": "29/9",
+      "variance": "776/243",
+      "bound": "4274901208793088"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 4,
+      "mean": "185/27",
+      "variance": "224896/6561",
+      "bound": "43980465111040000000000/3"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 0,
+      "mean": "1",
+      "variance": "0",
+      "bound": "4"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 1,
+      "mean": "1",
+      "variance": "0",
+      "bound": "16384"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 2,
+      "mean": "3/2",
+      "variance": "1/8",
+      "bound": "3057647616"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 3,
+      "mean": "21/8",
+      "variance": "57/32",
+      "bound": "3206175906594816"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 4,
+      "mean": "81/16",
+      "variance": "4271/256",
+      "bound": "10995116277760000000000"
+    }
+  ],
+  "pair_count_checks": [
+    {
+      "p": 1,
+      "n": 1,
+      "order": 0,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 1
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 1,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 1
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 2,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 1
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 3,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 1
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 0,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 1
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 1,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 16
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 2,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 256
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 3,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 4096
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 0,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 2
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 1,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 6
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 2,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 30
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 3,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 126
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 0,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 2
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 1,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 16
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 2,
+      "covariance_pairs": 16,
+      "upper_bound_pairs": 256
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 3,
+      "covariance_pairs": 576,
+      "upper_bound_pairs": 4096
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 0,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 2
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 1,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 30
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 2,
+      "covariance_pairs": 48,
+      "upper_bound_pairs": 894
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 3,
+      "covariance_pairs": 3888,
+      "upper_bound_pairs": 28110
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 0,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 3
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 1,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 36
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 2,
+      "covariance_pairs": 48,
+      "upper_bound_pairs": 1056
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 3,
+      "covariance_pairs": 3888,
+      "upper_bound_pairs": 32640
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 0,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 3
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 1,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 63
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 2,
+      "covariance_pairs": 144,
+      "upper_bound_pairs": 3195
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 3,
+      "covariance_pairs": 20952,
+      "upper_bound_pairs": 175275
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 0,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 3
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 1,
+      "covariance_pairs": 0,
+      "upper_bound_pairs": 96
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 2,
+      "covariance_pairs": 288,
+      "upper_bound_pairs": 7200
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 3,
+      "covariance_pairs": 65664,
+      "upper_bound_pairs": 590016
+    }
+  ],
+  "tail_checks": [
+    {
+      "p": 1,
+      "n": 1,
+      "order": 0,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "2560"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 0,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "640"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 0,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "160"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 0,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "40"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 1,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "66076672"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 1,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "16519168"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 1,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "4129792"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 1,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "1032448"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 2,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "16",
+      "formal_bound": "14753149747200"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 2,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "4",
+      "formal_bound": "3688287436800"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 2,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "1",
+      "formal_bound": "922071859200"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 2,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "1/4",
+      "formal_bound": "230517964800"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 3,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "256",
+      "formal_bound": "8422273431134797824"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 3,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "64",
+      "formal_bound": "2105568357783699456"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 3,
+      "epsilon": "1",
+      "probability": "1",
+      "chebyshev": "16",
+      "formal_bound": "526392089445924864"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 3,
+      "epsilon": "2",
+      "probability": "1",
+      "chebyshev": "4",
+      "formal_bound": "131598022361481216"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 4,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "2704",
+      "formal_bound": "10292470365552640000000000"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 4,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "676",
+      "formal_bound": "2573117591388160000000000"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 4,
+      "epsilon": "1",
+      "probability": "1",
+      "chebyshev": "169",
+      "formal_bound": "643279397847040000000000"
+    },
+    {
+      "p": 1,
+      "n": 1,
+      "order": 4,
+      "epsilon": "2",
+      "probability": "1",
+      "chebyshev": "169/4",
+      "formal_bound": "160819849461760000000000"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 0,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "208"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 0,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "52"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 0,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "13"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 0,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "13/4"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 1,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "4326400"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 1,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "1081600"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 1,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "270400"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 1,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "67600"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 2,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "1",
+      "formal_bound": "958763630592"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 2,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "1/4",
+      "formal_bound": "239690907648"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 2,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "1/16",
+      "formal_bound": "59922726912"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 2,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "1/64",
+      "formal_bound": "14980681728"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 3,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "169/16",
+      "formal_bound": "564866200325062656"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 3,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "169/64",
+      "formal_bound": "141216550081265664"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 3,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "169/256",
+      "formal_bound": "35304137520316416"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 3,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "169/1024",
+      "formal_bound": "8826034380079104"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 4,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "14641/256",
+      "formal_bound": "775220793180160000000000"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 4,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "14641/1024",
+      "formal_bound": "193805198295040000000000"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 4,
+      "epsilon": "1",
+      "probability": "1",
+      "chebyshev": "14641/4096",
+      "formal_bound": "48451299573760000000000"
+    },
+    {
+      "p": 1,
+      "n": 4,
+      "order": 4,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "14641/16384",
+      "formal_bound": "12112824893440000000000"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 0,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "2560"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 0,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "640"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 0,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "160"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 0,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "40"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 1,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "66076672"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 1,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "16519168"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 1,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "4129792"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 1,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "1032448"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 2,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "16",
+      "formal_bound": "14753149747200"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 2,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "4",
+      "formal_bound": "3688287436800"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 2,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "1",
+      "formal_bound": "922071859200"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 2,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "1/4",
+      "formal_bound": "230517964800"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 3,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "784",
+      "formal_bound": "8422273431134797824"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 3,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "196",
+      "formal_bound": "2105568357783699456"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 3,
+      "epsilon": "1",
+      "probability": "1",
+      "chebyshev": "49",
+      "formal_bound": "526392089445924864"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 3,
+      "epsilon": "2",
+      "probability": "1",
+      "chebyshev": "49/4",
+      "formal_bound": "131598022361481216"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 4,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "21904",
+      "formal_bound": "10292470365552640000000000"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 4,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "5476",
+      "formal_bound": "2573117591388160000000000"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 4,
+      "epsilon": "1",
+      "probability": "1",
+      "chebyshev": "1369",
+      "formal_bound": "643279397847040000000000"
+    },
+    {
+      "p": 2,
+      "n": 1,
+      "order": 4,
+      "epsilon": "2",
+      "probability": "1",
+      "chebyshev": "1369/4",
+      "formal_bound": "160819849461760000000000"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 0,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "704"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 0,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "176"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 0,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "44"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 0,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "11"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 1,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "16781312"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 1,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "4195328"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 1,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "1048832"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 1,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "262208"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 2,
+      "epsilon": "1/4",
+      "probability": "1/2",
+      "chebyshev": "8",
+      "formal_bound": "3737209798656"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 2,
+      "epsilon": "1/2",
+      "probability": "1/2",
+      "chebyshev": "2",
+      "formal_bound": "934302449664"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 2,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "1/2",
+      "formal_bound": "233575612416"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 2,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "1/8",
+      "formal_bound": "58393903104"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 3,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "136",
+      "formal_bound": "2156867172289216512"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 3,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "34",
+      "formal_bound": "539216793072304128"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 3,
+      "epsilon": "1",
+      "probability": "1/2",
+      "chebyshev": "17/2",
+      "formal_bound": "134804198268076032"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 3,
+      "epsilon": "2",
+      "probability": "1/2",
+      "chebyshev": "17/8",
+      "formal_bound": "33701049567019008"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 4,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "1640",
+      "formal_bound": "2749039451832320000000000"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 4,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "410",
+      "formal_bound": "687259862958080000000000"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 4,
+      "epsilon": "1",
+      "probability": "1",
+      "chebyshev": "205/2",
+      "formal_bound": "171814965739520000000000"
+    },
+    {
+      "p": 2,
+      "n": 2,
+      "order": 4,
+      "epsilon": "2",
+      "probability": "1",
+      "chebyshev": "205/8",
+      "formal_bound": "42953741434880000000000"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 0,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "1024/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 0,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "256/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 0,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "64/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 0,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "16/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 1,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "22724608/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 1,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "5681152/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 1,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "1420288/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 1,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "355072/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 2,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "112/27",
+      "formal_bound": "1682725404672"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 2,
+      "epsilon": "1/2",
+      "probability": "3/4",
+      "chebyshev": "28/27",
+      "formal_bound": "420681351168"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 2,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "7/27",
+      "formal_bound": "105170337792"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 2,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "7/108",
+      "formal_bound": "26292584448"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 3,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "4432/81",
+      "formal_bound": "981407105242103808"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 3,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "1108/81",
+      "formal_bound": "245351776310525952"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 3,
+      "epsilon": "1",
+      "probability": "3/4",
+      "chebyshev": "277/81",
+      "formal_bound": "61337944077631488"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 3,
+      "epsilon": "2",
+      "probability": "3/4",
+      "chebyshev": "277/324",
+      "formal_bound": "15334486019407872"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 4,
+      "epsilon": "1/4",
+      "probability": "3/4",
+      "chebyshev": "1036336/2187",
+      "formal_bound": "3899948416368640000000000/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 4,
+      "epsilon": "1/2",
+      "probability": "3/4",
+      "chebyshev": "259084/2187",
+      "formal_bound": "974987104092160000000000/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 4,
+      "epsilon": "1",
+      "probability": "3/4",
+      "chebyshev": "64771/2187",
+      "formal_bound": "243746776023040000000000/3"
+    },
+    {
+      "p": 2,
+      "n": 3,
+      "order": 4,
+      "epsilon": "2",
+      "probability": "3/4",
+      "chebyshev": "64771/8748",
+      "formal_bound": "60936694005760000000000/3"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 0,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "704"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 0,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "176"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 0,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "44"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 0,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "11"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 1,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "16781312"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 1,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "4195328"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 1,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "1048832"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 1,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "262208"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 2,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "28/3",
+      "formal_bound": "3737209798656"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 2,
+      "epsilon": "1/2",
+      "probability": "3/4",
+      "chebyshev": "7/3",
+      "formal_bound": "934302449664"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 2,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "7/12",
+      "formal_bound": "233575612416"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 2,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "7/48",
+      "formal_bound": "58393903104"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 3,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "277",
+      "formal_bound": "2156867172289216512"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 3,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "277/4",
+      "formal_bound": "539216793072304128"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 3,
+      "epsilon": "1",
+      "probability": "1",
+      "chebyshev": "277/16",
+      "formal_bound": "134804198268076032"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 3,
+      "epsilon": "2",
+      "probability": "3/4",
+      "chebyshev": "277/64",
+      "formal_bound": "33701049567019008"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 4,
+      "epsilon": "1/4",
+      "probability": "3/4",
+      "chebyshev": "64771/12",
+      "formal_bound": "2749039451832320000000000"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 4,
+      "epsilon": "1/2",
+      "probability": "3/4",
+      "chebyshev": "64771/48",
+      "formal_bound": "687259862958080000000000"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 4,
+      "epsilon": "1",
+      "probability": "3/4",
+      "chebyshev": "64771/192",
+      "formal_bound": "171814965739520000000000"
+    },
+    {
+      "p": 3,
+      "n": 2,
+      "order": 4,
+      "epsilon": "2",
+      "probability": "3/4",
+      "chebyshev": "64771/768",
+      "formal_bound": "42953741434880000000000"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 0,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "1024/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 0,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "256/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 0,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "64/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 0,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "16/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 1,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "22724608/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 1,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "5681152/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 1,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "1420288/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 1,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "355072/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 2,
+      "epsilon": "1/4",
+      "probability": "7/16",
+      "chebyshev": "400/81",
+      "formal_bound": "1682725404672"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 2,
+      "epsilon": "1/2",
+      "probability": "7/16",
+      "chebyshev": "100/81",
+      "formal_bound": "420681351168"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 2,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "25/81",
+      "formal_bound": "105170337792"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 2,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "25/324",
+      "formal_bound": "26292584448"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 3,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "24704/243",
+      "formal_bound": "981407105242103808"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 3,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "6176/243",
+      "formal_bound": "245351776310525952"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 3,
+      "epsilon": "1",
+      "probability": "1",
+      "chebyshev": "1544/243",
+      "formal_bound": "61337944077631488"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 3,
+      "epsilon": "2",
+      "probability": "7/16",
+      "chebyshev": "386/243",
+      "formal_bound": "15334486019407872"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 4,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "8962192/6561",
+      "formal_bound": "3899948416368640000000000/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 4,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "2240548/6561",
+      "formal_bound": "974987104092160000000000/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 4,
+      "epsilon": "1",
+      "probability": "1",
+      "chebyshev": "560137/6561",
+      "formal_bound": "243746776023040000000000/3"
+    },
+    {
+      "p": 3,
+      "n": 3,
+      "order": 4,
+      "epsilon": "2",
+      "probability": "1",
+      "chebyshev": "560137/26244",
+      "formal_bound": "60936694005760000000000/3"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 0,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "208"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 0,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "52"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 0,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "13"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 0,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "13/4"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 1,
+      "epsilon": "1/4",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "4326400"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 1,
+      "epsilon": "1/2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "1081600"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 1,
+      "epsilon": "1",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "270400"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 1,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "0",
+      "formal_bound": "67600"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 2,
+      "epsilon": "1/4",
+      "probability": "43/64",
+      "chebyshev": "3",
+      "formal_bound": "958763630592"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 2,
+      "epsilon": "1/2",
+      "probability": "7/64",
+      "chebyshev": "3/4",
+      "formal_bound": "239690907648"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 2,
+      "epsilon": "1",
+      "probability": "1/64",
+      "chebyshev": "3/16",
+      "formal_bound": "59922726912"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 2,
+      "epsilon": "2",
+      "probability": "0",
+      "chebyshev": "3/64",
+      "formal_bound": "14980681728"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 3,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "817/16",
+      "formal_bound": "564866200325062656"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 3,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "817/64",
+      "formal_bound": "141216550081265664"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 3,
+      "epsilon": "1",
+      "probability": "43/64",
+      "chebyshev": "817/256",
+      "formal_bound": "35304137520316416"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 3,
+      "epsilon": "2",
+      "probability": "7/64",
+      "chebyshev": "817/1024",
+      "formal_bound": "8826034380079104"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 4,
+      "epsilon": "1/4",
+      "probability": "1",
+      "chebyshev": "141777/256",
+      "formal_bound": "775220793180160000000000"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 4,
+      "epsilon": "1/2",
+      "probability": "1",
+      "chebyshev": "141777/1024",
+      "formal_bound": "193805198295040000000000"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 4,
+      "epsilon": "1",
+      "probability": "1",
+      "chebyshev": "141777/4096",
+      "formal_bound": "48451299573760000000000"
+    },
+    {
+      "p": 3,
+      "n": 4,
+      "order": 4,
+      "epsilon": "2",
+      "probability": "13/16",
+      "chebyshev": "141777/16384",
+      "formal_bound": "12112824893440000000000"
+    }
+  ],
+  "joint_patterns": [
+    {
+      "order": 0,
+      "candidates_with_shared_row": 1,
+      "surviving_patterns": 1,
+      "coefficients": [
+        {
+          "rows": 1,
+          "columns": 0,
+          "count": 1
+        }
+      ]
+    },
+    {
+      "order": 1,
+      "candidates_with_shared_row": 22,
+      "surviving_patterns": 4,
+      "coefficients": [
+        {
+          "rows": 1,
+          "columns": 1,
+          "count": 1
+        },
+        {
+          "rows": 1,
+          "columns": 2,
+          "count": 1
+        },
+        {
+          "rows": 2,
+          "columns": 1,
+          "count": 2
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "candidates_with_shared_row": 2670,
+      "surviving_patterns": 113,
+      "coefficients": [
+        {
+          "rows": 1,
+          "columns": 1,
+          "count": 1
+        },
+        {
+          "rows": 1,
+          "columns": 2,
+          "count": 7
+        },
+        {
+          "rows": 1,
+          "columns": 3,
+          "count": 6
+        },
+        {
+          "rows": 1,
+          "columns": 4,
+          "count": 1
+        },
+        {
+          "rows": 2,
+          "columns": 1,
+          "count": 14
+        },
+        {
+          "rows": 2,
+          "columns": 2,
+          "count": 42
+        },
+        {
+          "rows": 2,
+          "columns": 3,
+          "count": 12
+        },
+        {
+          "rows": 3,
+          "columns": 1,
+          "count": 14
+        },
+        {
+          "rows": 3,
+          "columns": 2,
+          "count": 14
+        },
+        {
+          "rows": 4,
+          "columns": 1,
+          "count": 2
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "candidates_with_shared_row": 794745,
+      "surviving_patterns": 6545,
+      "coefficients": [
+        {
+          "rows": 1,
+          "columns": 1,
+          "count": 1
+        },
+        {
+          "rows": 1,
+          "columns": 2,
+          "count": 31
+        },
+        {
+          "rows": 1,
+          "columns": 3,
+          "count": 90
+        },
+        {
+          "rows": 1,
+          "columns": 4,
+          "count": 65
+        },
+        {
+          "rows": 1,
+          "columns": 5,
+          "count": 15
+        },
+        {
+          "rows": 1,
+          "columns": 6,
+          "count": 1
+        },
+        {
+          "rows": 2,
+          "columns": 1,
+          "count": 62
+        },
+        {
+          "rows": 2,
+          "columns": 2,
+          "count": 930
+        },
+        {
+          "rows": 2,
+          "columns": 3,
+          "count": 1260
+        },
+        {
+          "rows": 2,
+          "columns": 4,
+          "count": 390
+        },
+        {
+          "rows": 2,
+          "columns": 5,
+          "count": 30
+        },
+        {
+          "rows": 3,
+          "columns": 1,
+          "count": 214
+        },
+        {
+          "rows": 3,
+          "columns": 2,
+          "count": 1498
+        },
+        {
+          "rows": 3,
+          "columns": 3,
+          "count": 982
+        },
+        {
+          "rows": 3,
+          "columns": 4,
+          "count": 120
+        },
+        {
+          "rows": 4,
+          "columns": 1,
+          "count": 164
+        },
+        {
+          "rows": 4,
+          "columns": 2,
+          "count": 492
+        },
+        {
+          "rows": 4,
+          "columns": 3,
+          "count": 124
+        },
+        {
+          "rows": 5,
+          "columns": 1,
+          "count": 37
+        },
+        {
+          "rows": 5,
+          "columns": 2,
+          "count": 37
+        },
+        {
+          "rows": 6,
+          "columns": 1,
+          "count": 2
+        }
+      ]
+    }
+  ]
+}

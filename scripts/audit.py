@@ -1,4 +1,4 @@
-"""Audit proof dependencies and reject false normalization, Narayana and finite-bias claims."""
+"""Audit proof dependencies and reject false normalization, Narayana, bias and variance claims."""
 from __future__ import annotations
 
 import re
@@ -52,10 +52,18 @@ example : |average (fun ω : Fin 1 × Fin 1 → Bool =>
   rw [expected_second_moment (by decide) (by decide), mpMoment_two]
   norm_num
 '''
+    variance_source = '''import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: a fair sign has variance one, not zero.
+example : finiteVariance sign = 0 := by
+  rw [finiteVariance_sign]
+  norm_num
+'''
     controls = [
         ("NegativeControl", "negative-control.log", moment_source),
         ("NarayanaNegativeControl", "narayana-negative-control.log", narayana_source),
         ("FiniteBiasNegativeControl", "finite-bias-negative-control.log", bias_source),
+        ("VarianceNegativeControl", "variance-negative-control.log", variance_source),
     ]
     for name, log_name, source in controls:
         negative = ROOT / ".lake" / f"{name}.lean"
@@ -72,7 +80,7 @@ example : |average (fun ω : Fin 1 × Fin 1 → Bool =>
             raise RuntimeError(f"{name} failed because of infrastructure, not mathematics")
         (dest / log_name).write_text(source + "\nEXPECTED REJECTION:\n" + diagnosis)
     print(f"PASS: {len(found)} declaration dependency audits; "
-          "incorrect finite second moment, Narayana coefficient and zero finite bias rejected")
+          "incorrect finite second moment, Narayana coefficient, zero finite bias and zero sign variance rejected")
 
 
 

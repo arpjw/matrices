@@ -1,0 +1,10 @@
+import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: a fair sign has variance one, not zero.
+example : finiteVariance sign = 0 := by
+  rw [finiteVariance_sign]
+  norm_num
+
+EXPECTED REJECTION:
+/private/var/folders/5s/zz2md1nj18g251r6jw2dmfq00000gn/T/matrices-validation-2exd73wx/verified-project/.lake/VarianceNegativeControl.lean:4:37: error: unsolved goals
+⊢ False
