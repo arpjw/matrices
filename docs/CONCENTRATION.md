@@ -106,9 +106,11 @@ build, audit and experiment records.
 The spectral interface is now complete: the empirical eigenvalue probability
 measure, trace-moment identity, nonnegative support, and forced zero atom are
 proved. The concentration theorem is now also stated for moments of that measure.
-See [SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md) for the proof chain and next stage.
+See [SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md) for the spectral proof chain.
 
-The MP density and atom are now normalized and all their moments proved in
-[MP_DENSITY.md](MP_DENSITY.md). Tightness, moment determinacy, and weak
-convergence in probability of the empirical spectral measures remain. Random-moment convergence alone does not finish
-the full Marchenko-Pastur theorem; see [BLUEPRINT.md](BLUEPRINT.md).
+The MP density and atom are normalized and all their moments proved in
+[MP_DENSITY.md](MP_DENSITY.md). The final
+[weak-convergence stage](WEAK_CONVERGENCE.md) proves uniform tightness, moment
+determinacy, and the passage from these moment-concentration results to every
+bounded continuous real test. The full flagship theorem is complete; see
+[BLUEPRINT.md](BLUEPRINT.md).

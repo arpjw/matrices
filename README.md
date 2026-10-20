@@ -1,26 +1,28 @@
 # Random matrices in Lean
 
-A research project toward a complete Lean proof of the Marchenko-Pastur law for
-sample covariance matrices with independent fair-sign entries.
+A Lean proof of the Marchenko-Pastur law for sample covariance matrices with
+independent fair-sign entries.
 
-The current milestone constructs the explicit Marchenko-Pastur density plus
-zero atom and proves its normalization and all natural moments for every gamma>0:
+The complete theorem proves, for every bounded continuous real function f,
 
-    mu_gamma = max(1-1/gamma,0) delta_0 + rho_gamma(x) dx,
-    integral x^k d mu_gamma = P_k(gamma), including k=0.
-
-The continuous density has mass min(1,1/gamma). The full measure is a probability
-measure with compact nonnegative support, and its zero atom has exactly the
-displayed mass. The proof includes the singular endpoint case gamma=1.
-
-The established empirical moment theorem is now identified with this actual law:
-
-    Pr(|integral x^k d mu_(X_m) - integral x^k d mu_gamma| > epsilon) -> 0,
+    Pr(|integral f d mu_(X_m) - integral f d mu_gamma| > epsilon) -> 0,
     n_m -> infinity, p_m/n_m -> gamma > 0, epsilon > 0.
 
-Weak convergence against all bounded continuous test functions remains open.
-See [the MP density proof guide](docs/MP_DENSITY.md) for the analytic proof and
-[the spectral proof guide](docs/SPECTRAL_MEASURES.md) for the empirical measure.
+Here mu_(X_m) is the empirical measure of all eigenvalues of X_m X_m^T/n_m,
+including multiplicities and zeros, and the limit is the explicit normalized law
+
+    mu_gamma = max(1-1/gamma,0) delta_0 + rho_gamma(x) dx.
+
+The proof covers every positive real aspect ratio, including gamma=1. It
+includes all-order combinatorial moment counting, concentration, the spectral
+interface, density normalization and all moments, uniform tightness, moment
+determinacy, and the passage to bounded continuous tests. Each matrix size has
+its own finite uniform ensemble; no coupling across sizes is assumed.
+
+The main declaration is `RandomMatrix.marchenkoPastur_theorem`. See the
+[weak-convergence proof guide](docs/WEAK_CONVERGENCE.md),
+[MP density proof guide](docs/MP_DENSITY.md), and
+[spectral proof guide](docs/SPECTRAL_MEASURES.md).
 
 The initial finite-moment stage is preserved at the Git tag
 `stage-1-finite-moments` (commit `0523463`).
@@ -32,7 +34,8 @@ The Narayana formula is preserved at `stage-6-narayana` (`dce93b9`).
 The expected-moment stage is preserved at `stage-7-expected-moments` (`abaabe1`).
 The concentration stage is preserved at `stage-8-moment-concentration`.
 The spectral interface stage is preserved at `stage-9-spectral-interface`.
-The density and moment stage is preserved at `stage-10-mp-density`.
+The density and moment stage is preserved at `stage-10-mp-density` (`d5888c1`).
+The complete theorem is preserved at `stage-11-marchenko-pastur`.
 
 ## Model and conventions
 
@@ -105,6 +108,12 @@ max(1 - 1/gamma, 0) when gamma > 1.
 | MPDensityIntegrals | Lebesgue substitution, integrability, normalization, and all positive density moments |
 | MPMeasure | Explicit probability measure, exact atom, all moments, and compact support |
 | MPIdentification | Empirical moment concentration toward the moments of the explicit MP law |
+| FiniteConvergence | Convergence in probability under finite linear combinations on separate finite spaces |
+| PolynomialSandwich | Global polynomial bounds with arbitrarily small gap on the target support |
+| PolynomialIntegrals | Integrability and moment expansion of polynomials, and convergence of their integrals |
+| CompactMomentMethod | Weak convergence from moments and compact moment determinacy |
+| SpectralTightness | Uniform deterministic spectral tail bound and tightness |
+| MarchenkoPastur | The complete independent fair-sign Marchenko-Pastur theorem |
 
 The general finite identity, for every k >= 0 and p,n > 0, is
 
@@ -162,7 +171,8 @@ explicit constants and the finite probability bound. The new
 integrals against the empirical eigenvalue probability measure. The
 [MP density proof guide](docs/MP_DENSITY.md) identifies their limiting moments
 with the explicitly normalized density plus atom, at every order.
-Weak convergence of the random spectral measures remains open.
+The [weak-convergence proof guide](docs/WEAK_CONVERGENCE.md) completes the
+passage to bounded continuous tests, including tightness and moment determinacy.
 
 See [the verification record](docs/VALIDATION.md) for actual build and audit
 results. The proof sources are required to contain no unfinished proofs, custom
@@ -196,7 +206,8 @@ scripts/lake.sh exe cache get \
   Mathlib.Analysis.SpecialFunctions.Integrals.Basic \
   Mathlib.Analysis.SpecialFunctions.Trigonometric.ArctanDeriv \
   Mathlib.MeasureTheory.Function.JacobianOneDim \
-  Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
+  Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap \
+  Mathlib.Topology.ContinuousMap.Weierstrass
 scripts/check.sh
 ```
 
@@ -271,18 +282,18 @@ proofs or evidence of a new mathematical result.
 
 ![Spectral experiment](experiments/results/spectral-experiment.png)
 
-## The substantial work ahead
+## Completed proof and scope
 
-[BLUEPRINT.md](docs/BLUEPRINT.md) gives the exact theorem and dependency graph.
-The leading-pattern classification, ordered-tree bijection, and Narayana
-count and all fixed-order expected-moment limits with explicit finite-size
-bounds are complete. Explicit variance bounds and convergence in probability
-of each fixed random moment are complete. The empirical eigenvalue probability
-measure, trace-moment bridge, nonnegative support, forced zero atom, and transfer
-of concentration to spectral moments are complete. The explicit MP density plus
-atom is now proved normalized, compactly supported, and to have all the required
-moments, including the gamma=1 case. The remaining stage is tightness,
-moment-to-measure convergence, and weak convergence in probability.
+All nine stages in [BLUEPRINT.md](docs/BLUEPRINT.md) are complete. The final
+proof uses polynomial upper and lower bounds on the entire nonnegative
+half-line, with higher powers controlling their tails. Moment concentration
+then bounds the probability of every bounded continuous test-integral error.
+The exact first moment also gives uniform tightness for all sign matrices.
+
+The proved theorem concerns independent fair-sign entries, positive finite
+limiting aspect ratios, and weak convergence in probability. General entry
+distributions, almost-sure convergence, spectral-edge limits, and convergence
+of individual atom masses are outside this theorem's scope.
 
 [PRIOR_ART.md](docs/PRIOR_ART.md) records the inspected existing projects and their
 limitations. This is a formalization of a classical result. No claim of novelty

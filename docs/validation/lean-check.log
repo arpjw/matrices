@@ -1,14 +1,6 @@
 Source scan passed
-✔ [2928/2937] Built RandomMatrix.MPPolynomialRecurrence (2.9s)
-✔ [2929/2937] Built RandomMatrix.MPParameters (3.7s)
-✔ [2930/2937] Built RandomMatrix.MPMomentRecurrence (2.1s)
-✔ [2931/2937] Built RandomMatrix.MPTrigNormalization (2.1s)
-✔ [2932/2937] Built RandomMatrix.MPAngularNormalization (1.9s)
-✔ [2933/2937] Built RandomMatrix.MPDensityIntegrals (1.9s)
-✔ [2934/2937] Built RandomMatrix.MPMeasure (1.8s)
-✔ [2935/2937] Built RandomMatrix.MPIdentification (1.9s)
-✔ [2936/2937] Built RandomMatrix (1.6s)
-Build completed successfully (2937 jobs).
+✔ [2953/2954] Built RandomMatrix (4.9s)
+Build completed successfully (2954 jobs).
 'RandomMatrix.average_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -359,4 +351,26 @@ Build completed successfully (2937 jobs).
 'RandomMatrix.marchenkoPastur_support_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.empirical_moment_mean_square_to_mp' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.empirical_moment_converges_to_mp' depends on axioms: [propext, Classical.choice, Quot.sound]
-PASS: 350 declaration dependency audits; 9 incorrect moment, variance and spectral-measure claims rejected
+'RandomMatrix.finiteProbability_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteProbability_or_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteConverges_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.FiniteConvergesInProbability.add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.FiniteConvergesInProbability.const_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.finiteConverges_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.polynomial_tail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.exists_polynomial_sandwich' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.polynomial_integrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.polynomial_integral_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.polynomial_integral_converges' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.integral_polynomial_sandwich' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.integral_polynomial_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.compact_moment_method' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.compact_moments_determine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empirical_sign_tail_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empirical_sign_uniform_tightness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.marchenkoPastur_ae_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.marchenkoPastur_moment_determinate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.empirical_weak_converges_to_mp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.marchenkoPastur_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.FiniteConvergesInProbability' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: 372 declaration dependency audits; 11 incorrect moment, variance and spectral convergence claims rejected

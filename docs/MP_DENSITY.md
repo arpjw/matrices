@@ -120,8 +120,9 @@ in probability using the two actual bundled probability measures:
 
 The hypotheses remain positive dimensions, n_m tending to infinity,
 p_m/n_m tending to gamma>0, and epsilon>0. Mean-square convergence is also
-identified with the moments of this explicit law. This is still moment
-convergence; the theorem for all bounded continuous test functions remains.
+identified with the moments of this explicit law. The subsequent
+[weak-convergence proof](WEAK_CONVERGENCE.md) uses this moment convergence to
+prove the theorem for every bounded continuous real test function.
 
 ## Validation and scope
 
@@ -141,17 +142,13 @@ The quadrature is a numerical check, not certified interval arithmetic or a
 proof. The general normalization and all-order moment statements are the
 Lean results. See [VALIDATION.md](VALIDATION.md) for the actual build and audit.
 
-## Remaining stage
+## Completed weak-convergence stage
 
-Prove weak convergence in probability of the empirical measures against every
-bounded continuous real test function. The available inputs are the normalized
-empirical measures, their nonnegative support and exact first moment, all-order
-moment concentration, and the explicit compactly supported target law.
-
-The remaining argument needs tightness and a justified passage from moments
-to measures. One direct route is polynomial approximation on a compact interval,
-control of the polynomial tails by higher moments, and a finite probability
-bound for the required collection of moments. Moment determinacy of the compact
-target must also be established or incorporated into that argument. No common
-probability space across matrix sizes should be introduced as an assumption.
-See [BLUEPRINT.md](BLUEPRINT.md).
+The passage to weak convergence in probability is now proved in
+[WEAK_CONVERGENCE.md](WEAK_CONVERGENCE.md). The final theorem uses the normalized
+empirical measures, their nonnegative support, all-order moment concentration,
+and this explicit compactly supported target law. Polynomial bounds control
+both local approximation and the tails. The same argument establishes moment
+determinacy, while the exact empirical first moment proves uniform tightness.
+No common probability space across matrix sizes is assumed. All stages of the
+flagship target in [BLUEPRINT.md](BLUEPRINT.md) are complete.

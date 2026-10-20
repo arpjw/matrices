@@ -1,4 +1,4 @@
-"""Audit proof dependencies and reject false moment, variance and spectral-measure claims."""
+"""Audit proof dependencies and reject false moment and spectral convergence claims."""
 from __future__ import annotations
 
 import re
@@ -107,6 +107,44 @@ example : (marchenkoPastur 1 {0}).toReal = 1 / 2 := by
   rw [marchenkoPastur_zero_atom_real]
   norm_num
 '''
+    first_moment_only_source = '''import RandomMatrix
+open RandomMatrix MeasureTheory
+open scoped ENNReal
+-- Both laws below have mass one and first moment one. The bounded continuous
+-- clipped identity distinguishes them, so the first moment alone is insufficient.
+example :
+    (∫ x : ℝ, min 1 (max 0 x) ∂((2 : ℝ≥0∞)⁻¹ •
+      (Measure.dirac (0 : ℝ) + Measure.dirac 2))) =
+    ∫ x : ℝ, min 1 (max 0 x) ∂Measure.dirac 1 := by
+  have hmass : (((2 : ℝ≥0∞)⁻¹ • (Measure.dirac (0 : ℝ) + Measure.dirac 2)) :
+      Measure ℝ) Set.univ = 1 := by
+    simp only [Measure.smul_apply, smul_eq_mul, Measure.add_apply,
+      Measure.dirac_apply_of_mem (Set.mem_univ _), one_add_one_eq_two]
+    exact ENNReal.inv_mul_cancel (by norm_num) (by simp)
+  have hfirst : (∫ x : ℝ, x ∂((2 : ℝ≥0∞)⁻¹ •
+      (Measure.dirac (0 : ℝ) + Measure.dirac 2))) = (1 : ℝ) := by
+    rw [integral_smul_measure, integral_add_measure (integrable_dirac (by simp))
+      (integrable_dirac (by simp))]
+    norm_num
+  have hcontinuous : Continuous (fun x : ℝ => min 1 (max 0 x)) :=
+    continuous_const.min (continuous_const.max continuous_id)
+  have hbounded (x : ℝ) : |min 1 (max 0 x)| ≤ 1 := by
+    rw [abs_of_nonneg (le_min (by norm_num) (le_max_left _ _))]
+    exact min_le_left _ _
+  rw [integral_smul_measure, integral_add_measure (integrable_dirac (by simp))
+    (integrable_dirac (by simp))]
+  norm_num
+'''
+    weak_mass_source = '''import RandomMatrix
+open RandomMatrix MeasureTheory
+-- The bounded continuous constant-one test detects the missing atom at gamma=2.
+example (X : Matrix (Fin 2) (Fin 1) ℝ) :
+    (∫ _x : ℝ, (1 : ℝ) ∂empiricalMeasure X) = ∫ x : ℝ, mpDensity 2 x := by
+  have hm : (∫ _x : ℝ, (1 : ℝ) ∂empiricalMeasure X) = 1 := by
+    simpa only [pow_zero] using empiricalMeasure_moment_zero (by decide : 0 < 2) X
+  rw [hm, mpDensity_integral (by norm_num : (0 : ℝ) < 2)]
+  norm_num
+'''
     controls = [
         ("NegativeControl", "negative-control.log", moment_source),
         ("NarayanaNegativeControl", "narayana-negative-control.log", narayana_source),
@@ -117,6 +155,8 @@ example : (marchenkoPastur 1 {0}).toReal = 1 / 2 := by
         ("MPMassNegativeControl", "mp-mass-negative-control.log", mp_mass_source),
         ("MPMomentNegativeControl", "mp-moment-negative-control.log", mp_moment_source),
         ("MPCriticalAtomNegativeControl", "mp-critical-atom-negative-control.log", mp_critical_atom_source),
+        ("FirstMomentOnlyNegativeControl", "first-moment-only-negative-control.log", first_moment_only_source),
+        ("WeakMassNegativeControl", "weak-mass-negative-control.log", weak_mass_source),
     ]
     for name, log_name, source in controls:
         negative = ROOT / ".lake" / f"{name}.lean"
@@ -129,11 +169,12 @@ example : (marchenkoPastur 1 {0}).toReal = 1 / 2 := by
         diagnosis = rejected.stdout + rejected.stderr
         if rejected.returncode == 0 or "unsolved goals" not in diagnosis:
             raise RuntimeError(f"{name} did not fail for the intended proof obligation: " + diagnosis)
-        if any(term in diagnosis for term in ("unknownIdentifier", "does not exist", "unknown module")):
-            raise RuntimeError(f"{name} failed because of infrastructure, not mathematics")
+        errors = re.findall(r"^.*?:\d+:\d+: error(?:\([^)]*\))?: (.*)$", diagnosis, re.M)
+        if len(errors) != 1 or errors[0] != "unsolved goals":
+            raise RuntimeError(f"{name} did not fail solely on its intended goal: " + diagnosis)
         (dest / log_name).write_text(source + "\nEXPECTED REJECTION:\n" + diagnosis)
     print(f"PASS: {len(found)} declaration dependency audits; "
-          f"{len(controls)} incorrect moment, variance and spectral-measure claims rejected")
+          f"{len(controls)} incorrect moment, variance and spectral convergence claims rejected")
 
 
 

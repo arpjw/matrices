@@ -357,3 +357,27 @@ import RandomMatrix
 #print axioms RandomMatrix.marchenkoPastur_support_compact
 #print axioms RandomMatrix.empirical_moment_mean_square_to_mp
 #print axioms RandomMatrix.empirical_moment_converges_to_mp
+
+-- Weak convergence, compact moment determinacy, and uniform spectral tightness.
+#print axioms RandomMatrix.finiteProbability_mono
+#print axioms RandomMatrix.finiteProbability_or_le
+#print axioms RandomMatrix.finiteConverges_const
+#print axioms RandomMatrix.FiniteConvergesInProbability.add
+#print axioms RandomMatrix.FiniteConvergesInProbability.const_mul
+#print axioms RandomMatrix.finiteConverges_sum
+#print axioms RandomMatrix.polynomial_tail_bound
+#print axioms RandomMatrix.exists_polynomial_sandwich
+#print axioms RandomMatrix.polynomial_integrable
+#print axioms RandomMatrix.polynomial_integral_eq_sum
+#print axioms RandomMatrix.polynomial_integral_converges
+#print axioms RandomMatrix.integral_polynomial_sandwich
+#print axioms RandomMatrix.integral_polynomial_gap
+#print axioms RandomMatrix.compact_moment_method
+#print axioms RandomMatrix.compact_moments_determine
+#print axioms RandomMatrix.empirical_sign_tail_bound
+#print axioms RandomMatrix.empirical_sign_uniform_tightness
+#print axioms RandomMatrix.marchenkoPastur_ae_interval
+#print axioms RandomMatrix.marchenkoPastur_moment_determinate
+#print axioms RandomMatrix.empirical_weak_converges_to_mp
+#print axioms RandomMatrix.marchenkoPastur_theorem
+#print axioms RandomMatrix.FiniteConvergesInProbability

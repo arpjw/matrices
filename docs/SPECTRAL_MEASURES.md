@@ -86,9 +86,9 @@ convergence, and the quantitative finite deviation bound at the current ratio.
 `empiricalMeasure_sign_first_moment` proves integral x d mu_X=1 for every sign
 matrix with positive dimensions.
 
-This does not yet prove weak convergence against all bounded continuous test
-functions. It supplies the concrete measure and exact bridge that such an
-argument needs.
+This module supplies the concrete measure and exact moment bridge. The
+subsequent [weak-convergence proof](WEAK_CONVERGENCE.md) uses them to establish
+the theorem for every bounded continuous real test function.
 
 ## Validation
 
@@ -119,5 +119,6 @@ The explicit MP density plus atom is now normalized and its moments identified
 at every order, including the critical aspect ratio gamma=1. See
 [MP_DENSITY.md](MP_DENSITY.md) for the completed proof.
 
-Tightness, moment determinacy, and the passage from moment concentration to
-weak convergence in probability remain. See [BLUEPRINT.md](BLUEPRINT.md).
+Uniform tightness, moment determinacy, and the passage from moment concentration
+to weak convergence in probability are now proved. See
+[WEAK_CONVERGENCE.md](WEAK_CONVERGENCE.md) and [BLUEPRINT.md](BLUEPRINT.md).

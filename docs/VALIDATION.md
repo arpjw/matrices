@@ -6,8 +6,9 @@ coefficient boundary cases, doubled-tree graph classification, the general
 rooted ordered tree bijection, the Narayana coefficient formula, all fixed-order
 expected-moment limits, explicit finite-size bounds, and fixed-order moment
 concentration, empirical spectral measures, their moment bridge, and the
-normalization and all moments of the explicit MP density plus atom. The full
-Marchenko-Pastur weak-convergence theorem remains open. Earlier
+normalization and all moments of the explicit MP density plus atom, uniform
+tightness, moment determinacy, and the full Marchenko-Pastur weak-convergence
+in probability theorem for independent fair-sign entries. Earlier
 stages are retained at `stage-1-finite-moments` (`0523463`) and
 `stage-2-walk-counting` (`b23f33c`), and `stage-3-pattern-coefficients` (`40eeb1d`).
 The doubled-tree checkpoint is `stage-4-doubled-trees` (`e2cb215`).
@@ -16,7 +17,8 @@ The Narayana checkpoint is `stage-6-narayana` (`dce93b9`).
 The expected-moment checkpoint is `stage-7-expected-moments` (`abaabe1`).
 The concentration checkpoint is `stage-8-moment-concentration`.
 The spectral checkpoint is `stage-9-spectral-interface` (`734a212`).
-The current checkpoint is `stage-10-mp-density`.
+The density checkpoint is `stage-10-mp-density` (`d5888c1`).
+The current checkpoint is `stage-11-marchenko-pastur`.
 
 ## Lean
 
@@ -24,27 +26,29 @@ The current checkpoint is `stage-10-mp-density`.
   7e01a1bf5c70fc6167d49c345d3bf80596e9a79b.
 - Mathlib revision 8f9d9cff6bd728b17a24e163c9402775d9e6a365.
 - `scripts/check.sh`: passed.
-- `lake build`: passed, 2,937 jobs, with dependency build products largely
+- `lake build`: passed, 2,954 jobs, with dependency build products largely
   obtained from the official mathlib cache. No warnings were emitted.
-- Fifty-six mathematical source modules, 337 exported named theorems and twenty
+- Sixty-two mathematical source modules, 358 exported named theorems and twenty
   private helpers, plus the aggregate import and audit module. No new mathematical
   result is claimed from the theorem count.
 - Source scan: no unfinished-proof tokens, custom axiom declarations, or
   `native_decide` calls in the project Lean sources.
-- 350 declaration dependency audits passed, including the central labeling,
+- 372 declaration dependency audits passed, including the central labeling,
   walk, ordered-tree, and refined coefficient equivalences, plus the formal
   series recurrence, general Narayana coefficient theorem, explicit finite-size
   bounds, all fixed-order expected-moment limits, the paired-labeling equivalence,
   variance bounds, convergence in probability, the full spectral interface,
   density normalization, all MP moments, the exact atom, compact support, and
-  identification of the random-matrix moment limits with the explicit law.
+  identification of the random-matrix moment limits with the explicit law,
+  global polynomial bounds, the general compact moment method, moment
+  determinacy, uniform tightness, and the complete weak-convergence theorem.
   Every exported named theorem is now explicitly audited, with a source-coverage
   check enforced by the audit script. This includes ten foundational helper
   lemmas from the initial stage that were previously absent from the individual
   audit list. Audited dependencies are
   confined to `propext`, `Classical.choice`, and `Quot.sound`. No `sorryAx`, custom
   domain axiom, `Lean.ofReduceBool`, or `Lean.trustCompiler` was reported.
-  Two definitional selector lemmas report no axioms at all. The audit parser
+  Some definitional selector lemmas report no axioms at all. The audit parser
   now recognizes that explicit Lean output as well as nonempty dependency lists;
   the allowed dependency set is unchanged.
 - Negative control passed: the claim that the 1-by-1 finite second moment equals
@@ -70,6 +74,16 @@ The current checkpoint is `stage-10-mp-density`.
 - A ninth negative control passed: assigning zero-atom mass 1/2 at gamma=1 was
   rejected. The proved atom is zero. All three new controls reduce to False,
   and the audit confirms that no infrastructure error caused rejection.
+- A tenth negative control passed: delta_1 and (delta_0+delta_2)/2 have equal
+  first moments, but the bounded continuous clipped identity distinguishes them.
+  The control proves unit mass, the common first moment, and continuity and
+  boundedness of the test before the incorrect integral equality reduces to False.
+- An eleventh negative control passed: the constant-one test rejects equating
+  full empirical mass with the continuous MP mass at gamma=2. It reduces to False.
+  This detects omission of the atom in a proposed weak limit.
+- The audit now requires exactly one diagnostic error per negative control,
+  specifically the unsolved intended goal. All eleven controls passed this
+  stricter check, ruling out incidental elaboration or auxiliary-proof failures.
 
 Logs: [build and audit](validation/lean-check.log),
 [axioms](validation/axioms.log),
@@ -81,7 +95,9 @@ Logs: [build and audit](validation/lean-check.log),
 [spectral zero-atom negative control](validation/spectral-atom-negative-control.log),
 [MP continuous-mass negative control](validation/mp-mass-negative-control.log),
 [MP second-moment negative control](validation/mp-moment-negative-control.log),
-[MP critical-atom negative control](validation/mp-critical-atom-negative-control.log).
+[MP critical-atom negative control](validation/mp-critical-atom-negative-control.log),
+[first-moment-only negative control](validation/first-moment-only-negative-control.log),
+[weak-limit mass negative control](validation/weak-mass-negative-control.log).
 
 The standard Lean kernel and the pinned imported mathematics remain trusted.
 We did not run a second independently implemented proof checker.
@@ -89,14 +105,14 @@ We did not run a second independently implemented proof checker.
 The final build ran in a temporary local directory after iCloud offloading
 caused reads of generated artifacts in the original workspace to fail. Lean
 and all dependency sources were restored at the pinned versions. Hashes of all
-64 Lean source, check-script, and dependency-pin files matched the deliverable
+70 Lean source, check-script, and dependency-pin files matched the deliverable
 for the final validation. The logs in the validation directory are from this
 successful run. The pinned Lean and mathlib versions were retained throughout.
 
 ## Exact computational checks
 
 `python3 experiments/exact_moments.py`: passed at the expected-moment checkpoint
-on 2026-10-20. Its source and results are unchanged in the MP-density checkpoint.
+on 2026-10-20. Its source and results are unchanged in the weak-convergence checkpoint.
 
 - 4,774 complete sign matrices across dimensions (1,1), (1,4), (2,1), (2,2),
   (2,3), (3,2), (3,3), and (3,4).
@@ -257,7 +273,7 @@ Data: [simulation.json](../experiments/results/simulation.json).
 Plot: [PNG](../experiments/results/spectral-experiment.png),
 [SVG](../experiments/results/spectral-experiment.svg).
 
-## Remaining proof obligations
+## Completed flagship scope
 
 The arbitrary-order labeled trace expansion, exact partition-coefficient
 formula, coefficient boundary and support results, and doubled-tree graph
@@ -273,6 +289,11 @@ all-order trace-moment bridge, nonnegative support, exact nullity atom, and
 transfer of concentration to empirical moments are proved. The explicit MP
 density plus atom is now proved normalized, compactly supported, and to have
 all natural moments, including gamma=1. The random-matrix moment limits are
-identified with the moments of this actual law. Tightness, moment determinacy,
-and weak convergence in probability of the empirical spectral measures remain.
-See [BLUEPRINT.md](BLUEPRINT.md) and [MP_DENSITY.md](MP_DENSITY.md).
+identified with the moments of this actual law. Uniform tightness, compact
+moment determinacy, and weak convergence in probability against every bounded
+continuous real test are now proved as well. `marchenkoPastur_theorem` closes
+the entire chain for independent fair-sign entries and every positive finite
+limiting aspect ratio. No proof obligation remains for the original flagship
+scope. General entry distributions, almost-sure convergence, spectral-edge
+limits, and individual-atom convergence are outside that scope.
+See [BLUEPRINT.md](BLUEPRINT.md) and [WEAK_CONVERGENCE.md](WEAK_CONVERGENCE.md).

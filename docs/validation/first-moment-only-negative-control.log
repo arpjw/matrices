@@ -1,0 +1,35 @@
+import RandomMatrix
+open RandomMatrix MeasureTheory
+open scoped ENNReal
+-- Both laws below have mass one and first moment one. The bounded continuous
+-- clipped identity distinguishes them, so the first moment alone is insufficient.
+example :
+    (∫ x : ℝ, min 1 (max 0 x) ∂((2 : ℝ≥0∞)⁻¹ •
+      (Measure.dirac (0 : ℝ) + Measure.dirac 2))) =
+    ∫ x : ℝ, min 1 (max 0 x) ∂Measure.dirac 1 := by
+  have hmass : (((2 : ℝ≥0∞)⁻¹ • (Measure.dirac (0 : ℝ) + Measure.dirac 2)) :
+      Measure ℝ) Set.univ = 1 := by
+    simp only [Measure.smul_apply, smul_eq_mul, Measure.add_apply,
+      Measure.dirac_apply_of_mem (Set.mem_univ _), one_add_one_eq_two]
+    exact ENNReal.inv_mul_cancel (by norm_num) (by simp)
+  have hfirst : (∫ x : ℝ, x ∂((2 : ℝ≥0∞)⁻¹ •
+      (Measure.dirac (0 : ℝ) + Measure.dirac 2))) = (1 : ℝ) := by
+    rw [integral_smul_measure, integral_add_measure (integrable_dirac (by simp))
+      (integrable_dirac (by simp))]
+    norm_num
+  have hcontinuous : Continuous (fun x : ℝ => min 1 (max 0 x)) :=
+    continuous_const.min (continuous_const.max continuous_id)
+  have hbounded (x : ℝ) : |min 1 (max 0 x)| ≤ 1 := by
+    rw [abs_of_nonneg (le_min (by norm_num) (le_max_left _ _))]
+    exact min_le_left _ _
+  rw [integral_smul_measure, integral_add_measure (integrable_dirac (by simp))
+    (integrable_dirac (by simp))]
+  norm_num
+
+EXPECTED REJECTION:
+/private/var/folders/5s/zz2md1nj18g251r6jw2dmfq00000gn/T/matrices-validation-2exd73wx/verified-project/.lake/FirstMomentOnlyNegativeControl.lean:9:49: error: unsolved goals
+hmass : (2⁻¹ • (Measure.dirac 0 + Measure.dirac 2)) Set.univ = 1
+hfirst : ∫ (x : ℝ), x ∂2⁻¹ • (Measure.dirac 0 + Measure.dirac 2) = 1
+hcontinuous : Continuous fun x => min 1 (max 0 x)
+hbounded : ∀ (x : ℝ), |min 1 (max 0 x)| ≤ 1
+⊢ False

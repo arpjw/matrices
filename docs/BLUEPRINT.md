@@ -23,7 +23,8 @@ epsilon > 0, the uniform probability of
 tends to zero. There is no assumption about joint dependence across different m;
 convergence in probability here uses each finite ensemble separately.
 
-This is a planned theorem. The current Lean modules do not prove this limit.
+This theorem is proved in `RandomMatrix.marchenkoPastur_theorem`.
+See [WEAK_CONVERGENCE.md](WEAK_CONVERGENCE.md) for the final analytic argument.
 It is a classical theorem, not a new mathematical claim or a claim of first
 formalization. Beginning with signs is a substantive special case, not a proof
 for all independent-entry distributions.
@@ -81,9 +82,15 @@ for all independent-entry distributions.
    atom, total mass one, all natural moments, and compact nonnegative support
    are proved. The empirical moment theorem is identified with moments of this
    explicit measure. See MP_DENSITY.md.
-9. Moment-to-measure convergence. Prove tightness, moment determinacy and the
-   relevant convergence-in-probability argument. This is the main analytic
-   bottleneck. A theorem assuming spectral convergence would not close it.
+9. Moment-to-measure convergence. This stage is complete. The exact first
+   moment gives the uniform deterministic tail bound mu_X([0,R]^c)<=1/R.
+   Global polynomial upper and lower bounds approximate every bounded
+   continuous test on the compact target support, with higher powers controlling
+   the tails. Finite linear combinations of the moment-concentration results
+   then prove weak convergence in probability. The same bounds prove compact
+   moment determinacy, including uniqueness of the MP law from its moments.
+   The final theorem applies this argument to the actual finite sign ensembles;
+   spectral convergence is a conclusion, not a hypothesis. See WEAK_CONVERGENCE.md.
 
 ## Finite identities used as normalization checks
 
@@ -104,21 +111,19 @@ trace normalization and 1/n for the covariance normalization.
 
 ## Working order
 
-Stages 1 through 8 are complete. The empirical spectral probability measure
-and its moment bridge are proved, and the explicit MP density plus atom is
-normalized with compact nonnegative support and every natural moment identified.
-Every fixed empirical moment converges in probability to the corresponding
-moment of that measure. Next is the moment-to-measure argument and weak
-convergence in probability against all bounded continuous real tests.
-The complete flagship chain is substantial; no completion date is inferred from
-the first finite proofs.
+Stages 1 through 9 are complete. `marchenkoPastur_theorem` connects the actual
+finite independent-sign matrix ensemble to the explicit MP density plus atom
+and proves the displayed weak convergence in probability. All natural moments,
+normalization, the zero atom, uniform tightness, and moment determinacy are
+proved as parts of the chain. No proof obligation remains for this flagship
+scope. The additional finite third-moment formula above is an optional exact
+identity, rather than a dependency of the completed limit theorem.
 
 See [WALKS.md](WALKS.md), [PATTERNS.md](PATTERNS.md), [TREES.md](TREES.md),
 [ORDERED_TREES.md](ORDERED_TREES.md), [NARAYANA.md](NARAYANA.md), and
 [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md), [CONCENTRATION.md](CONCENTRATION.md),
-[SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md), and [MP_DENSITY.md](MP_DENSITY.md)
-for the completed statements and
-their boundary with the remaining probability and analysis.
+[SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md), [MP_DENSITY.md](MP_DENSITY.md), and
+[WEAK_CONVERGENCE.md](WEAK_CONVERGENCE.md) for the complete proof chain.
 
 ## References
 

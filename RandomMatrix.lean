@@ -54,3 +54,9 @@ import RandomMatrix.MPAngularNormalization
 import RandomMatrix.MPDensityIntegrals
 import RandomMatrix.MPMeasure
 import RandomMatrix.MPIdentification
+import RandomMatrix.FiniteConvergence
+import RandomMatrix.PolynomialSandwich
+import RandomMatrix.PolynomialIntegrals
+import RandomMatrix.CompactMomentMethod
+import RandomMatrix.SpectralTightness
+import RandomMatrix.MarchenkoPastur
