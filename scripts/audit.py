@@ -15,7 +15,10 @@ def main() -> None:
     output = result.stdout + result.stderr
     expected = re.findall(r"^#print axioms (\S+)", (ROOT / "RandomMatrix/Audit.lean").read_text(), re.M)
     found = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", output)
-    if {name for name, _ in found} != set(expected):
+    # Lean reports definitional equalities with a distinct zero-dependency message.
+    found += [(name, "") for name in re.findall(
+        r"'([^']+)' does not depend on any axioms", output)]
+    if len(found) != len(expected) or {name for name, _ in found} != set(expected):
         raise RuntimeError("The audit did not report every requested declaration")
     for name, raw in found:
         extra = {value.strip() for value in raw.split(",") if value.strip()} - ALLOWED

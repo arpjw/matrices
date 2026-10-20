@@ -1,7 +1,7 @@
-"""Finite checks for doubled trees and the proposed ordered-tree bijection.
+"""Independent finite checks for doubled trees and the ordered-tree bijection.
 
-The graph characterization is proved in Lean. The ordered-tree bijection here
-is an independent computational prototype, not an arbitrary-order Lean proof.
+The graph characterization and general bijection are proved separately in Lean.
+This Python implementation is not formally verified; Narayana counts remain finite checks.
 """
 from __future__ import annotations
 
@@ -17,6 +17,8 @@ from exact_moments import partitions
 Vertex = tuple[int, int]
 Pattern = tuple[tuple[int, ...], tuple[int, ...]]
 Tree = tuple["Tree", ...]
+BinaryTree = tuple["BinaryTree", "BinaryTree"] | None
+Address = tuple[int, ...]
 
 
 def entry_counts(rows: tuple[int, ...], cols: tuple[int, ...]) -> Counter[tuple[int, int]]:
@@ -59,6 +61,40 @@ def ordered_trees(edges: int) -> tuple[Tree, ...]:
                  for child in ordered_trees(child_edges)
                  for rest in ordered_trees(edges - 1 - child_edges))
 
+
+
+def to_binary(tree: Tree) -> BinaryTree:
+    """First child / remaining children, matching Lean's Tree Unit interpretation."""
+    return None if not tree else (to_binary(tree[0]), to_binary(tree[1:]))
+
+
+def from_binary(tree: BinaryTree) -> Tree:
+    return () if tree is None else (from_binary(tree[0]),) + from_binary(tree[1])
+
+
+def binary_statistics(tree: BinaryTree) -> tuple[int, int, int]:
+    """Edges, row vertices, column vertices; the child reverses colors."""
+    if tree is None:
+        return (0, 1, 0)
+    left_edges, left_rows, left_cols = binary_statistics(tree[0])
+    right_edges, right_rows, right_cols = binary_statistics(tree[1])
+    return (1 + left_edges + right_edges, left_cols + right_rows, left_rows + right_cols)
+
+
+def binary_contour(tree: BinaryTree) -> tuple[Address, list[Address]]:
+    """Distinct sum-type addresses and the contour tail used by the Lean construction."""
+    if tree is None:
+        return (), []
+    left_root, left_tail = binary_contour(tree[0])
+    right_root, right_tail = binary_contour(tree[1])
+    return ((1,) + right_root,
+            [(0,) + vertex for vertex in [left_root] + left_tail] +
+            [(1,) + vertex for vertex in [right_root] + right_tail])
+
+
+def label_partition(vertices: list[Address]) -> tuple[int, ...]:
+    labels: dict[Address, int] = {}
+    return tuple(labels.setdefault(vertex, len(labels)) for vertex in vertices)
 
 def tree_to_pattern(tree: Tree) -> Pattern:
     """Depth-first contour, with separate first-occurrence row and column labels."""
@@ -152,6 +188,15 @@ def bijection_checks() -> list[dict[str, int | dict[int, int]]]:
                 if all(count % 2 == 0 for count in entry_counts(rows, cols).values()):
                     leading.add((rows, cols))
         trees = ordered_trees(k)
+        for tree in trees:
+            binary = to_binary(tree)
+            assert from_binary(binary) == tree
+            root, tail = binary_contour(binary)
+            contour = [root] + tail
+            rows, cols = tree_to_pattern(tree)
+            assert (label_partition(contour[::2]), label_partition(contour[1::2])) == (rows, cols)
+            assert binary_statistics(binary) == (k, len(set(rows)), len(set(cols)))
+            assert len(tail) == 2 * k and contour[-1] == root
         images = {tree_to_pattern(tree) for tree in trees}
         assert len(images) == len(trees)
         assert images == leading, k
@@ -163,6 +208,7 @@ def bijection_checks() -> list[dict[str, int | dict[int, int]]]:
         assert by_rows == narayana
         assert len(trees) == math.comb(2 * k, k) // (k + 1)
         checks.append({"order": k, "trees": len(trees), "leading_patterns": len(leading),
+                       "binary_encoding_checks": len(trees),
                        "counts_by_row_vertices": dict(sorted(by_rows.items()))})
     return checks
 
@@ -171,8 +217,8 @@ def main() -> None:
     graphs = graph_checks()
     bijections = bijection_checks()
     result = {
-        "status": "finite independent checks; graph characterization proved in Lean; "
-                  "ordered-tree bijection and Narayana enumeration are computational only",
+        "status": "finite independent checks; graph characterization and general ordered-tree "
+                  "bijection proved separately in Lean; Narayana enumeration remains computational",
         "graph_checks": graphs,
         "ordered_tree_bijection_checks": bijections,
         "counterexamples": {
@@ -184,7 +230,8 @@ def main() -> None:
     out.write_text(json.dumps(result, indent=2) + "\n")
     print(f"PASS: {sum(c['all_patterns_checked'] for c in graphs)} partition graphs; "
           f"{sum(c['trees'] for c in bijections)} ordered trees with both inverse checks; "
-          "orders 0..7 refined counts; both necessary-condition counterexamples")
+          "binary encoding and color recurrence; orders 0..7 refined counts; "
+          "both necessary-condition counterexamples")
 
 
 if __name__ == "__main__":

@@ -48,9 +48,10 @@ for all independent-entry distributions.
    now proved connected and bipartite, with exact vertex and edge counts.
    A pattern is surviving and maximal exactly when it is closed, its graph is
    a tree, and every used entry occurs twice. A genuine graph walk retains
-   the entry order and distinguished root. The rooted ordered tree bijection
-   and refined Narayana enumeration remain open. Finite checks of both
-   bijection inverses at k <= 7 do not prove them for arbitrary k.
+   the entry order and distinguished root. The rooted ordered tree bijection,
+   both inverses, preservation of both color counts, and equality of the
+   original leading coefficients with refined tree counts are now proved
+   for every order. The Narayana closed formula remains open.
 5. Expected moments. Prove convergence for every fixed k to
 
        sum_(r=1)^k (1/k) choose(k,r) choose(k,r-1) gamma^(r-1).
@@ -89,15 +90,15 @@ trace normalization and 1/n for the covariance normalization.
 ## Working order
 
 Stages 1 through 3, the coefficient boundary cases, and the all-order
-doubled-tree graph classification are complete. Next, prove that maximal
-partition patterns correspond to rooted ordered bipartite trees, then
-establish the Narayana counting theorem. The formal pattern type uses
-equivalence relations, so this bijection must handle blocks directly rather
-than assume a particular numerical block-labeling algorithm.
+doubled-tree graph classification and ordered-tree bijection are complete.
+Next, establish the refined Narayana counting theorem. The proved bijection
+handles the original equivalence relations directly and preserves both color
+counts; no numerical block-labeling algorithm is assumed.
 The complete flagship chain is substantial; no completion date is inferred from
 the first finite proofs.
 
-See [WALKS.md](WALKS.md), [PATTERNS.md](PATTERNS.md), and [TREES.md](TREES.md) for the completed
+See [WALKS.md](WALKS.md), [PATTERNS.md](PATTERNS.md), [TREES.md](TREES.md),
+and [ORDERED_TREES.md](ORDERED_TREES.md) for the completed
 statements and their boundary with the remaining combinatorics.
 
 ## References

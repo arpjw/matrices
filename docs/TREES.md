@@ -13,8 +13,10 @@ is equivalent to all three of the following:
 
 The theorem is `leading_pattern_iff_closed_doubled_tree`. It includes k=0:
 the graph is a single row vertex and the closed walk is empty.
-This is a structural classification. The arbitrary-order bijection with
-rooted ordered tree shapes and its refined Narayana count remain unproved.
+This graph classification is strengthened by the now-proved arbitrary-order
+bijection with rooted ordered trees. See [ORDERED_TREES.md](ORDERED_TREES.md)
+for both inverse identities and the preserved color counts. The Narayana
+closed formula remains unproved.
 
 ## Boundary coefficients
 
@@ -80,8 +82,10 @@ distinguished initial row block. For leading patterns, the actual graph walk
 uses every edge in its edge list exactly twice. This gives the next bijection
 proof a concrete rooted traversal, preserving its start and ordering.
 
-This is not yet a proof that the traversal is the depth-first contour of a
-uniquely determined rooted ordered tree. That inverse construction is next.
+The subsequent `acyclic_walk_orderedContour` and `IsOrderedContour.unique`
+now prove that this traversal is the contour of a unique rooted ordered tree.
+The bridge split and the resulting equivalence are described in
+[ORDERED_TREES.md](ORDERED_TREES.md).
 
 ## Independent finite checks
 
@@ -106,12 +110,17 @@ seen vertex must be the current vertex's parent.
 For all 626 rooted ordered trees at orders 0 through 7, the image equals
 the independently enumerated set of leading patterns. Both inverse identities
 pass, and the refined counts by row vertices agree with the Narayana formula.
-These finite checks do not prove the arbitrary-order bijection or enumeration.
-The Python implementation is not formally verified.
+The arbitrary-order bijection is now proved separately in Lean. The Narayana
+enumeration remains a finite check. The Python implementation is not formally
+verified. It also checks that its child-list representation agrees with the
+first-child / remaining-children representation used by the Lean proof.
 
 Results: [tree-patterns.json](../experiments/results/tree-patterns.json).
 
-## Next proof obligations
+## Bijection checklist
+
+Items 1 through 4 below are now complete in Lean, including the coefficient
+identity. Item 5 is the next stage.
 
 1. Define rooted ordered trees with an explicit first-child and remaining-child
    decomposition, together with their row and column vertex counts.

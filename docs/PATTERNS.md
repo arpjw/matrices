@@ -94,8 +94,10 @@ patterns are characterized in both directions as closed doubled trees, with
 the original visit order preserved by an actual graph walk. See
 [TREES.md](TREES.md) for this completed structural stage.
 
-The coefficients on r+c=k+1 are not yet evaluated in Lean. The next goal is a
-bijection between these maximal patterns and rooted ordered bipartite trees,
-followed by the Narayana count. The finite coefficient formula and graph
-classification do not by themselves prove expected-moment limits or concentration.
+The general bijection with rooted ordered trees is now proved, preserving
+both block counts. `patternCoefficient_eq_treeCount` identifies the original
+coefficients on r+c=k+1 with the corresponding refined tree counts. See
+[ORDERED_TREES.md](ORDERED_TREES.md). The remaining combinatorial step is the
+Narayana closed formula. These finite results do not by themselves prove
+expected-moment limits or concentration.
 The full Marchenko-Pastur convergence theorem remains unfinished.

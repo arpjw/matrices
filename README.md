@@ -3,18 +3,19 @@
 A research project toward a complete Lean proof of the Marchenko-Pastur law for
 sample covariance matrices with independent fair-sign entries.
 
-The current milestone proves that leading moment patterns are exactly closed
-walks on bipartite trees with every entry traversed twice. This builds on the
-exact partition-coefficient formula for every trace moment, including
-falling-factorial label multiplicities and coefficient vanishing above
-r+c=k+1. The boundary coefficients are also proved. The Narayana enumeration
-and full spectral-distribution theorem are still open in this project.
+The current milestone proves a bijection between leading moment patterns and
+rooted ordered trees at every order. Both inverse identities and the separate
+row and column block counts are proved. Consequently, each leading coefficient
+in the exact finite moment expansion equals the corresponding refined tree
+count. The Narayana closed formula and full spectral-distribution theorem
+are still open in this project.
 
 The initial finite-moment stage is preserved at the Git tag
 `stage-1-finite-moments` (commit `0523463`).
 The all-order walk stage is preserved at `stage-2-walk-counting` (`b23f33c`).
 The exact coefficient stage is preserved at `stage-3-pattern-coefficients`
 (`40eeb1d`). The doubled-tree stage is preserved at `stage-4-doubled-trees`.
+The general bijection is preserved at `stage-5-ordered-tree-bijection`.
 
 ## Model and conventions
 
@@ -48,6 +49,16 @@ max(1 - 1/gamma, 0) when gamma > 1.
 | PatternGraph | Connected bipartite graph on quotient blocks; exact vertex and edge counts |
 | PatternTrees | Leading patterns are precisely closed doubled trees, in both directions |
 | PatternContour | Genuine graph walks preserving entry order, closure, length, and double occurrence |
+| TreeWalkSplit | Bridge-based split into the first child excursion and remaining root excursions |
+| OrderedContours | Recursive ordered contours, unique shape, and reconstruction of doubled tree walks |
+| CanonicalContours | Canonical distinct vertex labels and injective relabeling of every contour |
+| ContourPositions | Even/odd positions and the color-reversing row/column count recurrence |
+| ContourEdges | Contour closure and even edge multiplicities |
+| ContourLabelings | Fin-indexed row/column label functions, block counts, and ordered entry word |
+| ContourPatterns | Every ordered tree produces a surviving maximal original pattern |
+| ContourRoundTrip | Recovering the original partitions and full contour through quotient labels |
+| LeadingTreeBijection | General bijection, both inverse identities, and preservation of both block counts |
+| TreeCoefficients | Fixed-order and refined equivalences; exact leading coefficient as a tree count |
 
 The general finite identity, for every k >= 0 and p,n > 0, is
 
@@ -73,8 +84,15 @@ The new graph characterization is
       iff closed pattern on a tree with every entry used exactly twice.
 
 This holds at every order, including the empty walk. See
-[the doubled-tree proof guide](docs/TREES.md) for the constructions and the
-remaining ordered-tree bijection.
+[the doubled-tree proof guide](docs/TREES.md) for the graph constructions.
+The new bijection strengthens this to the exact coefficient identity
+
+    A_(k,r,c) = #{ordered rooted trees with k edges, r row and c column vertices},
+                                                        whenever r+c=k+1.
+
+The root is a row vertex, and colors alternate with depth. See
+[the ordered-tree proof guide](docs/ORDERED_TREES.md) for both inverse maps and
+the connection to the original moment coefficients.
 
 The previously proved second-moment specialization is
 
@@ -108,7 +126,7 @@ scripts/lake.sh exe cache get \
   Mathlib.Algebra.BigOperators.Group.List.Basic \
   Mathlib.Data.Fintype.CardEmbedding Mathlib.Data.Setoid.Basic \
   Mathlib.Data.Fintype.Powerset Mathlib.Data.Finite.Card Mathlib.Data.Fin.Tuple.Basic \
-  Mathlib.Combinatorics.SimpleGraph.Acyclic
+  Mathlib.Combinatorics.SimpleGraph.Acyclic Mathlib.Data.Tree.Basic
 scripts/check.sh
 ```
 
@@ -143,10 +161,11 @@ and insufficient label counts. The general partition grouping and coefficient
 support bound are now proved in Lean. The all-order Narayana formula remains open.
 
 The graph checker independently verifies 189,455 partition graphs at orders
-0 through 6. A computational prototype of the ordered-tree bijection checks
-both inverses on all 626 trees at orders 0 through 7. The doubled-tree graph
-classification is proved in Lean; the arbitrary-order ordered-tree bijection
-is not yet proved.
+0 through 6. An independent implementation checks both bijection inverses on all 626 trees
+at orders 0 through 7, as well as the first-child representation, canonical
+contour, and color-count recurrence. The graph classification and general
+bijection are now proved in Lean. The Python implementation itself is not
+formally verified.
 
 The spectral figure uses 105 reproducible simulated matrices. It preserves
 structural zero eigenvalues for p > n and shows the finite -1/n bias in the
@@ -158,9 +177,9 @@ proofs or evidence of a new mathematical result.
 ## The substantial work ahead
 
 [BLUEPRINT.md](docs/BLUEPRINT.md) gives the exact theorem and dependency graph.
-The next major step is to prove the bijection between maximal partition
-patterns and rooted ordered trees, then count them by Narayana numbers.
-The underlying doubled-tree graph classification is complete. Subsequent bottlenecks are
+The next major step is to evaluate the refined ordered-tree count by the
+Narayana formula. The underlying graph classification and ordered-tree
+bijection are complete. Subsequent bottlenecks are
 expected-moment limits, variance estimates,
 formal spectral measures, identification of the MP density plus atom, and
 moment-to-measure convergence.

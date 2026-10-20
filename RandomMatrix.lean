@@ -15,3 +15,13 @@ import RandomMatrix.PatternBoundary
 import RandomMatrix.PatternGraph
 import RandomMatrix.PatternTrees
 import RandomMatrix.PatternContour
+import RandomMatrix.TreeWalkSplit
+import RandomMatrix.OrderedContours
+import RandomMatrix.CanonicalContours
+import RandomMatrix.ContourPositions
+import RandomMatrix.ContourEdges
+import RandomMatrix.ContourLabelings
+import RandomMatrix.ContourPatterns
+import RandomMatrix.ContourRoundTrip
+import RandomMatrix.LeadingTreeBijection
+import RandomMatrix.TreeCoefficients
