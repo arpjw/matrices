@@ -3,16 +3,18 @@
 A research project toward a complete Lean proof of the Marchenko-Pastur law for
 sample covariance matrices with independent fair-sign entries.
 
-The current milestone proves an exact partition-coefficient formula for every
-trace moment: each surviving pattern contributes its falling-factorial number
-of row and column labelings. Coefficients vanish when r+c > k+1. The earlier
-walk expansion, vertex bound, exact first and second moments, and expected
-second-moment limit are also proved. The full spectral-distribution theorem
-is still open in this project.
+The current milestone proves that leading moment patterns are exactly closed
+walks on bipartite trees with every entry traversed twice. This builds on the
+exact partition-coefficient formula for every trace moment, including
+falling-factorial label multiplicities and coefficient vanishing above
+r+c=k+1. The boundary coefficients are also proved. The Narayana enumeration
+and full spectral-distribution theorem are still open in this project.
 
 The initial finite-moment stage is preserved at the Git tag
 `stage-1-finite-moments` (commit `0523463`).
 The all-order walk stage is preserved at `stage-2-walk-counting` (`b23f33c`).
+The exact coefficient stage is preserved at `stage-3-pattern-coefficients`
+(`40eeb1d`). The doubled-tree stage is preserved at `stage-4-doubled-trees`.
 
 ## Model and conventions
 
@@ -42,6 +44,10 @@ max(1 - 1/gamma, 0) when gamma > 1.
 | WalkPatterns | Closure and parity depend only on partitions; exact partition-weighted count |
 | PatternCoefficients | Dimension-independent coefficients and the exact finite moment expansion |
 | PatternBounds | Abstract pattern vertex bound and coefficient vanishing above r+c=k+1 |
+| PatternBoundary | Exact zeroth-order coefficients and exclusion of empty row/column blocks |
+| PatternGraph | Connected bipartite graph on quotient blocks; exact vertex and edge counts |
+| PatternTrees | Leading patterns are precisely closed doubled trees, in both directions |
+| PatternContour | Genuine graph walks preserving entry order, closure, length, and double occurrence |
 
 The general finite identity, for every k >= 0 and p,n > 0, is
 
@@ -60,6 +66,15 @@ The new partition grouping proves, for every k >= 0,
 Here A counts surviving equality patterns and (p)_r is the falling factorial.
 The coefficients depend on k,r,c only, independently of p and n. See
 [the partition proof guide](docs/PATTERNS.md) for the formal bijections.
+
+The new graph characterization is
+
+    surviving pattern with r+c=k+1
+      iff closed pattern on a tree with every entry used exactly twice.
+
+This holds at every order, including the empty walk. See
+[the doubled-tree proof guide](docs/TREES.md) for the constructions and the
+remaining ordered-tree bijection.
 
 The previously proved second-moment specialization is
 
@@ -92,7 +107,8 @@ scripts/lake.sh exe cache get \
   Mathlib.Tactic.NormNum Mathlib.Tactic.FieldSimp Mathlib.Tactic.Linarith \
   Mathlib.Algebra.BigOperators.Group.List.Basic \
   Mathlib.Data.Fintype.CardEmbedding Mathlib.Data.Setoid.Basic \
-  Mathlib.Data.Fintype.Powerset Mathlib.Data.Finite.Card Mathlib.Data.Fin.Tuple.Basic
+  Mathlib.Data.Fintype.Powerset Mathlib.Data.Finite.Card Mathlib.Data.Fin.Tuple.Basic \
+  Mathlib.Combinatorics.SimpleGraph.Acyclic
 scripts/check.sh
 ```
 
@@ -100,6 +116,7 @@ The exact experiment uses only the Python standard library:
 
 ```sh
 python3 experiments/exact_moments.py
+python3 experiments/tree_patterns.py
 ```
 
 The optional plots use the pinned requirements:
@@ -125,6 +142,12 @@ and exhaustive assignments check 120 labeling fibers, including empty domains
 and insufficient label counts. The general partition grouping and coefficient
 support bound are now proved in Lean. The all-order Narayana formula remains open.
 
+The graph checker independently verifies 189,455 partition graphs at orders
+0 through 6. A computational prototype of the ordered-tree bijection checks
+both inverses on all 626 trees at orders 0 through 7. The doubled-tree graph
+classification is proved in Lean; the arbitrary-order ordered-tree bijection
+is not yet proved.
+
 The spectral figure uses 105 reproducible simulated matrices. It preserves
 structural zero eigenvalues for p > n and shows the finite -1/n bias in the
 second moment. Its histograms and error bars are illustrations, not formal
@@ -135,8 +158,9 @@ proofs or evidence of a new mathematical result.
 ## The substantial work ahead
 
 [BLUEPRINT.md](docs/BLUEPRINT.md) gives the exact theorem and dependency graph.
-The next major step is to identify the maximal partition patterns with
-bipartite trees and count them by Narayana numbers. Subsequent bottlenecks are
+The next major step is to prove the bijection between maximal partition
+patterns and rooted ordered trees, then count them by Narayana numbers.
+The underlying doubled-tree graph classification is complete. Subsequent bottlenecks are
 expected-moment limits, variance estimates,
 formal spectral measures, identification of the MP density plus atom, and
 moment-to-measure convergence.

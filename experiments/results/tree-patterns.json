@@ -1,0 +1,169 @@
+{
+  "status": "finite independent checks; graph characterization proved in Lean; ordered-tree bijection and Narayana enumeration are computational only",
+  "graph_checks": [
+    {
+      "order": 0,
+      "all_patterns_checked": 1,
+      "surviving_patterns": 1,
+      "leading_patterns": 1,
+      "nonleading_surviving_trees": 0
+    },
+    {
+      "order": 1,
+      "all_patterns_checked": 2,
+      "surviving_patterns": 1,
+      "leading_patterns": 1,
+      "nonleading_surviving_trees": 0
+    },
+    {
+      "order": 2,
+      "all_patterns_checked": 10,
+      "surviving_patterns": 3,
+      "leading_patterns": 2,
+      "nonleading_surviving_trees": 1
+    },
+    {
+      "order": 3,
+      "all_patterns_checked": 75,
+      "surviving_patterns": 12,
+      "leading_patterns": 5,
+      "nonleading_surviving_trees": 7
+    },
+    {
+      "order": 4,
+      "all_patterns_checked": 780,
+      "surviving_patterns": 62,
+      "leading_patterns": 14,
+      "nonleading_surviving_trees": 43
+    },
+    {
+      "order": 5,
+      "all_patterns_checked": 10556,
+      "surviving_patterns": 398,
+      "leading_patterns": 42,
+      "nonleading_surviving_trees": 261
+    },
+    {
+      "order": 6,
+      "all_patterns_checked": 178031,
+      "surviving_patterns": 3062,
+      "leading_patterns": 132,
+      "nonleading_surviving_trees": 1615
+    }
+  ],
+  "ordered_tree_bijection_checks": [
+    {
+      "order": 0,
+      "trees": 1,
+      "leading_patterns": 1,
+      "counts_by_row_vertices": {
+        "1": 1
+      }
+    },
+    {
+      "order": 1,
+      "trees": 1,
+      "leading_patterns": 1,
+      "counts_by_row_vertices": {
+        "1": 1
+      }
+    },
+    {
+      "order": 2,
+      "trees": 2,
+      "leading_patterns": 2,
+      "counts_by_row_vertices": {
+        "1": 1,
+        "2": 1
+      }
+    },
+    {
+      "order": 3,
+      "trees": 5,
+      "leading_patterns": 5,
+      "counts_by_row_vertices": {
+        "1": 1,
+        "2": 3,
+        "3": 1
+      }
+    },
+    {
+      "order": 4,
+      "trees": 14,
+      "leading_patterns": 14,
+      "counts_by_row_vertices": {
+        "1": 1,
+        "2": 6,
+        "3": 6,
+        "4": 1
+      }
+    },
+    {
+      "order": 5,
+      "trees": 42,
+      "leading_patterns": 42,
+      "counts_by_row_vertices": {
+        "1": 1,
+        "2": 10,
+        "3": 20,
+        "4": 10,
+        "5": 1
+      }
+    },
+    {
+      "order": 6,
+      "trees": 132,
+      "leading_patterns": 132,
+      "counts_by_row_vertices": {
+        "1": 1,
+        "2": 15,
+        "3": 50,
+        "4": 50,
+        "5": 15,
+        "6": 1
+      }
+    },
+    {
+      "order": 7,
+      "trees": 429,
+      "leading_patterns": 429,
+      "counts_by_row_vertices": {
+        "1": 1,
+        "2": 21,
+        "3": 105,
+        "4": 175,
+        "5": 105,
+        "6": 21,
+        "7": 1
+      }
+    }
+  ],
+  "counterexamples": {
+    "tree_without_double_traversal": {
+      "rows": [
+        0,
+        0,
+        0
+      ],
+      "cols": [
+        0,
+        0
+      ]
+    },
+    "double_traversal_without_tree": {
+      "rows": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "cols": [
+        0,
+        1,
+        0,
+        1
+      ]
+    }
+  }
+}

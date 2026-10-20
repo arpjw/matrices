@@ -44,10 +44,13 @@ for all independent-entry distributions.
 4. Leading patterns. Prove r+c <= k+1 for surviving connected patterns. Identify
    equality with doubled bipartite trees and count them by Narayana numbers.
    The bound is now proved for all even walks and all surviving abstract
-   patterns. Coefficients with r+c>k+1 vanish. Equality for concrete walks is
-   proved to force every used entry to occur exactly twice. Tree identification and the
-   Narayana bijection remain a major combinatorial bottleneck. Finite checks
-   at k <= 7 do not establish that bijection for arbitrary k.
+   patterns. Coefficients with r+c>k+1 vanish. The graph on quotient blocks is
+   now proved connected and bipartite, with exact vertex and edge counts.
+   A pattern is surviving and maximal exactly when it is closed, its graph is
+   a tree, and every used entry occurs twice. A genuine graph walk retains
+   the entry order and distinguished root. The rooted ordered tree bijection
+   and refined Narayana enumeration remain open. Finite checks of both
+   bijection inverses at k <= 7 do not prove them for arbitrary k.
 5. Expected moments. Prove convergence for every fixed k to
 
        sum_(r=1)^k (1/k) choose(k,r) choose(k,r-1) gamma^(r-1).
@@ -85,8 +88,8 @@ trace normalization and 1/n for the covariance normalization.
 
 ## Working order
 
-Stages 1 through 3, the graph bound r+c <= k+1, and its transfer to the
-dimension-independent coefficients are complete. Next, prove that maximal
+Stages 1 through 3, the coefficient boundary cases, and the all-order
+doubled-tree graph classification are complete. Next, prove that maximal
 partition patterns correspond to rooted ordered bipartite trees, then
 establish the Narayana counting theorem. The formal pattern type uses
 equivalence relations, so this bijection must handle blocks directly rather
@@ -94,7 +97,7 @@ than assume a particular numerical block-labeling algorithm.
 The complete flagship chain is substantial; no completion date is inferred from
 the first finite proofs.
 
-See [WALKS.md](WALKS.md) and [PATTERNS.md](PATTERNS.md) for the completed
+See [WALKS.md](WALKS.md), [PATTERNS.md](PATTERNS.md), and [TREES.md](TREES.md) for the completed
 statements and their boundary with the remaining combinatorics.
 
 ## References

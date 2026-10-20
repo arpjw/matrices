@@ -1,10 +1,12 @@
 # Verification record
 
-Verified locally on 2026-10-18. This record covers the finite-dimensional
-milestone, all-order walk expansion, partition-coefficient formula, and
-coefficient support bound, not the full Marchenko-Pastur theorem. Earlier
+Verified locally on 2026-10-19. This record covers the finite-dimensional
+milestone, all-order walk expansion, partition-coefficient formula,
+coefficient boundary cases, and doubled-tree graph classification,
+not the full Marchenko-Pastur theorem. Earlier
 stages are retained at `stage-1-finite-moments` (`0523463`) and
-`stage-2-walk-counting` (`b23f33c`).
+`stage-2-walk-counting` (`b23f33c`), and `stage-3-pattern-coefficients` (`40eeb1d`).
+The current checkpoint is `stage-4-doubled-trees`.
 
 ## Lean
 
@@ -14,13 +16,13 @@ stages are retained at `stage-1-finite-moments` (`0523463`) and
 - `scripts/check.sh`: passed.
 - `lake build`: passed, with dependency build products largely obtained from
   the official mathlib cache.
-- Thirteen mathematical source modules, 65 exported named theorems and one private
+- Seventeen mathematical source modules, 99 exported named theorems and one private
   helper, plus the aggregate import and audit module. No new mathematical
   result is claimed from the theorem count.
 - Source scan: no unfinished-proof tokens, custom axiom declarations, or
   `native_decide` calls in the project Lean sources.
-- Fifty-seven proof dependency audits passed, including the two central
-  labeling/walk equivalences. Audited dependencies are confined
+- Ninety-three proof dependency audits passed, including the central
+  labeling, walk, and entry-to-edge equivalences. Audited dependencies are confined
   to `propext`, `Classical.choice`, and `Quot.sound`. No `sorryAx`, custom
   domain axiom, `Lean.ofReduceBool`, or `Lean.trustCompiler` was reported.
 - Negative control passed: the claim that the 1-by-1 finite second moment equals
@@ -37,7 +39,7 @@ We did not run a second independently implemented proof checker.
 The final build ran in a temporary local directory after iCloud offloading
 caused reads of generated artifacts in the original workspace to fail. Lean
 and all dependency sources were restored at the pinned versions. Hashes of all
-21 Lean source, check-script, and dependency-pin files matched the deliverable
+25 Lean source, check-script, and dependency-pin files matched the deliverable
 for the final validation. The logs in the validation directory are from this
 successful run. The pinned Lean and mathlib versions were retained throughout.
 
@@ -70,6 +72,28 @@ successful run. The pinned Lean and mathlib versions were retained throughout.
 
 Data: [exact-moments.json](../experiments/results/exact-moments.json).
 
+## Graph and ordered-tree checks
+
+`python3 experiments/tree_patterns.py`: passed on 2026-10-19.
+
+- 189,455 partition graphs at orders 0 through 6, including nonsurviving patterns.
+  Traversal checks connectivity and detects cycles independently of edge counts.
+- Every surviving pattern in that range satisfies the equivalence between
+  maximal block count and a tree with each entry occurring exactly twice.
+- Explicit counterexamples check that neither tree structure alone nor double
+  occurrence alone implies maximality.
+- All 626 rooted ordered trees at orders 0 through 7: the contour map is injective,
+  its image equals the independently enumerated leading patterns, both inverse
+  identities hold, and row-refined counts agree with Narayana numbers.
+
+The doubled-tree graph characterization is now proved in Lean at every order.
+The ordered-tree bijection and refined enumeration are still computational
+prototypes, not arbitrary-order Lean results. The Python code is not formally
+verified. The earlier exact-moment results above are retained from 2026-10-18;
+their unchanged checker was not rerun for this graph-only extension.
+
+Data: [tree-patterns.json](../experiments/results/tree-patterns.json).
+
 ## Numerical illustration
 
 `experiments/simulate.py`: passed positivity and first-trace checks on 105
@@ -85,9 +109,10 @@ Plot: [PNG](../experiments/results/spectral-experiment.png),
 ## Remaining proof obligations
 
 The arbitrary-order labeled trace expansion, exact partition-coefficient
-formula, coefficient support bound, and double occurrence at maximal vertex
-count are proved. The project does not yet prove the tree classification and
-Narayana formula, all expected-moment limits, variance
+formula, coefficient boundary and support results, and doubled-tree graph
+classification are proved. The ordered visit sequence is retained in a genuine
+closed graph walk. The project does not yet prove the rooted ordered tree
+bijection or Narayana formula, all expected-moment limits, variance
 bounds, the spectral-measure moment bridge, normalization and moments of the MP
 measure, or weak convergence in probability. The expected-second-moment limit
 is not a substitute for these steps. See [BLUEPRINT.md](BLUEPRINT.md).

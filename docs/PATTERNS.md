@@ -33,6 +33,9 @@ At k=0, there is one row position and no column positions. The position word
 is empty, and the endpoint closure condition is reflexive. The general
 construction therefore includes the zeroth moment without a special-case
 replacement of the moment theorem.
+`patternCoefficient_zero` now proves that A_(0,1,0)=1 and all other
+order-zero coefficients vanish. Empty row blocks are impossible at every
+order, and empty column blocks are impossible at positive orders.
 
 ## Why the multiplicity is a falling factorial
 
@@ -86,8 +89,13 @@ empty domains and insufficient labels. The matrix and labeled-walk checks remain
 in place. The Python representation uses first-occurrence block numbers;
 Lean uses equivalence relations. The Python implementation itself is not verified.
 
+The graph on quotient blocks is now proved connected and bipartite. Leading
+patterns are characterized in both directions as closed doubled trees, with
+the original visit order preserved by an actual graph walk. See
+[TREES.md](TREES.md) for this completed structural stage.
+
 The coefficients on r+c=k+1 are not yet evaluated in Lean. The next goal is a
 bijection between these maximal patterns and rooted ordered bipartite trees,
-followed by the Narayana count. The finite coefficient formula and support
-bound do not by themselves prove expected-moment limits or concentration.
+followed by the Narayana count. The finite coefficient formula and graph
+classification do not by themselves prove expected-moment limits or concentration.
 The full Marchenko-Pastur convergence theorem remains unfinished.

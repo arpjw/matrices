@@ -11,3 +11,7 @@ import RandomMatrix.WalkPositions
 import RandomMatrix.WalkPatterns
 import RandomMatrix.PatternCoefficients
 import RandomMatrix.PatternBounds
+import RandomMatrix.PatternBoundary
+import RandomMatrix.PatternGraph
+import RandomMatrix.PatternTrees
+import RandomMatrix.PatternContour
