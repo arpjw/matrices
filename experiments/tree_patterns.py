@@ -1,7 +1,8 @@
 """Independent finite checks for doubled trees and the ordered-tree bijection.
 
 The graph characterization and general bijection are proved separately in Lean.
-This Python implementation is not formally verified; Narayana counts remain finite checks.
+This Python implementation is not formally verified. The general Narayana count
+is now also proved separately in Lean.
 """
 from __future__ import annotations
 
@@ -218,7 +219,7 @@ def main() -> None:
     bijections = bijection_checks()
     result = {
         "status": "finite independent checks; graph characterization and general ordered-tree "
-                  "bijection proved separately in Lean; Narayana enumeration remains computational",
+                  "bijection and Narayana enumeration proved separately in Lean",
         "graph_checks": graphs,
         "ordered_tree_bijection_checks": bijections,
         "counterexamples": {

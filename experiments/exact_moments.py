@@ -178,7 +178,7 @@ def main() -> None:
         assert leading == narayana, (k, leading, narayana)
         leading_checks.append({"order": k, "leading_coefficients": leading})
     result = {
-        "status": "exact finite computations; all-order partition grouping, falling-factorial multiplicities, coefficient formula and support bound proved in Lean; Narayana formula remains unproved in Lean",
+        "status": "exact finite computations; all-order partition grouping, falling-factorial multiplicities, coefficient formula and support bound proved in Lean; general Narayana formula now proved separately in Lean",
         "normalization": "p^-1 trace((X X^T / n)^k)",
         "labeling_fiber_checks": fiber_checks,
         "position_partition_checks": position_checks,

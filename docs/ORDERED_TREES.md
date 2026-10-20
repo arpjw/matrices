@@ -11,7 +11,8 @@ The root has depth zero and is a row vertex. The equality is
 `patternCoefficient_eq_treeCount`; the stronger type equivalence is
 `coefficientTreeEquiv`. These use the original `patternCoefficient` definition,
 so the result connects to the exact finite sign-matrix moment expansion.
-The refined tree count has not yet been evaluated by the Narayana formula.
+The refined tree count is now evaluated by the general Narayana formula;
+see [NARAYANA.md](NARAYANA.md).
 
 ## Tree representation
 
@@ -101,12 +102,12 @@ contour, and the color-reversing count recurrence against its ordered-child
 list representation. The Python implementation is not formally verified.
 See [VALIDATION.md](VALIDATION.md) for build, audit, and finite-check records.
 
-The next combinatorial theorem is the refined enumeration
+The subsequent counting stage now proves the refined enumeration
 
     A_(k,r,k+1-r) = choose(k,r) choose(k,r-1) / k,   1<=r<=k.
 
-The correct statistic is the number of even-depth vertices. Identifying it
-with an existing Dyck-path statistic requires a proof; ordinary peak counts
-cannot simply be substituted. After this enumeration come the expected-moment
-limits, fluctuations, spectral-measure bridge, and analytic steps in
+The statistic is the number of even-depth vertices. The counting proof works
+directly with the two color-counting series, so it does not require an
+identification with Dyck-path peaks. The remaining stages are expected-moment
+limits, fluctuations, the spectral-measure bridge, and the analytic steps in
 [BLUEPRINT.md](BLUEPRINT.md).

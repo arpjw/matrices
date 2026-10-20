@@ -1,4 +1,4 @@
-"""Audit theorem dependencies and ensure an incorrect normalization is rejected."""
+"""Audit proof dependencies and reject false normalization and Narayana claims."""
 from __future__ import annotations
 
 import re
@@ -29,7 +29,7 @@ def main() -> None:
     dest.mkdir(exist_ok=True)
     (dest / "axioms.log").write_text(output)
 
-    source = '''import RandomMatrix
+    moment_source = '''import RandomMatrix
 open RandomMatrix
 -- Deliberately wrong: the finite 1-by-1 second moment is 1, not 2.
 example : average (fun ω : Fin 1 × Fin 1 → Bool =>
@@ -37,20 +37,34 @@ example : average (fun ω : Fin 1 × Fin 1 → Bool =>
   rw [expected_second_moment (by decide) (by decide)]
   norm_num
 '''
-    negative = ROOT / ".lake/NegativeControl.lean"
-    negative.write_text(source)
-    try:
-        rejected = subprocess.run(["scripts/lake.sh", "env", "lean", str(negative)],
-                                  cwd=ROOT, capture_output=True, text=True)
-    finally:
-        negative.unlink()
-    diagnosis = rejected.stdout + rejected.stderr
-    if rejected.returncode == 0 or "unsolved goals" not in diagnosis:
-        raise RuntimeError("Negative control did not fail for the intended proof obligation: " + diagnosis)
-    if any(term in diagnosis for term in ("unknownIdentifier", "does not exist", "unknown module")):
-        raise RuntimeError("Negative control failed because of infrastructure, not mathematics")
-    (dest / "negative-control.log").write_text(source + "\nEXPECTED REJECTION:\n" + diagnosis)
-    print(f"PASS: {len(found)} theorem dependency audits; incorrect finite second moment rejected")
+    narayana_source = '''import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: the order-three leading coefficient with two blocks of each color is 3.
+example : patternCoefficient 3 2 2 = 4 := by
+  rw [patternCoefficient_narayana 3 2 2 (by decide) (by decide) (by decide)]
+  norm_num
+'''
+    controls = [
+        ("NegativeControl", "negative-control.log", moment_source),
+        ("NarayanaNegativeControl", "narayana-negative-control.log", narayana_source),
+    ]
+    for name, log_name, source in controls:
+        negative = ROOT / ".lake" / f"{name}.lean"
+        negative.write_text(source)
+        try:
+            rejected = subprocess.run(["scripts/lake.sh", "env", "lean", str(negative)],
+                                      cwd=ROOT, capture_output=True, text=True)
+        finally:
+            negative.unlink()
+        diagnosis = rejected.stdout + rejected.stderr
+        if rejected.returncode == 0 or "unsolved goals" not in diagnosis:
+            raise RuntimeError(f"{name} did not fail for the intended proof obligation: " + diagnosis)
+        if any(term in diagnosis for term in ("unknownIdentifier", "does not exist", "unknown module")):
+            raise RuntimeError(f"{name} failed because of infrastructure, not mathematics")
+        (dest / log_name).write_text(source + "\nEXPECTED REJECTION:\n" + diagnosis)
+    print(f"PASS: {len(found)} declaration dependency audits; "
+          "incorrect finite second moment and Narayana coefficient rejected")
+
 
 
 if __name__ == "__main__":

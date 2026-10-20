@@ -1,5 +1,11 @@
 Source scan passed
-Build completed successfully (2099 jobs).
+✔ [2187/2193] Built RandomMatrix.NarayanaArithmetic (4.2s)
+✔ [2188/2193] Built RandomMatrix.TreeGeneratingSeries (5.1s)
+✔ [2189/2193] Built RandomMatrix.TreePolynomialRecurrence (2.1s)
+✔ [2190/2193] Built RandomMatrix.NarayanaTreeCount (1.5s)
+✔ [2191/2193] Built RandomMatrix.NarayanaCoefficients (1.3s)
+✔ [2192/2193] Built RandomMatrix (2.1s)
+Build completed successfully (2193 jobs).
 'RandomMatrix.average_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -164,4 +170,37 @@ Build completed successfully (2099 jobs).
 'RandomMatrix.coefficientLeadingEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.refinedTreeLeadingEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.coefficientTreeEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
-PASS: 164 theorem dependency audits; incorrect finite second moment rejected
+'RandomMatrix.rowTreePoly_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.colTreePoly_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.rowTreePoly_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.colTreePoly_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.coeff_rowTreeSeries' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.coeff_colTreeSeries' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.rowTreeSeries_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.colTreeSeries_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.rowTreeSeries_sub_colTreeSeries' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.colTreeSeries_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.colTreeSeries_differential' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.colTreePoly_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.binomQ_pascal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.binomQ_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.narayanaQ_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.narayanaQ_zero_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.narayanaQ_one_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.narayanaQ_two_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.narayanaQ_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.rowTreePoly_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.colTreePoly_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.colTreePoly_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.colTreePoly_coeff_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.colTreePoly_coeff_narayana' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.rowTreePoly_eq_colTreePoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.rowTreePoly_coeff_narayana' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.rowTreePoly_coeff_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.patternCoefficient_cast_eq_rowTreePoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.patternCoefficient_narayana_rat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.mul_patternCoefficient_narayana' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.patternCoefficient_narayana' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.leadingCoefficient_narayana' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.leadingPatterns_card_catalan' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: 197 declaration dependency audits; incorrect finite second moment and Narayana coefficient rejected

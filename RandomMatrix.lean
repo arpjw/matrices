@@ -25,3 +25,8 @@ import RandomMatrix.ContourPatterns
 import RandomMatrix.ContourRoundTrip
 import RandomMatrix.LeadingTreeBijection
 import RandomMatrix.TreeCoefficients
+import RandomMatrix.TreeGeneratingSeries
+import RandomMatrix.TreePolynomialRecurrence
+import RandomMatrix.NarayanaArithmetic
+import RandomMatrix.NarayanaTreeCount
+import RandomMatrix.NarayanaCoefficients

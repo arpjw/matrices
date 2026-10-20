@@ -1,0 +1,10 @@
+import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: the order-three leading coefficient with two blocks of each color is 3.
+example : patternCoefficient 3 2 2 = 4 := by
+  rw [patternCoefficient_narayana 3 2 2 (by decide) (by decide) (by decide)]
+  norm_num
+
+EXPECTED REJECTION:
+/private/var/folders/5s/zz2md1nj18g251r6jw2dmfq00000gn/T/matrices-validation-2exd73wx/verified-project/.lake/NarayanaNegativeControl.lean:4:42: error: unsolved goals
+⊢ False

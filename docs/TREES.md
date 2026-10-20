@@ -15,8 +15,8 @@ The theorem is `leading_pattern_iff_closed_doubled_tree`. It includes k=0:
 the graph is a single row vertex and the closed walk is empty.
 This graph classification is strengthened by the now-proved arbitrary-order
 bijection with rooted ordered trees. See [ORDERED_TREES.md](ORDERED_TREES.md)
-for both inverse identities and the preserved color counts. The Narayana
-closed formula remains unproved.
+for both inverse identities and the preserved color counts. The general
+Narayana formula is also proved; see [NARAYANA.md](NARAYANA.md).
 
 ## Boundary coefficients
 
@@ -110,8 +110,8 @@ seen vertex must be the current vertex's parent.
 For all 626 rooted ordered trees at orders 0 through 7, the image equals
 the independently enumerated set of leading patterns. Both inverse identities
 pass, and the refined counts by row vertices agree with the Narayana formula.
-The arbitrary-order bijection is now proved separately in Lean. The Narayana
-enumeration remains a finite check. The Python implementation is not formally
+The arbitrary-order bijection and Narayana enumeration are now proved
+separately in Lean. The Python implementation is not formally
 verified. It also checks that its child-list representation agrees with the
 first-child / remaining-children representation used by the Lean proof.
 
@@ -119,8 +119,9 @@ Results: [tree-patterns.json](../experiments/results/tree-patterns.json).
 
 ## Bijection checklist
 
-Items 1 through 4 below are now complete in Lean, including the coefficient
-identity. Item 5 is the next stage.
+All five items below are now complete in Lean. The counting proof uses formal
+generating functions and a three-term recurrence, as described in
+[NARAYANA.md](NARAYANA.md).
 
 1. Define rooted ordered trees with an explicit first-child and remaining-child
    decomposition, together with their row and column vertex counts.
@@ -136,7 +137,7 @@ identity. Item 5 is the next stage.
 
        A_(k,r,k+1-r) = choose(k,r) choose(k,r-1) / k,   1<=r<=k.
 
-The color refinement must account for the first child's root having the
+The color refinement accounts for the first child's root having the
 opposite color. If that subtree has l edges and a row vertices relative to its
 own root, and the remaining-root tree has b row vertices, the assembled tree
 has b+(l+1-a) row vertices. Ordinary Dyck-path peak counts cannot simply be

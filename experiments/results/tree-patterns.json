@@ -1,5 +1,5 @@
 {
-  "status": "finite independent checks; graph characterization and general ordered-tree bijection proved separately in Lean; Narayana enumeration remains computational",
+  "status": "finite independent checks; graph characterization and general ordered-tree bijection and Narayana enumeration proved separately in Lean",
   "graph_checks": [
     {
       "order": 0,

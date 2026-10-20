@@ -49,3 +49,19 @@ We build on finite sums/products, real arithmetic, matrix multiplication, trace,
 and related linear algebra. The parity and rectangle arguments in this project
 are implemented independently. Reuse of spectral-measure infrastructure is a
 later design decision, with license and proof-dependency checks required.
+
+
+## Counting foundations inspected on 2026-10-20
+
+At the same pinned mathlib revision, `Combinatorics/Enumerative/Catalan.lean`
+provides `Tree.treesOfNumNodesEq`, its exact membership theorem, and its Catalan
+cardinality. We reuse this exhaustive finite enumeration and the total count.
+`RingTheory/PowerSeries/Derivative.lean` supplies formal derivatives and their
+coefficient/product rules. `Data/Nat/Choose/Basic.lean` supplies Pascal's
+identity and the multiplicative binomial identities.
+
+The refined Narayana identity was not found in the pinned mathlib sources.
+The project proves its color-counting series equations, differential
+recurrence, arithmetic recurrence, and connection to the original pattern
+coefficients. This is still a formalization of a classical counting formula,
+not a claim of mathematical novelty or first formalization.

@@ -3,19 +3,22 @@
 A research project toward a complete Lean proof of the Marchenko-Pastur law for
 sample covariance matrices with independent fair-sign entries.
 
-The current milestone proves a bijection between leading moment patterns and
-rooted ordered trees at every order. Both inverse identities and the separate
-row and column block counts are proved. Consequently, each leading coefficient
-in the exact finite moment expansion equals the corresponding refined tree
-count. The Narayana closed formula and full spectral-distribution theorem
-are still open in this project.
+The current milestone proves the general Narayana formula for the leading
+coefficients in every finite trace-moment expansion:
+
+    A_(k,r,k+1-r) = choose(k,r) choose(k,r-1) / k,   1 <= r <= k.
+
+The proof starts from the original equality-pattern counts, uses the proved
+ordered-tree bijection, and evaluates the refined tree count. The division is
+proved exact. The full spectral-distribution theorem remains open.
 
 The initial finite-moment stage is preserved at the Git tag
 `stage-1-finite-moments` (commit `0523463`).
 The all-order walk stage is preserved at `stage-2-walk-counting` (`b23f33c`).
 The exact coefficient stage is preserved at `stage-3-pattern-coefficients`
 (`40eeb1d`). The doubled-tree stage is preserved at `stage-4-doubled-trees`.
-The general bijection is preserved at `stage-5-ordered-tree-bijection`.
+The general bijection is preserved at `stage-5-ordered-tree-bijection` (`1943198`).
+The Narayana formula is preserved at `stage-6-narayana`.
 
 ## Model and conventions
 
@@ -59,6 +62,11 @@ max(1 - 1/gamma, 0) when gamma > 1.
 | ContourRoundTrip | Recovering the original partitions and full contour through quotient labels |
 | LeadingTreeBijection | General bijection, both inverse identities, and preservation of both block counts |
 | TreeCoefficients | Fixed-order and refined equivalences; exact leading coefficient as a tree count |
+| TreeGeneratingSeries | Finite tree-counting polynomials, two color series, and the quadratic equation |
+| TreePolynomialRecurrence | Formal differential identity and the three-term polynomial recurrence |
+| NarayanaArithmetic | Binomial expression satisfies the same recurrence, including support boundaries |
+| NarayanaTreeCount | Every tree-polynomial coefficient equals the Narayana expression |
+| NarayanaCoefficients | Closed formula for the original leading coefficients; exact division and Catalan total |
 
 The general finite identity, for every k >= 0 and p,n > 0, is
 
@@ -92,7 +100,10 @@ The new bijection strengthens this to the exact coefficient identity
 
 The root is a row vertex, and colors alternate with depth. See
 [the ordered-tree proof guide](docs/ORDERED_TREES.md) for both inverse maps and
-the connection to the original moment coefficients.
+the connection to the original moment coefficients. The refined tree count is
+now evaluated by the Narayana formula above, and the total number of leading
+patterns is the Catalan number. See [the counting proof guide](docs/NARAYANA.md)
+for the generating-function argument and boundary cases.
 
 The previously proved second-moment specialization is
 
@@ -126,7 +137,9 @@ scripts/lake.sh exe cache get \
   Mathlib.Algebra.BigOperators.Group.List.Basic \
   Mathlib.Data.Fintype.CardEmbedding Mathlib.Data.Setoid.Basic \
   Mathlib.Data.Fintype.Powerset Mathlib.Data.Finite.Card Mathlib.Data.Fin.Tuple.Basic \
-  Mathlib.Combinatorics.SimpleGraph.Acyclic Mathlib.Data.Tree.Basic
+  Mathlib.Combinatorics.SimpleGraph.Acyclic Mathlib.Data.Tree.Basic \
+  Mathlib.Combinatorics.Enumerative.Catalan \
+  Mathlib.RingTheory.PowerSeries.Derivative Mathlib.Tactic.LinearCombination
 scripts/check.sh
 ```
 
@@ -158,13 +171,13 @@ leading Narayana coefficients through order seven using exact integers.
 The position-partition encoding is independently checked at orders 0 through 7,
 and exhaustive assignments check 120 labeling fibers, including empty domains
 and insufficient label counts. The general partition grouping and coefficient
-support bound are now proved in Lean. The all-order Narayana formula remains open.
+support bound are proved in Lean. The general Narayana formula is now proved as well.
 
 The graph checker independently verifies 189,455 partition graphs at orders
 0 through 6. An independent implementation checks both bijection inverses on all 626 trees
 at orders 0 through 7, as well as the first-child representation, canonical
-contour, and color-count recurrence. The graph classification and general
-bijection are now proved in Lean. The Python implementation itself is not
+contour, and color-count recurrence. The graph classification, general
+bijection, and Narayana enumeration are now proved in Lean. The Python implementation itself is not
 formally verified.
 
 The spectral figure uses 105 reproducible simulated matrices. It preserves
@@ -177,10 +190,9 @@ proofs or evidence of a new mathematical result.
 ## The substantial work ahead
 
 [BLUEPRINT.md](docs/BLUEPRINT.md) gives the exact theorem and dependency graph.
-The next major step is to evaluate the refined ordered-tree count by the
-Narayana formula. The underlying graph classification and ordered-tree
-bijection are complete. Subsequent bottlenecks are
-expected-moment limits, variance estimates,
+The leading-pattern classification, ordered-tree bijection, and Narayana
+count are complete. The next major step is convergence of every fixed expected
+moment, with finite-size error bounds. Subsequent bottlenecks are variance estimates,
 formal spectral measures, identification of the MP density plus atom, and
 moment-to-measure convergence.
 

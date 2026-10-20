@@ -85,8 +85,10 @@ partition patterns. The bijection, label multiplicities, and grouping by block
 counts are proved in Lean. [PATTERNS.md](PATTERNS.md) describes the new proof chain.
 
 The vertex bound now formally rules out surviving patterns with r+c>k+1, and
-the corresponding coefficients are proved to vanish. Double occurrence at equality is proved,
-but the formal tree classification and the Narayana enumeration remain open.
+the corresponding coefficients are proved to vanish. The doubled-tree
+classification, rooted ordered tree bijection, and general Narayana enumeration
+are now proved as well. See [NARAYANA.md](NARAYANA.md) for the closed coefficient
+formula and its connection to this walk expansion.
 The project therefore does not yet prove all expected-moment limits,
 concentration, or the Marchenko-Pastur spectral-distribution theorem.
 
