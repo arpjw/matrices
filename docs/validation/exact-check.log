@@ -1,0 +1,1 @@
+PASS: 4774 matrices; 32 moment comparisons; 40 labeled walk comparisons (including order zero); 120 labeling fibers; position partition coefficients at orders 0..7; orders 1..7 leading coefficients; 40 direct finite-bias bounds; 56 coefficient-based finite-bias bounds; 6 ratio-rate controls

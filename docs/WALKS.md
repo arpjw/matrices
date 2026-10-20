@@ -89,8 +89,9 @@ the corresponding coefficients are proved to vanish. The doubled-tree
 classification, rooted ordered tree bijection, and general Narayana enumeration
 are now proved as well. See [NARAYANA.md](NARAYANA.md) for the closed coefficient
 formula and its connection to this walk expansion.
-The project therefore does not yet prove all expected-moment limits,
-concentration, or the Marchenko-Pastur spectral-distribution theorem.
+All fixed-order expected-moment limits and explicit finite-size bounds are
+now proved in [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md). Concentration and the
+Marchenko-Pastur spectral-distribution theorem remain open.
 
 ## Independent computational checks
 

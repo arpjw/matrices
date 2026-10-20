@@ -98,7 +98,8 @@ The general bijection with rooted ordered trees is now proved, preserving
 both block counts. `patternCoefficient_eq_treeCount` identifies the original
 coefficients on r+c=k+1 with the corresponding refined tree counts. See
 [ORDERED_TREES.md](ORDERED_TREES.md). The Narayana formula now evaluates those
-counts for every order; [NARAYANA.md](NARAYANA.md) gives the proof. These finite
-results do not by themselves prove
-expected-moment limits or concentration.
+counts for every order; [NARAYANA.md](NARAYANA.md) gives the proof. The additional
+labeling estimates in [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md) now prove all
+fixed-order expected-moment limits and explicit finite-size bounds. Concentration
+remains open.
 The full Marchenko-Pastur convergence theorem remains unfinished.

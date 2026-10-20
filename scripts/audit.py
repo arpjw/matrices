@@ -1,4 +1,4 @@
-"""Audit proof dependencies and reject false normalization and Narayana claims."""
+"""Audit proof dependencies and reject false normalization, Narayana and finite-bias claims."""
 from __future__ import annotations
 
 import re
@@ -44,9 +44,18 @@ example : patternCoefficient 3 2 2 = 4 := by
   rw [patternCoefficient_narayana 3 2 2 (by decide) (by decide) (by decide)]
   norm_num
 '''
+    bias_source = '''import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: the finite bias cannot be discarded at dimensions 1-by-1.
+example : |average (fun ω : Fin 1 × Fin 1 → Bool =>
+    normalizedMoment (signMatrix ω) 2) - mpMoment 2 1| ≤ 0 := by
+  rw [expected_second_moment (by decide) (by decide), mpMoment_two]
+  norm_num
+'''
     controls = [
         ("NegativeControl", "negative-control.log", moment_source),
         ("NarayanaNegativeControl", "narayana-negative-control.log", narayana_source),
+        ("FiniteBiasNegativeControl", "finite-bias-negative-control.log", bias_source),
     ]
     for name, log_name, source in controls:
         negative = ROOT / ".lake" / f"{name}.lean"
@@ -63,7 +72,7 @@ example : patternCoefficient 3 2 2 = 4 := by
             raise RuntimeError(f"{name} failed because of infrastructure, not mathematics")
         (dest / log_name).write_text(source + "\nEXPECTED REJECTION:\n" + diagnosis)
     print(f"PASS: {len(found)} declaration dependency audits; "
-          "incorrect finite second moment and Narayana coefficient rejected")
+          "incorrect finite second moment, Narayana coefficient and zero finite bias rejected")
 
 
 

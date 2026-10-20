@@ -30,3 +30,9 @@ import RandomMatrix.TreePolynomialRecurrence
 import RandomMatrix.NarayanaArithmetic
 import RandomMatrix.NarayanaTreeCount
 import RandomMatrix.NarayanaCoefficients
+import RandomMatrix.FallingFactorialBounds
+import RandomMatrix.MomentPolynomials
+import RandomMatrix.PatternBudget
+import RandomMatrix.LabelWeightBounds
+import RandomMatrix.ExpectedMomentBounds
+import RandomMatrix.ExpectedMomentLimit

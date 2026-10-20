@@ -1,11 +1,12 @@
 Source scan passed
-✔ [2187/2193] Built RandomMatrix.NarayanaArithmetic (4.2s)
-✔ [2188/2193] Built RandomMatrix.TreeGeneratingSeries (5.1s)
-✔ [2189/2193] Built RandomMatrix.TreePolynomialRecurrence (2.1s)
-✔ [2190/2193] Built RandomMatrix.NarayanaTreeCount (1.5s)
-✔ [2191/2193] Built RandomMatrix.NarayanaCoefficients (1.3s)
-✔ [2192/2193] Built RandomMatrix (2.1s)
-Build completed successfully (2193 jobs).
+✔ [2192/2199] Built RandomMatrix.PatternBudget (6.7s)
+✔ [2193/2199] Built RandomMatrix.MomentPolynomials (6.7s)
+✔ [2194/2199] Built RandomMatrix.FallingFactorialBounds (7.1s)
+✔ [2195/2199] Built RandomMatrix.LabelWeightBounds (3.5s)
+✔ [2196/2199] Built RandomMatrix.ExpectedMomentBounds (1.6s)
+✔ [2197/2199] Built RandomMatrix.ExpectedMomentLimit (1.4s)
+✔ [2198/2199] Built RandomMatrix (1.8s)
+Build completed successfully (2199 jobs).
 'RandomMatrix.average_prod' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.average_sign_monomial_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -203,4 +204,27 @@ Build completed successfully (2193 jobs).
 'RandomMatrix.patternCoefficient_narayana' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.leadingCoefficient_narayana' depends on axioms: [propext, Classical.choice, Quot.sound]
 'RandomMatrix.leadingPatterns_card_catalan' depends on axioms: [propext, Classical.choice, Quot.sound]
-PASS: 197 declaration dependency audits; incorrect finite second moment and Narayana coefficient rejected
+'RandomMatrix.descRatio_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.descRatio_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.descRatio_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.descRatio_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.one_sub_descRatio_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.one_sub_descRatio_mul_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.leadingMoment_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.mpMoment_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.mpMoment_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.mpMoment_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.leadingMoment_eq_mpMoment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.card_setoid_fin_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.patternCoefficient_le_budget_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.sum_patternCoefficient_le_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.normalizedLabelWeight_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.powerLabelWeight_deficit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.labelWeight_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.expected_moment_eq_labelWeight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.expected_moment_error_dimensions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.expected_moment_error_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.continuous_mpMoment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.expected_moment_bias_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'RandomMatrix.expected_moment_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+PASS: 220 declaration dependency audits; incorrect finite second moment, Narayana coefficient and zero finite bias rejected

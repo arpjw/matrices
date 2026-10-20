@@ -1,0 +1,11 @@
+import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: the finite bias cannot be discarded at dimensions 1-by-1.
+example : |average (fun ω : Fin 1 × Fin 1 → Bool =>
+    normalizedMoment (signMatrix ω) 2) - mpMoment 2 1| ≤ 0 := by
+  rw [expected_second_moment (by decide) (by decide), mpMoment_two]
+  norm_num
+
+EXPECTED REJECTION:
+/private/var/folders/5s/zz2md1nj18g251r6jw2dmfq00000gn/T/matrices-validation-2exd73wx/verified-project/.lake/FiniteBiasNegativeControl.lean:5:62: error: unsolved goals
+⊢ False

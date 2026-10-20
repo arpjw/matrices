@@ -106,9 +106,9 @@ it is rejected because the actual coefficient is 3. The existing normalization
 negative control is retained. See [VALIDATION.md](VALIDATION.md) for the full
 build and independent enumeration records.
 
-This completes the leading-pattern counting stage. The next stage is to prove
-convergence of every fixed expected moment to the Narayana polynomial in gamma,
-with finite-size error bounds. Variance estimates, the spectral-measure
+This completes the leading-pattern counting stage. Convergence of every fixed
+expected moment and explicit finite-size bounds have now also been proved; see
+[EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md). Variance estimates, the spectral-measure
 interface, identification of the density plus zero atom, and weak convergence
 in probability are still unproved. The full target remains in
 [BLUEPRINT.md](BLUEPRINT.md).

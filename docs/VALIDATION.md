@@ -3,13 +3,15 @@
 Verified locally on 2026-10-20. This record covers the finite-dimensional
 milestone, all-order walk expansion, partition-coefficient formula,
 coefficient boundary cases, doubled-tree graph classification, the general
-rooted ordered tree bijection, and the Narayana coefficient formula,
-not the full Marchenko-Pastur theorem. Earlier
+rooted ordered tree bijection, the Narayana coefficient formula, all fixed-order
+expected-moment limits, and explicit finite-size bounds, not the full
+Marchenko-Pastur theorem. Earlier
 stages are retained at `stage-1-finite-moments` (`0523463`) and
 `stage-2-walk-counting` (`b23f33c`), and `stage-3-pattern-coefficients` (`40eeb1d`).
 The doubled-tree checkpoint is `stage-4-doubled-trees` (`e2cb215`).
 The bijection checkpoint is `stage-5-ordered-tree-bijection` (`1943198`).
-The current checkpoint is `stage-6-narayana`.
+The Narayana checkpoint is `stage-6-narayana` (`dce93b9`).
+The current checkpoint is `stage-7-expected-moments`.
 
 ## Lean
 
@@ -17,17 +19,18 @@ The current checkpoint is `stage-6-narayana`.
   7e01a1bf5c70fc6167d49c345d3bf80596e9a79b.
 - Mathlib revision 8f9d9cff6bd728b17a24e163c9402775d9e6a365.
 - `scripts/check.sh`: passed.
-- `lake build`: passed, with dependency build products largely obtained from
-  the official mathlib cache.
-- Thirty-two mathematical source modules, 195 exported named theorems and seven private
-  helpers, plus the aggregate import and audit module. No new mathematical
+- `lake build`: passed, 2,199 jobs, with dependency build products largely
+  obtained from the official mathlib cache. No warnings were emitted.
+- Thirty-eight mathematical source modules, 218 exported named theorems and nine
+  private helpers, plus the aggregate import and audit module. No new mathematical
   result is claimed from the theorem count.
 - Source scan: no unfinished-proof tokens, custom axiom declarations, or
   `native_decide` calls in the project Lean sources.
-- 197 declaration dependency audits passed, including the central labeling,
+- 220 declaration dependency audits passed, including the central labeling,
   walk, ordered-tree, and refined coefficient equivalences, plus the formal
-  series recurrence and general Narayana coefficient theorem. Audited dependencies are confined
-  to `propext`, `Classical.choice`, and `Quot.sound`. No `sorryAx`, custom
+  series recurrence, general Narayana coefficient theorem, explicit finite-size
+  bounds, and all fixed-order expected-moment limits. Audited dependencies are
+  confined to `propext`, `Classical.choice`, and `Quot.sound`. No `sorryAx`, custom
   domain axiom, `Lean.ofReduceBool`, or `Lean.trustCompiler` was reported.
   Two definitional selector lemmas report no axioms at all. The audit parser
   now recognizes that explicit Lean output as well as nonempty dependency lists;
@@ -38,11 +41,15 @@ The current checkpoint is `stage-6-narayana`.
 - A second negative control passed: A_(3,2,2)=4 was rejected after applying
   the general Narayana theorem. The actual coefficient is 3. It failed with
   the intended unsolved mathematical goal, not an infrastructure error.
+- A third negative control passed: discarding the finite bias at p=n=1 for
+  k=2 was rejected with the goal False. The actual absolute bias from P_2(1)
+  is 1. This likewise failed for mathematics, not missing infrastructure.
 
 Logs: [build and audit](validation/lean-check.log),
 [axioms](validation/axioms.log),
 [normalization negative control](validation/negative-control.log),
-[Narayana negative control](validation/narayana-negative-control.log).
+[Narayana negative control](validation/narayana-negative-control.log),
+[finite-bias negative control](validation/finite-bias-negative-control.log).
 
 The standard Lean kernel and the pinned imported mathematics remain trusted.
 We did not run a second independently implemented proof checker.
@@ -50,7 +57,7 @@ We did not run a second independently implemented proof checker.
 The final build ran in a temporary local directory after iCloud offloading
 caused reads of generated artifacts in the original workspace to fail. Lean
 and all dependency sources were restored at the pinned versions. Hashes of all
-40 Lean source, check-script, and dependency-pin files matched the deliverable
+46 Lean source, check-script, and dependency-pin files matched the deliverable
 for the final validation. The logs in the validation directory are from this
 successful run. The pinned Lean and mathlib versions were retained throughout.
 
@@ -80,8 +87,20 @@ successful run. The pinned Lean and mathlib versions were retained throughout.
   formula are proved for every order in Lean. The general Narayana enumeration
   is now proved as well, with rational and exact integer versions. The Python
   enumerator itself has not been formally verified against the Lean pattern type.
+- 40 exact finite-bias comparisons at orders 0 through 4 across the same eight
+  dimension pairs. Positive-order moments come from direct matrix enumeration;
+  zeroth moments are the normalized identity trace. The compact ratio interval
+  is [1/4,4].
+- 56 additional finite-bias comparisons at orders 0 through 7, with moments
+  computed by the independent partition enumerator. Dimensions include (1,7),
+  (7,1), (16,64), (64,16), (8,8), (4,16), and (16,4), in the interval [1/7,7].
+- Six exact ratio-rate controls use n=m^2 and p=m^2+m. The second-moment bias
+  at the current ratio is -1/n; the absolute error to the gamma=1 limit,
+  multiplied by n, is m-1. Thus ratio convergence alone does not give the
+  O(1/n) rate to the limiting polynomial.
 
 Data: [exact-moments.json](../experiments/results/exact-moments.json).
+Run: [exact checker log](validation/exact-check.log).
 
 ## Graph and ordered-tree checks
 
@@ -105,9 +124,10 @@ proved in Lean at every order, including both inverse identities and both
 color counts. `patternCoefficient_eq_treeCount` identifies the original
 leading coefficients with refined tree counts. The Narayana closed formula
 is now proved at every positive order, and the Catalan total count at every
-order. Both independent Python checkers were rerun for this stage. Their
-mathematical checks are unchanged; their status descriptions now reflect the
-formal result. The Python code is not formally verified.
+order. The graph and ordered-tree checker was last run at the Narayana stage
+on the same date; its code and proof modules are unchanged in this checkpoint.
+The exact-moment checker was extended and rerun for the expected-moment stage.
+The Python code is not formally verified.
 
 Data: [tree-patterns.json](../experiments/results/tree-patterns.json).
 
@@ -131,7 +151,9 @@ classification are proved. The general rooted ordered tree bijection is also
 proved, preserving the visit order, root, and both color counts; it is linked
 to the original leading moment coefficients by a cardinality theorem.
 The general Narayana closed formula and Catalan total are now proved, completing
-the leading-pattern counting stage. The project does not yet prove all
-expected-moment limits, finite-size remainder bounds, variance bounds, the
-spectral-measure moment bridge, normalization and moments of the MP measure, or weak convergence in probability. The expected-second-moment limit
-is not a substitute for these steps. See [BLUEPRINT.md](BLUEPRINT.md).
+the leading-pattern counting stage. All fixed-order expected-moment limits
+and explicit finite-size bounds are now proved as well. The project does not
+yet prove variance bounds, the spectral-measure moment bridge, normalization
+and moments of the MP measure, or weak convergence in probability.
+Expectation convergence is not a substitute for these steps. See
+[BLUEPRINT.md](BLUEPRINT.md) and [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md).

@@ -3,14 +3,17 @@
 A research project toward a complete Lean proof of the Marchenko-Pastur law for
 sample covariance matrices with independent fair-sign entries.
 
-The current milestone proves the general Narayana formula for the leading
-coefficients in every finite trace-moment expansion:
+The current milestone proves convergence of every fixed expected trace moment
+for the actual independent-sign ensemble, together with an explicit finite-size
+bound:
 
-    A_(k,r,k+1-r) = choose(k,r) choose(k,r-1) / k,   1 <= r <= k.
+    E[M_k(p_m,n_m)] -> P_k(gamma),   n_m -> infinity, p_m/n_m -> gamma > 0,
+    |E[M_k(p,n)] - P_k(p/n)| <= C_k(a,B)/n,   0 < a <= p/n <= B, B >= 1.
 
-The proof starts from the original equality-pattern counts, uses the proved
-ordered-tree bijection, and evaluates the refined tree count. The division is
-proved exact. The full spectral-distribution theorem remains open.
+Here P_0=1 and P_k is the Narayana polynomial. The proof combines the exact
+finite coefficient expansion, the proved Narayana formula, and explicit
+label-collision and lower-order bounds. The full spectral-distribution theorem
+remains open.
 
 The initial finite-moment stage is preserved at the Git tag
 `stage-1-finite-moments` (commit `0523463`).
@@ -18,7 +21,8 @@ The all-order walk stage is preserved at `stage-2-walk-counting` (`b23f33c`).
 The exact coefficient stage is preserved at `stage-3-pattern-coefficients`
 (`40eeb1d`). The doubled-tree stage is preserved at `stage-4-doubled-trees`.
 The general bijection is preserved at `stage-5-ordered-tree-bijection` (`1943198`).
-The Narayana formula is preserved at `stage-6-narayana`.
+The Narayana formula is preserved at `stage-6-narayana` (`dce93b9`).
+The expected-moment stage is preserved at `stage-7-expected-moments`.
 
 ## Model and conventions
 
@@ -67,6 +71,12 @@ max(1 - 1/gamma, 0) when gamma > 1.
 | NarayanaArithmetic | Binomial expression satisfies the same recurrence, including support boundaries |
 | NarayanaTreeCount | Every tree-polynomial coefficient equals the Narayana expression |
 | NarayanaCoefficients | Closed formula for the original leading coefficients; exact division and Catalan total |
+| FallingFactorialBounds | Distinct-label fractions and explicit collision losses |
+| MomentPolynomials | Leading diagonal equals the Narayana moment polynomial, including order zero |
+| PatternBudget | Explicit dimension-independent upper bound on all coefficient counts |
+| LabelWeightBounds | Leading collision errors and suppression of lower-order patterns |
+| ExpectedMomentBounds | Uniform C_k(a,B)/n bound relative to the polynomial at p/n |
+| ExpectedMomentLimit | Every fixed expected moment converges at a positive finite aspect-ratio limit |
 
 The general finite identity, for every k >= 0 and p,n > 0, is
 
@@ -101,17 +111,23 @@ The new bijection strengthens this to the exact coefficient identity
 The root is a row vertex, and colors alternate with depth. See
 [the ordered-tree proof guide](docs/ORDERED_TREES.md) for both inverse maps and
 the connection to the original moment coefficients. The refined tree count is
-now evaluated by the Narayana formula above, and the total number of leading
-patterns is the Catalan number. See [the counting proof guide](docs/NARAYANA.md)
+now evaluated by the formula choose(k,r) choose(k,r-1)/k, and the total number
+of leading patterns is the Catalan number. See [the counting proof guide](docs/NARAYANA.md)
 for the generating-function argument and boundary cases.
 
 The previously proved second-moment specialization is
 
     E[M_2] = 1 + (p-1)/n = 1 + p/n - 1/n.
 
-For sequences with n tending to infinity and p/n tending to gamma, the expected
-second moment therefore tends to 1+gamma. This does not by itself establish
-concentration or weak convergence of the random spectral measures.
+For every fixed k>0, the expectation now tends to
+
+    P_k(gamma) = sum_(r=1)^k choose(k,r) choose(k,r-1) gamma^(r-1) / k
+
+at a positive limiting aspect ratio; P_0=1 is handled separately. The explicit
+finite-size constant and the distinction between bias at the current ratio
+and error to the limiting ratio are in [the expected-moment proof guide](docs/EXPECTED_MOMENTS.md).
+Expectation convergence does not establish concentration or weak convergence
+of the random spectral measures.
 
 See [the verification record](docs/VALIDATION.md) for actual build and audit
 results. The proof sources are required to contain no unfinished proofs, custom
@@ -171,7 +187,11 @@ leading Narayana coefficients through order seven using exact integers.
 The position-partition encoding is independently checked at orders 0 through 7,
 and exhaustive assignments check 120 labeling fibers, including empty domains
 and insufficient label counts. The general partition grouping and coefficient
-support bound are proved in Lean. The general Narayana formula is now proved as well.
+support bound and general Narayana formula are proved in Lean. The checker now
+also validates 40 finite-bias bounds against these direct moments, another 56
+against partition counts through order seven, and six examples distinguishing
+current-ratio bias from convergence to a limiting ratio. The general bound and
+all fixed-order expected-moment limits are proved in Lean.
 
 The graph checker independently verifies 189,455 partition graphs at orders
 0 through 6. An independent implementation checks both bijection inverses on all 626 trees
@@ -191,9 +211,9 @@ proofs or evidence of a new mathematical result.
 
 [BLUEPRINT.md](docs/BLUEPRINT.md) gives the exact theorem and dependency graph.
 The leading-pattern classification, ordered-tree bijection, and Narayana
-count are complete. The next major step is convergence of every fixed expected
-moment, with finite-size error bounds. Subsequent bottlenecks are variance estimates,
-formal spectral measures, identification of the MP density plus atom, and
+count and all fixed-order expected-moment limits with explicit finite-size
+bounds are complete. The next major step is variance estimates. Subsequent
+bottlenecks are formal spectral measures, identification of the MP density plus atom, and
 moment-to-measure convergence.
 
 [PRIOR_ART.md](docs/PRIOR_ART.md) records the inspected existing projects and their

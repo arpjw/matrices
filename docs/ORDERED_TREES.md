@@ -108,6 +108,8 @@ The subsequent counting stage now proves the refined enumeration
 
 The statistic is the number of even-depth vertices. The counting proof works
 directly with the two color-counting series, so it does not require an
-identification with Dyck-path peaks. The remaining stages are expected-moment
-limits, fluctuations, the spectral-measure bridge, and the analytic steps in
+identification with Dyck-path peaks. All fixed-order expected-moment limits
+and explicit finite-size bounds are also now proved; see
+[EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md). The remaining stages are fluctuations,
+the spectral-measure bridge, and the analytic steps in
 [BLUEPRINT.md](BLUEPRINT.md).

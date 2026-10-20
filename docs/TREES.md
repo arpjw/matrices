@@ -143,6 +143,7 @@ own root, and the remaining-root tree has b row vertices, the assembled tree
 has b+(l+1-a) row vertices. Ordinary Dyck-path peak counts cannot simply be
 substituted for this statistic without a proved correspondence.
 
-Expected-moment limits, fluctuations, the spectral-measure bridge, and the
-analytic Marchenko-Pastur identification still follow after the combinatorial
-count. See [BLUEPRINT.md](BLUEPRINT.md).
+All fixed-order expected-moment limits and explicit finite-size bounds are
+now proved in [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md). Fluctuations, the
+spectral-measure bridge, and the analytic Marchenko-Pastur identification
+remain open. See [BLUEPRINT.md](BLUEPRINT.md).

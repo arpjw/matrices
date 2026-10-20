@@ -57,8 +57,11 @@ for all independent-entry distributions.
 
        sum_(r=1)^k (1/k) choose(k,r) choose(k,r-1) gamma^(r-1).
 
-   Produce explicit finite-size remainder bounds for fixed k. Keep constants
-   and the assumption that gamma stays away from zero visible.
+   This stage is complete, including k=0 with limit 1. The finite-size bound
+   compares to the polynomial at the current ratio p/n and is C_k(a,B)/n
+   when 0<a<=p/n<=B and B>=1. The constant is explicit and independent of
+   the dimensions. Ratio convergence then yields the limit at gamma without
+   assuming a rate. See EXPECTED_MOMENTS.md.
 6. Fluctuations. Expand the covariance of two trace moments. Disjoint-coordinate
    terms cancel, and the remaining overlap patterns yield a variance bound
    tending to zero. Expectation convergence alone is insufficient.
@@ -90,17 +93,18 @@ trace normalization and 1/n for the covariance normalization.
 
 ## Working order
 
-Stages 1 through 4 are complete, including the general Narayana count linked
-to the original finite moment coefficients. Next, prove convergence of all
-fixed expected moments and finite-size remainder bounds. The finite coefficient
-expansion and its exact leading diagonal are available for this step. No
-concentration or spectral-measure convergence follows from counting alone.
+Stages 1 through 5 are complete, including all fixed-order expected moments
+and an explicit uniform finite-size bias bound. Next, expand the covariance
+of two trace moments and bound the overlapping patterns to prove concentration.
+Expectation convergence alone does not imply convergence of the random moments
+or spectral measures.
 The complete flagship chain is substantial; no completion date is inferred from
 the first finite proofs.
 
 See [WALKS.md](WALKS.md), [PATTERNS.md](PATTERNS.md), [TREES.md](TREES.md),
-[ORDERED_TREES.md](ORDERED_TREES.md), and [NARAYANA.md](NARAYANA.md) for the completed
-statements and their boundary with the remaining combinatorics.
+[ORDERED_TREES.md](ORDERED_TREES.md), [NARAYANA.md](NARAYANA.md), and
+[EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md) for the completed statements and
+their boundary with the remaining probability and analysis.
 
 ## References
 
