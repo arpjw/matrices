@@ -1,0 +1,1 @@
+PASS: 165 density moment integrals over 15 positive aspect ratios; 450 exact recurrence checks; 12 quadrature refinements; 2 incorrect normalization controls; maximum scaled quadrature error 1.58e-12

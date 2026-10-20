@@ -5,8 +5,9 @@ milestone, all-order walk expansion, partition-coefficient formula,
 coefficient boundary cases, doubled-tree graph classification, the general
 rooted ordered tree bijection, the Narayana coefficient formula, all fixed-order
 expected-moment limits, explicit finite-size bounds, and fixed-order moment
-concentration, empirical spectral measures, and their moment bridge, not the
-full Marchenko-Pastur theorem. Earlier
+concentration, empirical spectral measures, their moment bridge, and the
+normalization and all moments of the explicit MP density plus atom. The full
+Marchenko-Pastur weak-convergence theorem remains open. Earlier
 stages are retained at `stage-1-finite-moments` (`0523463`) and
 `stage-2-walk-counting` (`b23f33c`), and `stage-3-pattern-coefficients` (`40eeb1d`).
 The doubled-tree checkpoint is `stage-4-doubled-trees` (`e2cb215`).
@@ -14,7 +15,8 @@ The bijection checkpoint is `stage-5-ordered-tree-bijection` (`1943198`).
 The Narayana checkpoint is `stage-6-narayana` (`dce93b9`).
 The expected-moment checkpoint is `stage-7-expected-moments` (`abaabe1`).
 The concentration checkpoint is `stage-8-moment-concentration`.
-The current checkpoint is `stage-9-spectral-interface`.
+The spectral checkpoint is `stage-9-spectral-interface` (`734a212`).
+The current checkpoint is `stage-10-mp-density`.
 
 ## Lean
 
@@ -22,18 +24,20 @@ The current checkpoint is `stage-9-spectral-interface`.
   7e01a1bf5c70fc6167d49c345d3bf80596e9a79b.
 - Mathlib revision 8f9d9cff6bd728b17a24e163c9402775d9e6a365.
 - `scripts/check.sh`: passed.
-- `lake build`: passed, 2,829 jobs, with dependency build products largely
+- `lake build`: passed, 2,937 jobs, with dependency build products largely
   obtained from the official mathlib cache. No warnings were emitted.
-- Forty-eight mathematical source modules, 283 exported named theorems and twelve
+- Fifty-six mathematical source modules, 337 exported named theorems and twenty
   private helpers, plus the aggregate import and audit module. No new mathematical
   result is claimed from the theorem count.
 - Source scan: no unfinished-proof tokens, custom axiom declarations, or
   `native_decide` calls in the project Lean sources.
-- 296 declaration dependency audits passed, including the central labeling,
+- 350 declaration dependency audits passed, including the central labeling,
   walk, ordered-tree, and refined coefficient equivalences, plus the formal
   series recurrence, general Narayana coefficient theorem, explicit finite-size
   bounds, all fixed-order expected-moment limits, the paired-labeling equivalence,
-  variance bounds, convergence in probability, and the full spectral interface.
+  variance bounds, convergence in probability, the full spectral interface,
+  density normalization, all MP moments, the exact atom, compact support, and
+  identification of the random-matrix moment limits with the explicit law.
   Every exported named theorem is now explicitly audited, with a source-coverage
   check enforced by the audit script. This includes ten foundational helper
   lemmas from the initial stage that were previously absent from the individual
@@ -59,6 +63,13 @@ The current checkpoint is `stage-9-spectral-interface`.
 - A sixth negative control passed: zero mass at zero for a two-by-one covariance
   matrix was rejected with the proved lower bound 1/2 in the context. Both
   spectral controls fail on their mathematical claims, not missing infrastructure.
+- A seventh negative control passed: assigning continuous mass one at gamma=2
+  was rejected. The proved mass is 1/2, with the missing mass at zero.
+- An eighth negative control passed: assigning MP second moment two at gamma=2
+  was rejected. The proved moment is three.
+- A ninth negative control passed: assigning zero-atom mass 1/2 at gamma=1 was
+  rejected. The proved atom is zero. All three new controls reduce to False,
+  and the audit confirms that no infrastructure error caused rejection.
 
 Logs: [build and audit](validation/lean-check.log),
 [axioms](validation/axioms.log),
@@ -67,7 +78,10 @@ Logs: [build and audit](validation/lean-check.log),
 [finite-bias negative control](validation/finite-bias-negative-control.log),
 [variance negative control](validation/variance-negative-control.log),
 [spectral mass negative control](validation/spectral-mass-negative-control.log),
-[spectral zero-atom negative control](validation/spectral-atom-negative-control.log).
+[spectral zero-atom negative control](validation/spectral-atom-negative-control.log),
+[MP continuous-mass negative control](validation/mp-mass-negative-control.log),
+[MP second-moment negative control](validation/mp-moment-negative-control.log),
+[MP critical-atom negative control](validation/mp-critical-atom-negative-control.log).
 
 The standard Lean kernel and the pinned imported mathematics remain trusted.
 We did not run a second independently implemented proof checker.
@@ -75,14 +89,14 @@ We did not run a second independently implemented proof checker.
 The final build ran in a temporary local directory after iCloud offloading
 caused reads of generated artifacts in the original workspace to fail. Lean
 and all dependency sources were restored at the pinned versions. Hashes of all
-56 Lean source, check-script, and dependency-pin files matched the deliverable
+64 Lean source, check-script, and dependency-pin files matched the deliverable
 for the final validation. The logs in the validation directory are from this
 successful run. The pinned Lean and mathlib versions were retained throughout.
 
 ## Exact computational checks
 
 `python3 experiments/exact_moments.py`: passed at the expected-moment checkpoint
-on 2026-10-20. Its source and results are unchanged in the spectral-interface checkpoint.
+on 2026-10-20. Its source and results are unchanged in the MP-density checkpoint.
 
 - 4,774 complete sign matrices across dimensions (1,1), (1,4), (2,1), (2,2),
   (2,3), (3,2), (3,3), and (3,4).
@@ -200,6 +214,37 @@ Run: [spectral checker log](validation/spectral-check.log).
 The general spectral results are Lean theorems; the exact Python checker is
 independent finite evidence, not formally verified code.
 
+## Explicit MP density checks
+
+`python3 experiments/mp_density.py`: passed on 2026-10-20.
+
+- Numerically integrated 165 density moments at orders zero through ten over
+  15 aspect ratios: 1/100, 1/10, 1/4, 1/2, 9/10, 99/100, 999/1000, 1,
+  1001/1000, 101/100, 11/10, 2, 4, 10, and 100.
+- The checker evaluates the explicit density with x=a+(b-a)u^2 and adaptive
+  Simpson quadrature, refining the panel with the largest estimated error.
+  It uses a global error budget and compares to the exact rational Narayana
+  values. It does not reuse the formal proof's angular recurrence to obtain
+  the integrals.
+- Every continuous mass agrees with min(1,1/gamma). Adding the specified atom
+  gives mass one. All positive full-measure moments agree with the moment formula.
+- Requested quadrature tolerance was 1e-11 after scaling by max(1,expected).
+  Acceptance tolerance was 1e-8; the largest observed scaled error was 1.58e-12.
+  These are numerical diagnostics, not certified error enclosures.
+- Twelve refinement checks compare quadrature tolerances 1e-8 and 1e-11 at
+  gamma=999/1000, 1, 1001/1000, and 4, for orders zero, two, and ten.
+- 450 exact rational recurrence checks cover the same 15 ratios and recurrence
+  indices zero through 29, involving moments through order 32.
+- Two normalization controls reject treating the continuous part alone as a
+  probability law at gamma=4 and renormalizing that part to mass one. The latter
+  changes the first moment from one to four.
+
+Data: [mp-density.json](../experiments/results/mp-density.json).
+Run: [MP density checker log](validation/mp-density-check.log).
+The quadrature is numerical evidence and its code is not formally verified.
+Normalization, integrability, and the moment formula at every natural order
+and every positive real aspect ratio are independently proved in Lean.
+
 ## Numerical illustration
 
 `experiments/simulate.py`: passed positivity and first-trace checks on 105
@@ -225,8 +270,9 @@ and explicit finite-size bias bounds are proved. Explicit variance bounds,
 vanishing mean-square error, and convergence in probability of each fixed
 random moment are proved as well. The empirical spectral probability measure,
 all-order trace-moment bridge, nonnegative support, exact nullity atom, and
-transfer of concentration to empirical moments are now proved. The project
-does not yet prove normalization and moments of the explicit MP density plus
-atom, moment determinacy, or weak convergence in probability of the empirical
-spectral measures. See [BLUEPRINT.md](BLUEPRINT.md) and
-[SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md).
+transfer of concentration to empirical moments are proved. The explicit MP
+density plus atom is now proved normalized, compactly supported, and to have
+all natural moments, including gamma=1. The random-matrix moment limits are
+identified with the moments of this actual law. Tightness, moment determinacy,
+and weak convergence in probability of the empirical spectral measures remain.
+See [BLUEPRINT.md](BLUEPRINT.md) and [MP_DENSITY.md](MP_DENSITY.md).

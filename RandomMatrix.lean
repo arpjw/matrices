@@ -46,3 +46,11 @@ import RandomMatrix.MomentConcentration
 import RandomMatrix.SpectralGeometry
 import RandomMatrix.EmpiricalMeasure
 import RandomMatrix.SpectralConcentration
+import RandomMatrix.MPParameters
+import RandomMatrix.MPPolynomialRecurrence
+import RandomMatrix.MPMomentRecurrence
+import RandomMatrix.MPTrigNormalization
+import RandomMatrix.MPAngularNormalization
+import RandomMatrix.MPDensityIntegrals
+import RandomMatrix.MPMeasure
+import RandomMatrix.MPIdentification

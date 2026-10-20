@@ -108,7 +108,7 @@ measure, trace-moment identity, nonnegative support, and forced zero atom are
 proved. The concentration theorem is now also stated for moments of that measure.
 See [SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md) for the proof chain and next stage.
 
-The MP density and atom still need normalization and moment proofs. Tightness,
-moment determinacy, and weak convergence in probability of the empirical
-spectral measures also remain. Random-moment convergence alone does not finish
+The MP density and atom are now normalized and all their moments proved in
+[MP_DENSITY.md](MP_DENSITY.md). Tightness, moment determinacy, and weak
+convergence in probability of the empirical spectral measures remain. Random-moment convergence alone does not finish
 the full Marchenko-Pastur theorem; see [BLUEPRINT.md](BLUEPRINT.md).

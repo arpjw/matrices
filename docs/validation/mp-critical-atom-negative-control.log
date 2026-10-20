@@ -1,0 +1,10 @@
+import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: gamma=1 has no zero atom despite its density singularity.
+example : (marchenkoPastur 1 {0}).toReal = 1 / 2 := by
+  rw [marchenkoPastur_zero_atom_real]
+  norm_num
+
+EXPECTED REJECTION:
+/private/var/folders/5s/zz2md1nj18g251r6jw2dmfq00000gn/T/matrices-validation-2exd73wx/verified-project/.lake/MPCriticalAtomNegativeControl.lean:4:52: error: unsolved goals
+⊢ False

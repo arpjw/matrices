@@ -1,0 +1,1332 @@
+{
+  "status": "numerical quadrature and exact arithmetic checks, not a formal proof",
+  "quadrature_tolerance": 1e-11,
+  "acceptance_scaled_error": 1e-08,
+  "quadrature_moments": 165,
+  "exact_recurrence_checks": 450,
+  "refinement_checks": [
+    {
+      "gamma": "999/1000",
+      "order": 0,
+      "scaled_difference": 1.8024335357580412e-09
+    },
+    {
+      "gamma": "999/1000",
+      "order": 2,
+      "scaled_difference": 2.880962435432997e-09
+    },
+    {
+      "gamma": "999/1000",
+      "order": 10,
+      "scaled_difference": 2.754194136766181e-09
+    },
+    {
+      "gamma": "1",
+      "order": 0,
+      "scaled_difference": 3.1120335197698523e-09
+    },
+    {
+      "gamma": "1",
+      "order": 2,
+      "scaled_difference": 2.8809626906343377e-09
+    },
+    {
+      "gamma": "1",
+      "order": 10,
+      "scaled_difference": 2.7541942794322923e-09
+    },
+    {
+      "gamma": "1001/1000",
+      "order": 0,
+      "scaled_difference": 1.7990570144732487e-09
+    },
+    {
+      "gamma": "1001/1000",
+      "order": 2,
+      "scaled_difference": 2.8809625017133284e-09
+    },
+    {
+      "gamma": "1001/1000",
+      "order": 10,
+      "scaled_difference": 2.7541942404953e-09
+    },
+    {
+      "gamma": "4",
+      "order": 0,
+      "scaled_difference": 3.5431368949900843e-09
+    },
+    {
+      "gamma": "4",
+      "order": 2,
+      "scaled_difference": 2.5986961915708006e-09
+    },
+    {
+      "gamma": "4",
+      "order": 10,
+      "scaled_difference": 1.938937911269267e-09
+    }
+  ],
+  "results": [
+    {
+      "gamma": "1/100",
+      "atom": "0",
+      "continuous_mass": "1",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.9999999999996891,
+          "expected": "1",
+          "scaled_absolute_error": 3.1086244689504383e-13,
+          "evaluations": 1329
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.999999999999628,
+          "expected": "1",
+          "scaled_absolute_error": 3.7203573555188996e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 1.0099999999995497,
+          "expected": "101/100",
+          "scaled_absolute_error": 4.458479789979837e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 3,
+          "continuous_integral": 1.0300999999994827,
+          "expected": "10301/10000",
+          "scaled_absolute_error": 5.022463153823153e-13,
+          "evaluations": 1429
+        },
+        {
+          "order": 4,
+          "continuous_integral": 1.0606009999993757,
+          "expected": "1060601/1000000",
+          "scaled_absolute_error": 5.885034847640753e-13,
+          "evaluations": 1485
+        },
+        {
+          "order": 5,
+          "continuous_integral": 1.1020100099992491,
+          "expected": "110201001/100000000",
+          "scaled_absolute_error": 6.814410459451778e-13,
+          "evaluations": 1545
+        },
+        {
+          "order": 6,
+          "continuous_integral": 1.1550501500996593,
+          "expected": "11550501501/10000000000",
+          "scaled_absolute_error": 2.9489319050390043e-13,
+          "evaluations": 1625
+        },
+        {
+          "order": 7,
+          "continuous_integral": 1.2206760521005877,
+          "expected": "1220676052101/1000000000000",
+          "scaled_absolute_error": 3.3779382387004175e-13,
+          "evaluations": 1705
+        },
+        {
+          "order": 8,
+          "continuous_integral": 1.300094919627536,
+          "expected": "130009491962801/100000000000000",
+          "scaled_absolute_error": 3.6463893855579704e-13,
+          "evaluations": 1753
+        },
+        {
+          "order": 9,
+          "continuous_integral": 1.3947937579357867,
+          "expected": "13947937579363601/10000000000000000",
+          "scaled_absolute_error": 4.110422538488228e-13,
+          "evaluations": 1789
+        },
+        {
+          "order": 10,
+          "continuous_integral": 1.5065734517247114,
+          "expected": "1506573451725404501/1000000000000000000",
+          "scaled_absolute_error": 4.601323989759896e-13,
+          "evaluations": 1821
+        }
+      ]
+    },
+    {
+      "gamma": "1/10",
+      "atom": "0",
+      "continuous_mass": "1",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.9999999999994231,
+          "expected": "1",
+          "scaled_absolute_error": 5.768718835952313e-13,
+          "evaluations": 1317
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.999999999999628,
+          "expected": "1",
+          "scaled_absolute_error": 3.7203573555188996e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 1.099999999999315,
+          "expected": "11/10",
+          "scaled_absolute_error": 6.227341874488378e-13,
+          "evaluations": 1517
+        },
+        {
+          "order": 3,
+          "continuous_integral": 1.3099999999995957,
+          "expected": "131/100",
+          "scaled_absolute_error": 3.086589508156351e-13,
+          "evaluations": 1713
+        },
+        {
+          "order": 4,
+          "continuous_integral": 1.66099999999935,
+          "expected": "1661/1000",
+          "scaled_absolute_error": 3.9128510452472404e-13,
+          "evaluations": 1813
+        },
+        {
+          "order": 5,
+          "continuous_integral": 2.210099999998878,
+          "expected": "22101/10000",
+          "scaled_absolute_error": 5.077659080091888e-13,
+          "evaluations": 1877
+        },
+        {
+          "order": 6,
+          "continuous_integral": 3.0515099999980677,
+          "expected": "305151/100000",
+          "scaled_absolute_error": 6.332052498787887e-13,
+          "evaluations": 1949
+        },
+        {
+          "order": 7,
+          "continuous_integral": 4.335710999998805,
+          "expected": "4335711/1000000",
+          "scaled_absolute_error": 2.755257383383414e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 8,
+          "continuous_integral": 6.300988099997933,
+          "expected": "63009881/10000000",
+          "scaled_absolute_error": 3.2801064687650997e-13,
+          "evaluations": 2097
+        },
+        {
+          "order": 9,
+          "continuous_integral": 9.324499609996426,
+          "expected": "932449961/100000000",
+          "scaled_absolute_error": 3.8329455845977603e-13,
+          "evaluations": 2113
+        },
+        {
+          "order": 10,
+          "continuous_integral": 14.004694450993819,
+          "expected": "14004694451/1000000000",
+          "scaled_absolute_error": 4.414035466994046e-13,
+          "evaluations": 2125
+        }
+      ]
+    },
+    {
+      "gamma": "1/4",
+      "atom": "0",
+      "continuous_mass": "1",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.9999999999995566,
+          "expected": "1",
+          "scaled_absolute_error": 4.434230760352875e-13,
+          "evaluations": 1357
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996279,
+          "expected": "1",
+          "scaled_absolute_error": 3.7214675785435247e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 1.2499999999992113,
+          "expected": "5/4",
+          "scaled_absolute_error": 6.309619493549689e-13,
+          "evaluations": 1629
+        },
+        {
+          "order": 3,
+          "continuous_integral": 1.812499999999334,
+          "expected": "29/16",
+          "scaled_absolute_error": 3.673995973352656e-13,
+          "evaluations": 1801
+        },
+        {
+          "order": 4,
+          "continuous_integral": 2.8906249999985807,
+          "expected": "185/64",
+          "scaled_absolute_error": 4.910042342679525e-13,
+          "evaluations": 1877
+        },
+        {
+          "order": 5,
+          "continuous_integral": 4.910156249998789,
+          "expected": "1257/256",
+          "scaled_absolute_error": 2.465475892037592e-13,
+          "evaluations": 1957
+        },
+        {
+          "order": 6,
+          "continuous_integral": 8.71582031249746,
+          "expected": "8925/1024",
+          "scaled_absolute_error": 2.9144592124040056e-13,
+          "evaluations": 2053
+        },
+        {
+          "order": 7,
+          "continuous_integral": 15.977783203119298,
+          "expected": "65445/4096",
+          "scaled_absolute_error": 3.5687713257741304e-13,
+          "evaluations": 2085
+        },
+        {
+          "order": 8,
+          "continuous_integral": 30.018615722643496,
+          "expected": "491825/16384",
+          "scaled_absolute_error": 4.2487775668042086e-13,
+          "evaluations": 2093
+        },
+        {
+          "order": 9,
+          "continuous_integral": 57.49830627438566,
+          "expected": "3768209/65536",
+          "scaled_absolute_error": 4.939344302211034e-13,
+          "evaluations": 2097
+        },
+        {
+          "order": 10,
+          "continuous_integral": 111.86372756951639,
+          "expected": "29324405/262144",
+          "scaled_absolute_error": 5.693807297268708e-13,
+          "evaluations": 2101
+        }
+      ]
+    },
+    {
+      "gamma": "1/2",
+      "atom": "0",
+      "continuous_mass": "1",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.9999999999996262,
+          "expected": "1",
+          "scaled_absolute_error": 3.738120923912902e-13,
+          "evaluations": 1505
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996281,
+          "expected": "1",
+          "scaled_absolute_error": 3.7192471324942744e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 1.4999999999989775,
+          "expected": "3/2",
+          "scaled_absolute_error": 6.816769371198461e-13,
+          "evaluations": 1669
+        },
+        {
+          "order": 3,
+          "continuous_integral": 2.7499999999989404,
+          "expected": "11/4",
+          "scaled_absolute_error": 3.853079471644543e-13,
+          "evaluations": 1829
+        },
+        {
+          "order": 4,
+          "continuous_integral": 5.624999999996937,
+          "expected": "45/8",
+          "scaled_absolute_error": 5.445915323636857e-13,
+          "evaluations": 1897
+        },
+        {
+          "order": 5,
+          "continuous_integral": 12.312499999996856,
+          "expected": "197/16",
+          "scaled_absolute_error": 2.553625669635284e-13,
+          "evaluations": 1989
+        },
+        {
+          "order": 6,
+          "continuous_integral": 28.218749999990607,
+          "expected": "903/32",
+          "scaled_absolute_error": 3.3287707523361326e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 7,
+          "continuous_integral": 66.85937499997335,
+          "expected": "4279/64",
+          "scaled_absolute_error": 3.9852829301805107e-13,
+          "evaluations": 2061
+        },
+        {
+          "order": 8,
+          "continuous_integral": 162.44531249992266,
+          "expected": "20793/128",
+          "scaled_absolute_error": 4.760708091230967e-13,
+          "evaluations": 2065
+        },
+        {
+          "order": 9,
+          "continuous_integral": 402.53515624977854,
+          "expected": "103049/256",
+          "scaled_absolute_error": 5.501679951257873e-13,
+          "evaluations": 2069
+        },
+        {
+          "order": 10,
+          "continuous_integral": 1013.3964843747688,
+          "expected": "518859/512",
+          "scaled_absolute_error": 2.2818218879886965e-13,
+          "evaluations": 2093
+        }
+      ]
+    },
+    {
+      "gamma": "9/10",
+      "atom": "0",
+      "continuous_mass": "1",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.999999999999265,
+          "expected": "1",
+          "scaled_absolute_error": 7.349676423018536e-13,
+          "evaluations": 1649
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996277,
+          "expected": "1",
+          "scaled_absolute_error": 3.72257780156815e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 1.8999999999986676,
+          "expected": "19/10",
+          "scaled_absolute_error": 7.01193489236941e-13,
+          "evaluations": 1689
+        },
+        {
+          "order": 3,
+          "continuous_integral": 4.509999999998211,
+          "expected": "451/100",
+          "scaled_absolute_error": 3.9662779097029983e-13,
+          "evaluations": 1829
+        },
+        {
+          "order": 4,
+          "continuous_integral": 11.988999999993249,
+          "expected": "11989/1000",
+          "scaled_absolute_error": 5.631772747151849e-13,
+          "evaluations": 1893
+        },
+        {
+          "order": 5,
+          "continuous_integral": 34.14609999999139,
+          "expected": "341461/10000",
+          "scaled_absolute_error": 2.519957632073594e-13,
+          "evaluations": 1985
+        },
+        {
+          "order": 6,
+          "continuous_integral": 101.88198999996972,
+          "expected": "10188199/100000",
+          "scaled_absolute_error": 2.972393000774275e-13,
+          "evaluations": 2037
+        },
+        {
+          "order": 7,
+          "continuous_integral": 314.3472309998774,
+          "expected": "314347231/1000000",
+          "scaled_absolute_error": 3.90050372299169e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 8,
+          "continuous_integral": 994.7536848995111,
+          "expected": "9947536849/10000000",
+          "scaled_absolute_error": 4.915458936850534e-13,
+          "evaluations": 2049
+        },
+        {
+          "order": 9,
+          "continuous_integral": 3210.8539716081887,
+          "expected": "321085397161/100000000",
+          "scaled_absolute_error": 5.641049747499347e-13,
+          "evaluations": 2065
+        },
+        {
+          "order": 10,
+          "continuous_integral": 10530.204370937068,
+          "expected": "10530204370939/1000000000",
+          "scaled_absolute_error": 1.834500716716327e-13,
+          "evaluations": 2089
+        }
+      ]
+    },
+    {
+      "gamma": "99/100",
+      "atom": "0",
+      "continuous_mass": "1",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.9999999999992926,
+          "expected": "1",
+          "scaled_absolute_error": 7.074341112911497e-13,
+          "evaluations": 1609
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996279,
+          "expected": "1",
+          "scaled_absolute_error": 3.7214675785435247e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 1.9899999999986038,
+          "expected": "199/100",
+          "scaled_absolute_error": 7.01616319481707e-13,
+          "evaluations": 1689
+        },
+        {
+          "order": 3,
+          "continuous_integral": 4.950099999998034,
+          "expected": "49501/10000",
+          "scaled_absolute_error": 3.970705324733596e-13,
+          "evaluations": 1829
+        },
+        {
+          "order": 4,
+          "continuous_integral": 13.790898999992224,
+          "expected": "13790899/1000000",
+          "scaled_absolute_error": 5.637858624049742e-13,
+          "evaluations": 1893
+        },
+        {
+          "order": 5,
+          "continuous_integral": 41.165586009989475,
+          "expected": "4116558601/100000000",
+          "scaled_absolute_error": 2.5562949387021453e-13,
+          "evaluations": 1985
+        },
+        {
+          "order": 6,
+          "continuous_integral": 128.72988019986133,
+          "expected": "1287298801999/10000000000",
+          "scaled_absolute_error": 3.004892607272845e-13,
+          "evaluations": 2037
+        },
+        {
+          "order": 7,
+          "continuous_integral": 416.27767724713885,
+          "expected": "416277677247301/1000000000000",
+          "scaled_absolute_error": 3.8958196145007613e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 8,
+          "continuous_integral": 1380.6457142108554,
+          "expected": "138064571421153499/100000000000000",
+          "scaled_absolute_error": 4.922478727918558e-13,
+          "evaluations": 2049
+        },
+        {
+          "order": 9,
+          "continuous_integral": 4670.695311737575,
+          "expected": "46706953117402155601/10000000000000000",
+          "scaled_absolute_error": 5.652826705716107e-13,
+          "evaluations": 2065
+        },
+        {
+          "order": 10,
+          "continuous_integral": 16054.35320184482,
+          "expected": "16054353201847834645399/1000000000000000000",
+          "scaled_absolute_error": 1.8774131874266783e-13,
+          "evaluations": 2089
+        }
+      ]
+    },
+    {
+      "gamma": "999/1000",
+      "atom": "0",
+      "continuous_mass": "1",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.99999999999929,
+          "expected": "1",
+          "scaled_absolute_error": 7.099876242477876e-13,
+          "evaluations": 1441
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.999999999999628,
+          "expected": "1",
+          "scaled_absolute_error": 3.7203573555188996e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 1.9989999999985975,
+          "expected": "1999/1000",
+          "scaled_absolute_error": 7.016787240177202e-13,
+          "evaluations": 1689
+        },
+        {
+          "order": 3,
+          "continuous_integral": 4.995000999998017,
+          "expected": "4995001/1000000",
+          "scaled_absolute_error": 3.970574602868707e-13,
+          "evaluations": 1829
+        },
+        {
+          "order": 4,
+          "continuous_integral": 13.979008998992118,
+          "expected": "13979008999/1000000000",
+          "scaled_absolute_error": 5.638236084534129e-13,
+          "evaluations": 1893
+        },
+        {
+          "order": 5,
+          "continuous_integral": 41.91605598599028,
+          "expected": "41916055986001/1000000000000",
+          "scaled_absolute_error": 2.5562959594387575e-13,
+          "evaluations": 1985
+        },
+        {
+          "order": 6,
+          "continuous_integral": 131.67029987998043,
+          "expected": "131670299880019999/1000000000000000",
+          "scaled_absolute_error": 3.0047033813375386e-13,
+          "evaluations": 2037
+        },
+        {
+          "order": 7,
+          "continuous_integral": 427.7144841750584,
+          "expected": "427714484175224973001/1000000000000000000",
+          "scaled_absolute_error": 3.8953102325328954e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 8,
+          "continuous_integral": 1425.002001996223,
+          "expected": "1425002001996924615034999/1000000000000000000000",
+          "scaled_absolute_error": 4.924029309674811e-13,
+          "evaluations": 2049
+        },
+        {
+          "order": 9,
+          "continuous_integral": 4842.584003983272,
+          "expected": "4842584003986009996615956001/1000000000000000000000000",
+          "scaled_absolute_error": 5.655015059695798e-13,
+          "evaluations": 2065
+        },
+        {
+          "order": 10,
+          "continuous_integral": 16720.561059576554,
+          "expected": "16720561059579693609643064053999/1000000000000000000000000000",
+          "scaled_absolute_error": 1.877673661387932e-13,
+          "evaluations": 2089
+        }
+      ]
+    },
+    {
+      "gamma": "1",
+      "atom": "0",
+      "continuous_mass": "1",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.9999999999992942,
+          "expected": "1",
+          "scaled_absolute_error": 7.05768776754212e-13,
+          "evaluations": 889
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996279,
+          "expected": "1",
+          "scaled_absolute_error": 3.7214675785435247e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 1.9999999999985967,
+          "expected": "2",
+          "scaled_absolute_error": 7.016609515630989e-13,
+          "evaluations": 1689
+        },
+        {
+          "order": 3,
+          "continuous_integral": 4.999999999998015,
+          "expected": "5",
+          "scaled_absolute_error": 3.97015753605956e-13,
+          "evaluations": 1829
+        },
+        {
+          "order": 4,
+          "continuous_integral": 13.999999999992108,
+          "expected": "14",
+          "scaled_absolute_error": 5.63739531246808e-13,
+          "evaluations": 1893
+        },
+        {
+          "order": 5,
+          "continuous_integral": 41.999999999989264,
+          "expected": "42",
+          "scaled_absolute_error": 2.556262080317884e-13,
+          "evaluations": 1985
+        },
+        {
+          "order": 6,
+          "continuous_integral": 131.99999999996035,
+          "expected": "132",
+          "scaled_absolute_error": 3.0036579284404236e-13,
+          "evaluations": 2037
+        },
+        {
+          "order": 7,
+          "continuous_integral": 428.99999999983294,
+          "expected": "429",
+          "scaled_absolute_error": 3.8942379494618823e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 8,
+          "continuous_integral": 1429.9999999992963,
+          "expected": "1430",
+          "scaled_absolute_error": 4.921129548928693e-13,
+          "evaluations": 2049
+        },
+        {
+          "order": 9,
+          "continuous_integral": 4861.9999999972515,
+          "expected": "4862",
+          "scaled_absolute_error": 5.65300902665115e-13,
+          "evaluations": 2065
+        },
+        {
+          "order": 10,
+          "continuous_integral": 16795.999999996846,
+          "expected": "16796",
+          "scaled_absolute_error": 1.877904040097949e-13,
+          "evaluations": 2089
+        }
+      ]
+    },
+    {
+      "gamma": "1001/1000",
+      "atom": "1/1001",
+      "continuous_mass": "1000/1001",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.9990009990002897,
+          "expected": "1000/1001",
+          "scaled_absolute_error": 7.093214904330125e-13,
+          "evaluations": 1437
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996279,
+          "expected": "1",
+          "scaled_absolute_error": 3.7214675785435247e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 2.0009999999985957,
+          "expected": "2001/1000",
+          "scaled_absolute_error": 7.017541636911035e-13,
+          "evaluations": 1689
+        },
+        {
+          "order": 3,
+          "continuous_integral": 5.005000999998012,
+          "expected": "5005001/1000000",
+          "scaled_absolute_error": 3.971514297976924e-13,
+          "evaluations": 1829
+        },
+        {
+          "order": 4,
+          "continuous_integral": 14.021009000992093,
+          "expected": "14021009001/1000000000",
+          "scaled_absolute_error": 5.639083671943015e-13,
+          "evaluations": 1893
+        },
+        {
+          "order": 5,
+          "continuous_integral": 42.08405601399023,
+          "expected": "42084056014001/1000000000000",
+          "scaled_absolute_error": 2.5595983121349864e-13,
+          "evaluations": 1985
+        },
+        {
+          "order": 6,
+          "continuous_integral": 132.33030011998022,
+          "expected": "132330300120020001/1000000000000000",
+          "scaled_absolute_error": 3.006899641765854e-13,
+          "evaluations": 2037
+        },
+        {
+          "order": 7,
+          "continuous_integral": 430.2884858250573,
+          "expected": "430288485825225027001/1000000000000000000",
+          "scaled_absolute_error": 3.8984294161749715e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 8,
+          "continuous_integral": 1435.0120120062186,
+          "expected": "1435012012006925385035001/1000000000000000000000",
+          "scaled_absolute_error": 4.926124318390702e-13,
+          "evaluations": 2049
+        },
+        {
+          "order": 9,
+          "continuous_integral": 4881.480060039257,
+          "expected": "4881480060042018004616044001/1000000000000000000000000",
+          "scaled_absolute_error": 5.654671095505976e-13,
+          "evaluations": 2065
+        },
+        {
+          "order": 10,
+          "continuous_integral": 16871.72535660059,
+          "expected": "16871725356603762405644936054001/1000000000000000000000000000",
+          "scaled_absolute_error": 1.8802567329264265e-13,
+          "evaluations": 2089
+        }
+      ]
+    },
+    {
+      "gamma": "101/100",
+      "atom": "1/101",
+      "continuous_mass": "100/101",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.9900990099002929,
+          "expected": "100/101",
+          "scaled_absolute_error": 6.972200594645983e-13,
+          "evaluations": 1605
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996277,
+          "expected": "1",
+          "scaled_absolute_error": 3.72257780156815e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 2.0099999999985894,
+          "expected": "201/100",
+          "scaled_absolute_error": 7.017051395441786e-13,
+          "evaluations": 1689
+        },
+        {
+          "order": 3,
+          "continuous_integral": 5.050099999997993,
+          "expected": "50501/10000",
+          "scaled_absolute_error": 3.9729808322658623e-13,
+          "evaluations": 1829
+        },
+        {
+          "order": 4,
+          "continuous_integral": 14.210900999991981,
+          "expected": "14210901/1000000",
+          "scaled_absolute_error": 5.64248162241981e-13,
+          "evaluations": 1893
+        },
+        {
+          "order": 5,
+          "continuous_integral": 42.84561400998902,
+          "expected": "4284561401/100000000",
+          "scaled_absolute_error": 2.5621958095713954e-13,
+          "evaluations": 1985
+        },
+        {
+          "order": 6,
+          "continuous_integral": 135.33012020005924,
+          "expected": "1353301202001/10000000000",
+          "scaled_absolute_error": 3.011652636008612e-13,
+          "evaluations": 2037
+        },
+        {
+          "order": 7,
+          "continuous_integral": 442.0193272525285,
+          "expected": "442019327252701/1000000000000",
+          "scaled_absolute_error": 3.90170569906087e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 8,
+          "continuous_integral": 1480.755724287805,
+          "expected": "148075572428853501/100000000000000",
+          "scaled_absolute_error": 4.93056930236762e-13,
+          "evaluations": 2049
+        },
+        {
+          "order": 9,
+          "continuous_integral": 5059.711368538152,
+          "expected": "50597113685410164401/10000000000000000",
+          "scaled_absolute_error": 5.662197113450819e-13,
+          "evaluations": 2065
+        },
+        {
+          "order": 10,
+          "continuous_integral": 17566.29023272414,
+          "expected": "17566290232727453365401/1000000000000000000",
+          "scaled_absolute_error": 1.8866810518056476e-13,
+          "evaluations": 2089
+        }
+      ]
+    },
+    {
+      "gamma": "11/10",
+      "atom": "1/11",
+      "continuous_mass": "10/11",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.9090909090902407,
+          "expected": "10/11",
+          "scaled_absolute_error": 6.683542608243442e-13,
+          "evaluations": 1609
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996279,
+          "expected": "1",
+          "scaled_absolute_error": 3.7214675785435247e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 2.0999999999985275,
+          "expected": "21/10",
+          "scaled_absolute_error": 7.012380094584798e-13,
+          "evaluations": 1689
+        },
+        {
+          "order": 3,
+          "continuous_integral": 5.509999999997815,
+          "expected": "551/100",
+          "scaled_absolute_error": 3.96537007706408e-13,
+          "evaluations": 1829
+        },
+        {
+          "order": 4,
+          "continuous_integral": 16.190999999990886,
+          "expected": "16191/1000",
+          "scaled_absolute_error": 5.628256800767887e-13,
+          "evaluations": 1893
+        },
+        {
+          "order": 5,
+          "continuous_integral": 50.97409999998714,
+          "expected": "509741/10000",
+          "scaled_absolute_error": 2.5230113954454934e-13,
+          "evaluations": 1985
+        },
+        {
+          "order": 6,
+          "continuous_integral": 168.12200999995002,
+          "expected": "16812201/100000",
+          "scaled_absolute_error": 2.971970486116021e-13,
+          "evaluations": 2037
+        },
+        {
+          "order": 7,
+          "continuous_integral": 573.3977709997763,
+          "expected": "573397771/1000000",
+          "scaled_absolute_error": 3.9019282590852683e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 8,
+          "continuous_integral": 2005.7713850990156,
+          "expected": "20057713851/10000000",
+          "scaled_absolute_error": 4.908475721524514e-13,
+          "evaluations": 2049
+        },
+        {
+          "order": 9,
+          "continuous_integral": 7156.590060405968,
+          "expected": "715659006041/100000000",
+          "scaled_absolute_error": 5.633674667581016e-13,
+          "evaluations": 2065
+        },
+        {
+          "order": 10,
+          "continuous_integral": 25944.316518136246,
+          "expected": "25944316518141/1000000000",
+          "scaled_absolute_error": 1.8327090241688006e-13,
+          "evaluations": 2089
+        }
+      ]
+    },
+    {
+      "gamma": "2",
+      "atom": "1/2",
+      "continuous_mass": "1/2",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.49999999999951716,
+          "expected": "1/2",
+          "scaled_absolute_error": 4.828359934094806e-13,
+          "evaluations": 1277
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996281,
+          "expected": "1",
+          "scaled_absolute_error": 3.7192471324942744e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 2.9999999999979554,
+          "expected": "3",
+          "scaled_absolute_error": 6.815289073832295e-13,
+          "evaluations": 1669
+        },
+        {
+          "order": 3,
+          "continuous_integral": 10.999999999995762,
+          "expected": "11",
+          "scaled_absolute_error": 3.853079471644543e-13,
+          "evaluations": 1829
+        },
+        {
+          "order": 4,
+          "continuous_integral": 44.9999999999755,
+          "expected": "45",
+          "scaled_absolute_error": 5.444336339779612e-13,
+          "evaluations": 1897
+        },
+        {
+          "order": 5,
+          "continuous_integral": 196.99999999994972,
+          "expected": "197",
+          "scaled_absolute_error": 2.552182943268258e-13,
+          "evaluations": 1989
+        },
+        {
+          "order": 6,
+          "continuous_integral": 902.9999999996995,
+          "expected": "903",
+          "scaled_absolute_error": 3.3275117618851737e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 7,
+          "continuous_integral": 4278.999999998295,
+          "expected": "4279",
+          "scaled_absolute_error": 3.9852829301805107e-13,
+          "evaluations": 2061
+        },
+        {
+          "order": 8,
+          "continuous_integral": 20792.9999999901,
+          "expected": "20793",
+          "scaled_absolute_error": 4.760708091230967e-13,
+          "evaluations": 2065
+        },
+        {
+          "order": 9,
+          "continuous_integral": 103048.9999999433,
+          "expected": "103049",
+          "scaled_absolute_error": 5.501679951257873e-13,
+          "evaluations": 2069
+        },
+        {
+          "order": 10,
+          "continuous_integral": 518858.99999988166,
+          "expected": "518859",
+          "scaled_absolute_error": 2.2807000483190856e-13,
+          "evaluations": 2093
+        }
+      ]
+    },
+    {
+      "gamma": "4",
+      "atom": "3/4",
+      "continuous_mass": "1/4",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.2499999999991158,
+          "expected": "1/4",
+          "scaled_absolute_error": 8.842093723870903e-13,
+          "evaluations": 977
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996279,
+          "expected": "1",
+          "scaled_absolute_error": 3.7214675785435247e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 4.999999999996845,
+          "expected": "5",
+          "scaled_absolute_error": 6.309619493549689e-13,
+          "evaluations": 1629
+        },
+        {
+          "order": 3,
+          "continuous_integral": 28.999999999989345,
+          "expected": "29",
+          "scaled_absolute_error": 3.673995973352656e-13,
+          "evaluations": 1801
+        },
+        {
+          "order": 4,
+          "continuous_integral": 184.99999999990916,
+          "expected": "185",
+          "scaled_absolute_error": 4.910042342679525e-13,
+          "evaluations": 1877
+        },
+        {
+          "order": 5,
+          "continuous_integral": 1256.99999999969,
+          "expected": "1257",
+          "scaled_absolute_error": 2.465475892037592e-13,
+          "evaluations": 1957
+        },
+        {
+          "order": 6,
+          "continuous_integral": 8924.999999997399,
+          "expected": "8925",
+          "scaled_absolute_error": 2.9144592124040056e-13,
+          "evaluations": 2053
+        },
+        {
+          "order": 7,
+          "continuous_integral": 65444.999999976644,
+          "expected": "65445",
+          "scaled_absolute_error": 3.5687713257741304e-13,
+          "evaluations": 2085
+        },
+        {
+          "order": 8,
+          "continuous_integral": 491824.99999979103,
+          "expected": "491825",
+          "scaled_absolute_error": 4.2487775668042086e-13,
+          "evaluations": 2093
+        },
+        {
+          "order": 9,
+          "continuous_integral": 3768208.9999981388,
+          "expected": "3768209",
+          "scaled_absolute_error": 4.939344302211034e-13,
+          "evaluations": 2097
+        },
+        {
+          "order": 10,
+          "continuous_integral": 29324404.999983303,
+          "expected": "29324405",
+          "scaled_absolute_error": 5.693807297268708e-13,
+          "evaluations": 2101
+        }
+      ]
+    },
+    {
+      "gamma": "10",
+      "atom": "9/10",
+      "continuous_mass": "1/10",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.09999999999869921,
+          "expected": "1/10",
+          "scaled_absolute_error": 1.3007928068020647e-12,
+          "evaluations": 733
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996281,
+          "expected": "1",
+          "scaled_absolute_error": 3.7192471324942744e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 10.999999999993154,
+          "expected": "11",
+          "scaled_absolute_error": 6.223708417316878e-13,
+          "evaluations": 1517
+        },
+        {
+          "order": 3,
+          "continuous_integral": 130.9999999999596,
+          "expected": "131",
+          "scaled_absolute_error": 3.082996114549931e-13,
+          "evaluations": 1713
+        },
+        {
+          "order": 4,
+          "continuous_integral": 1660.999999999351,
+          "expected": "1661",
+          "scaled_absolute_error": 3.9068300404273586e-13,
+          "evaluations": 1813
+        },
+        {
+          "order": 5,
+          "continuous_integral": 22100.99999998879,
+          "expected": "22101",
+          "scaled_absolute_error": 5.071540973100569e-13,
+          "evaluations": 1877
+        },
+        {
+          "order": 6,
+          "continuous_integral": 305150.999999807,
+          "expected": "305151",
+          "scaled_absolute_error": 6.325281699521153e-13,
+          "evaluations": 1949
+        },
+        {
+          "order": 7,
+          "continuous_integral": 4335710.999998809,
+          "expected": "4335711",
+          "scaled_absolute_error": 2.747326961905895e-13,
+          "evaluations": 2045
+        },
+        {
+          "order": 8,
+          "continuous_integral": 63009880.999979384,
+          "expected": "63009881",
+          "scaled_absolute_error": 3.271829145604676e-13,
+          "evaluations": 2097
+        },
+        {
+          "order": 9,
+          "continuous_integral": 932449960.9996434,
+          "expected": "932449961",
+          "scaled_absolute_error": 3.8238511443981574e-13,
+          "evaluations": 2113
+        },
+        {
+          "order": 10,
+          "continuous_integral": 14004694450.993832,
+          "expected": "14004694451",
+          "scaled_absolute_error": 4.4044984345054206e-13,
+          "evaluations": 2125
+        }
+      ]
+    },
+    {
+      "gamma": "100",
+      "atom": "99/100",
+      "continuous_mass": "1/100",
+      "moments": [
+        {
+          "order": 0,
+          "continuous_integral": 0.00999999999841521,
+          "expected": "1/100",
+          "scaled_absolute_error": 1.5847895912246557e-12,
+          "evaluations": 429
+        },
+        {
+          "order": 1,
+          "continuous_integral": 0.9999999999996279,
+          "expected": "1",
+          "scaled_absolute_error": 3.7214675785435247e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 2,
+          "continuous_integral": 100.99999999995495,
+          "expected": "101",
+          "scaled_absolute_error": 4.460238559127758e-13,
+          "evaluations": 1373
+        },
+        {
+          "order": 3,
+          "continuous_integral": 10300.999999994825,
+          "expected": "10301",
+          "scaled_absolute_error": 5.0238082255004e-13,
+          "evaluations": 1429
+        },
+        {
+          "order": 4,
+          "continuous_integral": 1060600.9999993755,
+          "expected": "1060601",
+          "scaled_absolute_error": 5.887716363455044e-13,
+          "evaluations": 1485
+        },
+        {
+          "order": 5,
+          "continuous_integral": 110201000.9999249,
+          "expected": "110201001",
+          "scaled_absolute_error": 6.814988224743275e-13,
+          "evaluations": 1545
+        },
+        {
+          "order": 6,
+          "continuous_integral": 11550501500.996586,
+          "expected": "11550501501",
+          "scaled_absolute_error": 2.955849191863046e-13,
+          "evaluations": 1625
+        },
+        {
+          "order": 7,
+          "continuous_integral": 1220676052100.5872,
+          "expected": "1220676052101",
+          "scaled_absolute_error": 3.382075008061525e-13,
+          "evaluations": 1705
+        },
+        {
+          "order": 8,
+          "continuous_integral": 130009491962753.53,
+          "expected": "130009491962801",
+          "scaled_absolute_error": 3.651175716737822e-13,
+          "evaluations": 1753
+        },
+        {
+          "order": 9,
+          "continuous_integral": 1.3947937579357858e+16,
+          "expected": "13947937579363601",
+          "scaled_absolute_error": 4.116737666288e-13,
+          "evaluations": 1789
+        },
+        {
+          "order": 10,
+          "continuous_integral": 1.5065734517247107e+18,
+          "expected": "1506573451725404501",
+          "scaled_absolute_error": 4.604886666531067e-13,
+          "evaluations": 1821
+        }
+      ]
+    }
+  ],
+  "incorrect_normalization_controls_rejected": 2
+}

@@ -3,22 +3,24 @@
 A research project toward a complete Lean proof of the Marchenko-Pastur law for
 sample covariance matrices with independent fair-sign entries.
 
-The current milestone constructs the empirical eigenvalue probability measure
-and proves that all its moments equal normalized matrix traces:
+The current milestone constructs the explicit Marchenko-Pastur density plus
+zero atom and proves its normalization and all natural moments for every gamma>0:
 
-    mu_X = (1/p) sum_i delta_(lambda_i(XX^T/n)),
-    integral x^k d mu_X = trace((XX^T/n)^k)/p, including k=0.
+    mu_gamma = max(1-1/gamma,0) delta_0 + rho_gamma(x) dx,
+    integral x^k d mu_gamma = P_k(gamma), including k=0.
 
-It retains repeated and zero eigenvalues, proves nonnegative support, and
-identifies the zero atom as nullity/p, at least max(1-1/(p/n),0). The established
-fixed-moment concentration theorem now applies to these actual spectral measures:
+The continuous density has mass min(1,1/gamma). The full measure is a probability
+measure with compact nonnegative support, and its zero atom has exactly the
+displayed mass. The proof includes the singular endpoint case gamma=1.
 
-    Pr(|integral x^k d mu_(X_m) - P_k(gamma)| > epsilon) -> 0,
+The established empirical moment theorem is now identified with this actual law:
+
+    Pr(|integral x^k d mu_(X_m) - integral x^k d mu_gamma| > epsilon) -> 0,
     n_m -> infinity, p_m/n_m -> gamma > 0, epsilon > 0.
 
-Mean-square convergence and the explicit finite deviation bound are transferred
-too. The MP density and atom still need normalization and moment identification;
-weak spectral convergence remains open. See [the spectral proof guide](docs/SPECTRAL_MEASURES.md).
+Weak convergence against all bounded continuous test functions remains open.
+See [the MP density proof guide](docs/MP_DENSITY.md) for the analytic proof and
+[the spectral proof guide](docs/SPECTRAL_MEASURES.md) for the empirical measure.
 
 The initial finite-moment stage is preserved at the Git tag
 `stage-1-finite-moments` (commit `0523463`).
@@ -30,6 +32,7 @@ The Narayana formula is preserved at `stage-6-narayana` (`dce93b9`).
 The expected-moment stage is preserved at `stage-7-expected-moments` (`abaabe1`).
 The concentration stage is preserved at `stage-8-moment-concentration`.
 The spectral interface stage is preserved at `stage-9-spectral-interface`.
+The density and moment stage is preserved at `stage-10-mp-density`.
 
 ## Model and conventions
 
@@ -94,6 +97,14 @@ max(1 - 1/gamma, 0) when gamma > 1.
 | SpectralGeometry | Eigenvalues with multiplicities, trace powers, and zero multiplicity equal to nullity |
 | EmpiricalMeasure | Empirical probability measure, integral formula, nonnegative support, and forced zero atom |
 | SpectralConcentration | Expected moments, mean-square convergence, and concentration of empirical spectral moments |
+| MPParameters | Explicit MP density, endpoints, atom, and angular parametrization |
+| MPPolynomialRecurrence | Real MP polynomial recurrence inherited from the tree count |
+| MPMomentRecurrence | Integration-by-parts recurrence and all angular moments |
+| MPTrigNormalization | Arctangent evaluation of reciprocal trigonometric integrals |
+| MPAngularNormalization | Continuous mass for every positive aspect ratio, including one |
+| MPDensityIntegrals | Lebesgue substitution, integrability, normalization, and all positive density moments |
+| MPMeasure | Explicit probability measure, exact atom, all moments, and compact support |
+| MPIdentification | Empirical moment concentration toward the moments of the explicit MP law |
 
 The general finite identity, for every k >= 0 and p,n > 0, is
 
@@ -148,7 +159,9 @@ convergence in probability of each fixed random moment. See
 [the concentration proof guide](docs/CONCENTRATION.md) for the pair graph,
 explicit constants and the finite probability bound. The new
 [spectral proof guide](docs/SPECTRAL_MEASURES.md) connects these results to
-integrals against the empirical eigenvalue probability measure.
+integrals against the empirical eigenvalue probability measure. The
+[MP density proof guide](docs/MP_DENSITY.md) identifies their limiting moments
+with the explicitly normalized density plus atom, at every order.
 Weak convergence of the random spectral measures remains open.
 
 See [the verification record](docs/VALIDATION.md) for actual build and audit
@@ -179,17 +192,22 @@ scripts/lake.sh exe cache get \
   Mathlib.Combinatorics.Enumerative.Catalan \
   Mathlib.RingTheory.PowerSeries.Derivative Mathlib.Tactic.LinearCombination \
   Mathlib.Analysis.Matrix.PosDef Mathlib.MeasureTheory.Integral.Bochner.Basic \
-  Mathlib.MeasureTheory.Measure.ProbabilityMeasure Mathlib.MeasureTheory.Measure.Support
+  Mathlib.MeasureTheory.Measure.ProbabilityMeasure Mathlib.MeasureTheory.Measure.Support \
+  Mathlib.Analysis.SpecialFunctions.Integrals.Basic \
+  Mathlib.Analysis.SpecialFunctions.Trigonometric.ArctanDeriv \
+  Mathlib.MeasureTheory.Function.JacobianOneDim \
+  Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
 scripts/check.sh
 ```
 
-The exact experiment uses only the Python standard library:
+The finite checks and density quadrature use only the Python standard library:
 
 ```sh
 python3 experiments/exact_moments.py
 python3 experiments/tree_patterns.py
 python3 experiments/variance.py
 python3 experiments/spectral_interface.py
+python3 experiments/mp_density.py
 ```
 
 The optional plots use the pinned requirements:
@@ -239,6 +257,13 @@ characteristic polynomials by 12,215 exact determinant evaluations, and checks
 the positive spectrum, and discarding multiplicities. These finite computations
 supplement the general Lean spectral-measure theorems.
 
+The density checker numerically integrates 165 moments at 15 aspect ratios,
+including values on both sides of gamma=1 and the critical value itself. It
+also performs 450 exact rational recurrence checks, twelve quadrature refinement
+comparisons, and controls for omitted atoms and incorrect renormalization.
+The quadrature is numerical evidence; normalization and all moments are proved
+in Lean for every positive real aspect ratio.
+
 The spectral figure uses 105 reproducible simulated matrices. It preserves
 structural zero eigenvalues for p > n and shows the finite -1/n bias in the
 second moment. Its histograms and error bars are illustrations, not formal
@@ -254,9 +279,10 @@ count and all fixed-order expected-moment limits with explicit finite-size
 bounds are complete. Explicit variance bounds and convergence in probability
 of each fixed random moment are complete. The empirical eigenvalue probability
 measure, trace-moment bridge, nonnegative support, forced zero atom, and transfer
-of concentration to spectral moments are now complete too. Next is normalization
-and moment identification of the MP density plus atom. Tightness, determinacy,
-and weak convergence in probability remain after that.
+of concentration to spectral moments are complete. The explicit MP density plus
+atom is now proved normalized, compactly supported, and to have all the required
+moments, including the gamma=1 case. The remaining stage is tightness,
+moment-to-measure convergence, and weak convergence in probability.
 
 [PRIOR_ART.md](docs/PRIOR_ART.md) records the inspected existing projects and their
 limitations. This is a formalization of a classical result. No claim of novelty

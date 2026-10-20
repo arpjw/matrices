@@ -86,6 +86,27 @@ example (X : Matrix (Fin 2) (Fin 1) ℝ) :
   have h := empiricalMeasure_zero_atom_lower (by decide : 0 < 2) X
   norm_num at h
 '''
+    mp_mass_source = '''import RandomMatrix
+open RandomMatrix MeasureTheory
+-- Deliberately wrong: at gamma=2 the continuous density has mass 1/2, not 1.
+example : (∫ x, mpDensity 2 x) = 1 := by
+  rw [mpDensity_integral (by norm_num : (0 : ℝ) < 2)]
+  norm_num
+'''
+    mp_moment_source = '''import RandomMatrix
+open RandomMatrix MeasureTheory
+-- Deliberately wrong: the MP second moment at gamma=2 is 3, not 2.
+example : (∫ x, x ^ 2 ∂marchenkoPastur 2) = 2 := by
+  rw [marchenkoPastur_moment 2 (by norm_num), mpMoment_two]
+  norm_num
+'''
+    mp_critical_atom_source = '''import RandomMatrix
+open RandomMatrix
+-- Deliberately wrong: gamma=1 has no zero atom despite its density singularity.
+example : (marchenkoPastur 1 {0}).toReal = 1 / 2 := by
+  rw [marchenkoPastur_zero_atom_real]
+  norm_num
+'''
     controls = [
         ("NegativeControl", "negative-control.log", moment_source),
         ("NarayanaNegativeControl", "narayana-negative-control.log", narayana_source),
@@ -93,6 +114,9 @@ example (X : Matrix (Fin 2) (Fin 1) ℝ) :
         ("VarianceNegativeControl", "variance-negative-control.log", variance_source),
         ("SpectralMassNegativeControl", "spectral-mass-negative-control.log", spectral_mass_source),
         ("SpectralAtomNegativeControl", "spectral-atom-negative-control.log", spectral_atom_source),
+        ("MPMassNegativeControl", "mp-mass-negative-control.log", mp_mass_source),
+        ("MPMomentNegativeControl", "mp-moment-negative-control.log", mp_moment_source),
+        ("MPCriticalAtomNegativeControl", "mp-critical-atom-negative-control.log", mp_critical_atom_source),
     ]
     for name, log_name, source in controls:
         negative = ROOT / ".lake" / f"{name}.lean"
@@ -109,7 +133,7 @@ example (X : Matrix (Fin 2) (Fin 1) ℝ) :
             raise RuntimeError(f"{name} failed because of infrastructure, not mathematics")
         (dest / log_name).write_text(source + "\nEXPECTED REJECTION:\n" + diagnosis)
     print(f"PASS: {len(found)} declaration dependency audits; "
-          "six incorrect moment, variance and spectral-measure claims rejected")
+          f"{len(controls)} incorrect moment, variance and spectral-measure claims rejected")
 
 
 

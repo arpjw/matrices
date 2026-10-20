@@ -14,8 +14,9 @@ For every natural k, including k=0, Lean proves
 
 Consequently the existing fixed-moment mean-square and convergence-in-probability
 results now apply directly to moments of these empirical probability measures.
-The limiting values are the Narayana polynomials P_k(gamma). Their identification
-with moments of the displayed Marchenko-Pastur density and atom remains to be proved.
+The limiting values are the Narayana polynomials P_k(gamma). The subsequent
+[MP density stage](MP_DENSITY.md) now identifies them with moments of the
+explicitly normalized Marchenko-Pastur density and atom.
 
 ## Eigenvalues and trace powers
 
@@ -112,17 +113,11 @@ renormalization over only positive values, and discarded multiplicities.
 These finite computations supplement the general Lean proof; the Python code
 itself has not been formally verified. See [VALIDATION.md](VALIDATION.md).
 
-## Next stage
+## Analytic handoff
 
-Identify the target measure explicitly, without assuming its normalization:
+The explicit MP density plus atom is now normalized and its moments identified
+at every order, including the critical aspect ratio gamma=1. See
+[MP_DENSITY.md](MP_DENSITY.md) for the completed proof.
 
-1. Define a=(1-sqrt(gamma))^2, b=(1+sqrt(gamma))^2, and the density
-   sqrt((b-x)(x-a))/(2*pi*gamma*x) on (a,b), zero elsewhere.
-2. Construct its measure and add max(1-1/gamma,0) times the Dirac measure at zero.
-3. Prove the continuous part has mass min(1,1/gamma), including gamma=1 where
-   the left endpoint is zero. Deduce total mass one and compact nonnegative support.
-4. Evaluate all positive moments and identify them with the already proved
-   Narayana polynomial; check order zero separately with the atom.
-
-After that, tightness, moment determinacy, and the passage from moment
-concentration to weak convergence in probability remain. See [BLUEPRINT.md](BLUEPRINT.md).
+Tightness, moment determinacy, and the passage from moment concentration to
+weak convergence in probability remain. See [BLUEPRINT.md](BLUEPRINT.md).

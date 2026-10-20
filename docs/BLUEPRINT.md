@@ -76,7 +76,11 @@ for all independent-entry distributions.
    the lower bound max(1-1/(p/n),0) are proved. Concentration is transferred to
    integrals against the actual empirical probability measure. See SPECTRAL_MEASURES.md.
 8. Identify the target measure. Prove positivity, total mass, and the moment
-   formula for the displayed density plus atom. Do not assume normalization.
+   formula for the displayed density plus atom. This stage is complete for
+   every gamma>0, including gamma=1: continuous mass min(1,1/gamma), exact zero
+   atom, total mass one, all natural moments, and compact nonnegative support
+   are proved. The empirical moment theorem is identified with moments of this
+   explicit measure. See MP_DENSITY.md.
 9. Moment-to-measure convergence. Prove tightness, moment determinacy and the
    relevant convergence-in-probability argument. This is the main analytic
    bottleneck. A theorem assuming spectral convergence would not close it.
@@ -100,19 +104,19 @@ trace normalization and 1/n for the covariance normalization.
 
 ## Working order
 
-Stages 1 through 7 are complete, including the empirical spectral probability
-measure, its trace-moment identity, nonnegative support, and forced zero atom.
-Every fixed empirical moment converges in probability to its Narayana polynomial.
-Next, construct the explicit MP density plus atom, prove its normalization and
-support, and identify all its moments. Moment-to-measure convergence follows
-as a separate stage; it is not a consequence already formalized here.
+Stages 1 through 8 are complete. The empirical spectral probability measure
+and its moment bridge are proved, and the explicit MP density plus atom is
+normalized with compact nonnegative support and every natural moment identified.
+Every fixed empirical moment converges in probability to the corresponding
+moment of that measure. Next is the moment-to-measure argument and weak
+convergence in probability against all bounded continuous real tests.
 The complete flagship chain is substantial; no completion date is inferred from
 the first finite proofs.
 
 See [WALKS.md](WALKS.md), [PATTERNS.md](PATTERNS.md), [TREES.md](TREES.md),
 [ORDERED_TREES.md](ORDERED_TREES.md), [NARAYANA.md](NARAYANA.md), and
 [EXPECTED_MOMENTS.md](EXPECTED_MOMENTS.md), [CONCENTRATION.md](CONCENTRATION.md),
-and [SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md)
+[SPECTRAL_MEASURES.md](SPECTRAL_MEASURES.md), and [MP_DENSITY.md](MP_DENSITY.md)
 for the completed statements and
 their boundary with the remaining probability and analysis.
 
